@@ -1,0 +1,238 @@
+/* shared section utilities used by other components */
+.sec {
+  padding: 100px 72px;
+  background: #ffffff;
+}
+.sec.dark { background: #f7f6f3; }
+
+.sec-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 52px;
+}
+
+.sec-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #c8a96a;
+  margin-bottom: 12px;
+}
+
+.sec-title {
+  font-size: clamp(28px, 3.2vw, 46px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #111110;
+}
+
+.sec-more {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #111110;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid #111110;
+  padding-bottom: 2px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Featured Units section */
+.prop-sec {
+  padding: 80px 72px 40px;
+  background: #ffffff;
+}
+
+.prop-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.prop-title {
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #111110;
+  margin-bottom: 16px;
+}
+
+.prop-sub {
+  font-size: 16px;
+  color: rgba(17,17,16,0.5);
+  font-weight: 400;
+}
+
+.prop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.pcard {
+  background: #f2f2f2;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.pcard-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+.pcard-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s;
+}
+.pcard:hover .pcard-img { transform: scale(1.04); }
+
+.pcard-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: #ffffff;
+  color: #111110;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 8px;
+  letter-spacing: 0.01em;
+  opacity: 0;
+  transform: translateY(-18px);
+  transition: background 0.25s, color 0.25s,
+              opacity 8000ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 8000ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pcard-visible .pcard-badge {
+  opacity: 1;
+  transform: translateY(0);
+}
+.pcard:hover .pcard-badge {
+  background: #111110;
+  color: #ffffff;
+}
+
+.pcard-body {
+  padding: 16px 20px 20px;
+}
+
+.pcard-details {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 8000ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 8000ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pcard-visible .pcard-details {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pcard-addr {
+  font-size: 13px;
+  color: rgba(17,17,16,0.65);
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.pcard-name {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #111110;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.pcard-rule {
+  height: 1px;
+  background: rgba(0,0,0,0.09);
+  margin-bottom: 14px;
+}
+
+.pcard-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.pcard-specs {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pcard-spec {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: rgba(17,17,16,0.72);
+  font-weight: 400;
+}
+
+.pcard-price {
+  font-size: 26px;
+  font-weight: 500;
+  color: #111110;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+
+.prop-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 52px;
+}
+
+.prop-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #111110;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 16px 48px;
+  border-radius: 100px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.prop-more-btn:hover { opacity: 0.82; }
+
+@media (max-width: 1024px) {
+  .prop-sec { padding: 80px 32px 40px; }
+  .prop-title { font-size: clamp(28px, 4.5vw, 56px); }
+  .sec { padding: 80px 32px; }
+}
+
+@media (max-width: 900px) {
+  .prop-sec { padding: 72px 28px; }
+  .prop-grid { grid-template-columns: 1fr 1fr; }
+  .sec { padding: 72px 28px; }
+}
+
+@media (max-width: 640px) {
+  .prop-sec { padding: 52px 20px 32px; }
+  .prop-header { margin-bottom: 40px; }
+  .prop-title { font-size: clamp(26px, 7vw, 40px); }
+  .prop-sub { font-size: 14px; }
+  .prop-grid { grid-template-columns: 1fr; }
+  .pcard-price { font-size: 20px; }
+  .sec { padding: 52px 20px; }
+}

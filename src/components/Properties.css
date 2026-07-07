@@ -47,7 +47,7 @@
 
 /* Featured Units section */
 .prop-sec {
-  padding: 80px 72px 40px;
+  padding: 80px 140px 40px;
   background: #ffffff;
 }
 
@@ -74,7 +74,7 @@
 .prop-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 20px;
 }
 
 .pcard {

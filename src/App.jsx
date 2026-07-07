@@ -2,9 +2,9 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import AwardsBanner from './components/AwardsBanner'
 import Properties from './components/Properties'
-import DreamsSection from './components/DreamsSection'
+import ClientsSection from './components/ClientsSection'
+import AboutSection2 from './components/AboutSection2'
 import GoogleReviews from './components/GoogleReviews'
-import Services from './components/Services'
 import Blog from './components/Blog'
 import ContactSection from './components/ContactSection'
 import Footer from './components/Footer'
@@ -16,9 +16,9 @@ export default function App() {
       <Navbar />
       <Hero />
       <AwardsBanner />
-      <DreamsSection />
+      <AboutSection2 />
       <Properties />
-      <Services />
+      <ClientsSection />
       <GoogleReviews />
       <Blog />
       <ContactSection />

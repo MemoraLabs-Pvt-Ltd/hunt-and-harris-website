@@ -1,33 +1,41 @@
 .gr-sec {
-  padding: 100px 72px;
   background: #ffffff;
+  padding: 100px 72px;
+  overflow: hidden;
 }
 
 .gr-head {
   text-align: center;
-  margin-bottom: 64px;
+  margin-bottom: 56px;
 }
 
 .gr-title {
-  font-size: clamp(36px, 5vw, 72px);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  font-size: clamp(32px, 3.5vw, 52px);
+  font-weight: 700;
   color: #111110;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
   margin-bottom: 16px;
 }
 
 .gr-sub {
   font-size: 16px;
-  color: rgba(17,17,16,0.5);
+  color: rgba(17, 17, 16, 0.5);
   font-weight: 400;
   max-width: 520px;
   margin: 0 auto;
+  line-height: 1.65;
 }
 
-@keyframes gr-scroll {
-  0%   { transform: translateY(0); }
-  100% { transform: translateY(-50%); }
+/* 3-column scrolling layout */
+.gr-columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-height: 640px;
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 8%, black 92%, transparent 100%);
 }
 
 .gr-col-wrap {
@@ -37,52 +45,48 @@
 .gr-col-track {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  padding-bottom: 20px;
+  gap: 14px;
   animation: gr-scroll linear infinite;
 }
 
-.gr-col-wrap:hover .gr-col-track {
-  animation-play-state: paused;
+.gr-col-wrap:nth-child(2) .gr-col-track {
+  animation-direction: reverse;
 }
 
-.gr-columns {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  max-height: 720px;
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
+@keyframes gr-scroll {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
 }
 
+/* Card */
 .gr-tcard {
-  background: #f2f2f2;
+  background: #f7f6f4;
   border-radius: 16px;
-  padding: 28px;
-  border: 1px solid rgba(0,0,0,0.05);
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
+  flex-shrink: 0;
 }
 
 .gr-ttext {
   font-size: 14px;
-  line-height: 1.72;
-  color: rgba(17,17,16,0.7);
-  flex: 1;
+  line-height: 1.75;
+  color: rgba(17, 17, 16, 0.72);
+  font-weight: 400;
+  margin: 0;
 }
 
 .gr-tauthor {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   margin-top: 4px;
 }
 
 .gr-tavatar {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
@@ -97,26 +101,6 @@
 
 .gr-tloc {
   font-size: 12px;
-  color: rgba(17,17,16,0.4);
+  color: rgba(17, 17, 16, 0.45);
   font-weight: 400;
-}
-
-@media (max-width: 1024px) {
-  .gr-sec { padding: 80px 32px; }
-  .gr-title { font-size: clamp(28px, 4.5vw, 56px); }
-  .gr-columns { grid-template-columns: repeat(2, 1fr); max-height: 600px; }
-}
-
-@media (max-width: 900px) {
-  .gr-sec { padding: 72px 28px; }
-  .gr-columns { grid-template-columns: 1fr; max-height: 500px; }
-}
-
-@media (max-width: 640px) {
-  .gr-sec { padding: 52px 20px; }
-  .gr-title { font-size: clamp(26px, 7vw, 40px); }
-  .gr-sub { font-size: 14px; }
-  .gr-head { margin-bottom: 40px; }
-  .gr-tcard { padding: 20px; }
-  .gr-columns { max-height: 480px; }
 }

@@ -65,6 +65,41 @@ const reviews = [
     text: 'We compared several agencies before choosing Hunt & Harris. The difference in professionalism and market knowledge was immediately obvious. Closed on our penthouse in under three weeks.',
     image: 'https://randomuser.me/api/portraits/women/55.jpg',
   },
+  {
+    name: 'Carlos Reyes',
+    location: 'Spain',
+    rating: 5,
+    text: 'Relocating to RAK was a big decision and Hunt & Harris made it simple. They matched us with a property that ticked every box and the after-sales support has been outstanding.',
+    image: 'https://randomuser.me/api/portraits/men/41.jpg',
+  },
+  {
+    name: 'Aisha Al Mansoori',
+    location: 'Sharjah',
+    rating: 5,
+    text: 'Dealt with multiple agencies across the UAE and Hunt & Harris stands head and shoulders above the rest. Transparent, honest, and truly dedicated to finding the right fit.',
+    image: 'https://randomuser.me/api/portraits/women/33.jpg',
+  },
+  {
+    name: 'David & Lisa Chen',
+    location: 'Singapore',
+    rating: 5,
+    text: 'We purchased our holiday home at Al Marjan Island through Hunt & Harris. The entire process — from viewing to title deed — was handled seamlessly. Absolutely five stars.',
+    image: 'https://randomuser.me/api/portraits/men/67.jpg',
+  },
+  {
+    name: 'Olga Kovalenko',
+    location: 'Germany',
+    rating: 5,
+    text: 'Incredibly professional and responsive team. They handled all the paperwork and legalities so we could focus on the excitement of owning our first UAE property.',
+    image: 'https://randomuser.me/api/portraits/women/79.jpg',
+  },
+  {
+    name: 'Tariq Al Hashimi',
+    location: 'Oman',
+    rating: 5,
+    text: 'Outstanding knowledge of the RAK off-plan market. They secured us an early-access unit at a developer-direct price that we could not have found anywhere else.',
+    image: 'https://randomuser.me/api/portraits/men/88.jpg',
+  },
 ]
 
 function Stars({ count }) {
@@ -103,9 +138,9 @@ function TestimonialsColumn({ testimonials, duration = 15 }) {
   )
 }
 
-const col1 = reviews.slice(0, 3)
-const col2 = reviews.slice(3, 6)
-const col3 = reviews.slice(6, 9)
+const col1 = reviews.slice(0, 5)
+const col2 = reviews.slice(5, 10)
+const col3 = reviews.slice(10, 15)
 
 export default function GoogleReviews() {
   return (

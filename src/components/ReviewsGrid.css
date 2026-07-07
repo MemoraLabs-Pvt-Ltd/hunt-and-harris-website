@@ -1,0 +1,205 @@
+.rg-sec {
+  background: #f2f2f2;
+  padding: 100px 72px 110px;
+}
+
+.rg-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 52px;
+}
+
+.rg-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.rg-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #7ab4d8;
+  text-transform: uppercase;
+}
+
+.rg-title {
+  font-size: clamp(32px, 4vw, 60px);
+  font-weight: 500;
+  color: #111110;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.rg-rating-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.rg-score {
+  font-size: 56px;
+  font-weight: 600;
+  color: #111110;
+  line-height: 1;
+}
+
+.rg-stars {
+  display: flex;
+  gap: 4px;
+}
+
+.rg-star {
+  color: #F4B400;
+  font-size: 20px;
+}
+
+.rg-count {
+  font-size: 13px;
+  font-weight: 400;
+  color: #888;
+  letter-spacing: 0.02em;
+}
+
+/* Bento Grid */
+.rg-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 14px;
+}
+
+.rg-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 280ms ease, box-shadow 280ms ease;
+}
+
+.rg-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+.rg-card-featured {
+  grid-row: span 2;
+  background: #111110;
+}
+
+.rg-card-wide {
+  grid-column: span 2;
+  background: #7ab4d8;
+}
+
+/* Card internals */
+.rg-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rg-card-stars {
+  display: flex;
+  gap: 3px;
+}
+
+.rg-card-star {
+  font-size: 14px;
+  color: #F4B400;
+}
+
+.rg-card-featured .rg-card-star {
+  color: #F4B400;
+}
+
+.rg-card-wide .rg-card-star {
+  color: #ffffff;
+  opacity: 0.9;
+}
+
+.rg-g-logo {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.rg-card-text {
+  font-size: 15px;
+  font-weight: 400;
+  color: #222;
+  line-height: 1.7;
+  flex: 1;
+}
+
+.rg-card-featured .rg-card-text {
+  font-size: 18px;
+  color: #f0f0f0;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.rg-card-wide .rg-card-text {
+  font-size: 16px;
+  color: #111110;
+  font-weight: 400;
+}
+
+.rg-card-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.rg-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.rg-card-featured .rg-avatar {
+  width: 48px;
+  height: 48px;
+  border: 2px solid rgba(122, 180, 216, 0.5);
+}
+
+.rg-card-wide .rg-avatar {
+  border: 2px solid rgba(255,255,255,0.4);
+}
+
+.rg-author-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111110;
+  margin-bottom: 2px;
+}
+
+.rg-card-featured .rg-author-name {
+  color: #ffffff;
+}
+
+.rg-card-wide .rg-author-name {
+  color: #111110;
+}
+
+.rg-author-date {
+  font-size: 12px;
+  font-weight: 400;
+  color: #aaa;
+}
+
+.rg-card-featured .rg-author-date {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.rg-card-wide .rg-author-date {
+  color: rgba(17, 17, 16, 0.5);
+}

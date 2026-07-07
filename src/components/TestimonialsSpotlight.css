@@ -1,0 +1,130 @@
+.ts-sec {
+  background: #111110;
+  padding: 110px 72px 120px;
+}
+
+.ts-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ts-quote-mark {
+  font-size: 130px;
+  font-weight: 700;
+  color: #7ab4d8;
+  line-height: 0.55;
+  margin-bottom: 44px;
+  font-family: Georgia, 'Times New Roman', serif;
+  user-select: none;
+}
+
+.ts-body {
+  width: 100%;
+  transition: opacity 400ms ease;
+}
+
+.ts-text {
+  font-size: clamp(20px, 2.2vw, 30px);
+  font-weight: 300;
+  color: #f5f5f5;
+  line-height: 1.75;
+  margin: 0 0 52px 0;
+  letter-spacing: 0.01em;
+}
+
+.ts-author {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.ts-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(122, 180, 216, 0.4);
+  flex-shrink: 0;
+}
+
+.ts-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 0.03em;
+  margin-bottom: 4px;
+}
+
+.ts-role {
+  font-size: 13px;
+  font-weight: 400;
+  color: #7ab4d8;
+  letter-spacing: 0.04em;
+}
+
+.ts-footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 64px;
+}
+
+.ts-dots {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.ts-dot {
+  height: 3px;
+  width: 28px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.18);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 500ms ease, width 500ms ease;
+}
+
+.ts-dot-active {
+  background: #7ab4d8;
+  width: 56px;
+}
+
+.ts-arrows {
+  display: flex;
+  gap: 12px;
+}
+
+.ts-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 300ms ease, background 300ms ease;
+}
+
+.ts-arrow:hover {
+  border-color: #7ab4d8;
+  background: rgba(122, 180, 216, 0.1);
+}
+
+.ts-arrow svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

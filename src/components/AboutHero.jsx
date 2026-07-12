@@ -33,7 +33,6 @@ export default function AboutHero() {
             muted
             loop
             playsInline
-            poster="/about-us/aboutus-hero.jpg"
           >
             <source src="/about-us/company-bg.mp4" type="video/mp4" />
           </video>

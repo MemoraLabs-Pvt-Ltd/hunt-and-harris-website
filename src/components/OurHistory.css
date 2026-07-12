@@ -1,0 +1,184 @@
+.hist-sec {
+  background: #ffffff;
+  padding: 40px 100px 100px;
+}
+
+.hist-topline {
+  height: 1px;
+  background: #d6d3c8;
+  margin-bottom: 28px;
+}
+
+/* Two-column layout: sticky heading + scrolling timeline */
+.hist-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-top: 40px;
+}
+
+.hist-left {
+  position: sticky;
+  top: 120px;
+  align-self: start;
+}
+
+.hist-title {
+  font-size: clamp(34px, 4vw, 56px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #111110;
+}
+
+/* Timeline */
+.hist-timeline {
+  position: relative;
+  padding-top: 6px;
+}
+
+.hist-track {
+  position: absolute;
+  left: 13px;
+  top: 14px;
+  bottom: 40px;
+  width: 4px;
+  background: #d2cfc3;
+}
+
+.hist-progress {
+  position: absolute;
+  left: 13px;
+  top: 14px;
+  bottom: 40px;
+  width: 4px;
+  background: linear-gradient(180deg, #a9d5ee 0%, #7ab4d8 40%, #3d82ae 75%, #1f5c82 100%);
+  clip-path: inset(0 0 100% 0);
+}
+
+.hist-item {
+  position: relative;
+  margin-bottom: 72px;
+}
+
+.hist-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Marker row: node --- dotted --- year pill */
+.hist-marker-row {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 22px;
+}
+
+.hist-node {
+  position: relative;
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #bcdcee;
+  display: grid;
+  place-items: center;
+  color: #bcdcee;
+  transition: color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.5s ease,
+              transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hist-node svg {
+  width: 18px;
+  height: 18px;
+}
+
+.hist-node.is-active {
+  color: #7ab4d8;
+  border-color: #7ab4d8;
+  box-shadow: 0 0 16px rgba(122, 180, 216, 0.55);
+  transform: scale(1.08);
+}
+
+/* Shine ring pulse when a milestone scrolls into view */
+.hist-node.is-active::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid rgba(122, 180, 216, 0.55);
+  animation: hist-shine 1.4s ease-out forwards;
+}
+
+@keyframes hist-shine {
+  0%   { transform: scale(0.85); opacity: 0.85; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+
+.hist-dots {
+  flex: 0 0 44px;
+  height: 0;
+  margin: 0 12px;
+  border-top: 2px dotted #9a978c;
+}
+
+.hist-year {
+  display: inline-flex;
+  align-items: center;
+  background: #111110;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 6px 14px;
+  border-radius: 7px;
+}
+
+/* Card */
+.hist-card {
+  margin-left: 90px;
+  background: #f1f7fb;
+  border-radius: 20px;
+  padding: 30px 34px;
+}
+
+.hist-card-title {
+  font-size: clamp(20px, 1.8vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #111110;
+  margin-bottom: 14px;
+}
+
+.hist-card-body {
+  font-size: 15px;
+  line-height: 1.62;
+  color: #6f6d64;
+}
+
+.hist-card-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-top: 24px;
+}
+
+@media (max-width: 900px) {
+  .hist-sec { padding: 32px 24px 72px; }
+  .hist-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .hist-left {
+    position: static;
+  }
+  .hist-card {
+    margin-left: 64px;
+    padding: 24px 22px;
+  }
+  .hist-dots { flex-basis: 26px; margin: 0 8px; }
+}

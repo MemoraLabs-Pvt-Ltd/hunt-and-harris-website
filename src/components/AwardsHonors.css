@@ -1,0 +1,234 @@
+.aw-sec {
+  background: #0a0a0a;
+  padding: 80px 72px 110px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.aw-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 20px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+}
+.aw-pill svg { width: 18px; height: 18px; opacity: 0.9; }
+
+.aw-title {
+  margin-top: 30px;
+  font-size: clamp(46px, 6.2vw, 92px);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+.aw-title-italic {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.aw-sub {
+  margin: 22px auto 0;
+  max-width: 720px;
+  font-size: clamp(17px, 1.5vw, 22px);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.45);
+}
+.aw-sub b { color: #ffffff; font-weight: 600; }
+
+/* ---------- Cards ---------- */
+.aw-grid {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.aw-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 540px;
+  padding: 30px;
+  border-radius: 22px;
+  background: linear-gradient(165deg, #f3f4f4 0%, #e7eaeb 100%);
+  color: #111110;
+}
+
+.aw-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.aw-card-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
+.aw-card-brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #111110;
+}
+.aw-card-brand-sub {
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(17, 17, 16, 0.55);
+}
+
+.aw-card-title {
+  margin-top: 120px;
+}
+.aw-card-title-main {
+  display: block;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.aw-card-title-line {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: 2px;
+}
+.aw-card-title-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 34px;
+  letter-spacing: -0.01em;
+}
+.aw-card-title-year {
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.aw-card-body {
+  margin-top: 26px;
+  max-width: 74%;
+}
+.aw-card-to {
+  font-size: 13px;
+  color: rgba(17, 17, 16, 0.6);
+}
+.aw-card-name {
+  margin-top: 3px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111110;
+}
+.aw-card-desc {
+  margin-top: 12px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(17, 17, 16, 0.6);
+}
+
+/* Signature (middle card) */
+.aw-card-sign {
+  position: absolute;
+  left: 30px;
+  bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.aw-card-sign-scribble {
+  font-size: 26px;
+  color: #111110;
+  transform: rotate(-8deg);
+}
+.aw-card-sign-name {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  font-weight: 700;
+  border-top: 1px solid rgba(17, 17, 16, 0.4);
+  padding-top: 5px;
+  width: 130px;
+}
+.aw-card-sign-role {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(17, 17, 16, 0.55);
+}
+
+/* Glossy award badge in the corner */
+.aw-badge {
+  position: absolute;
+  right: -20px;
+  bottom: -24px;
+  width: 158px;
+  height: 158px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 96px;
+  color: #ffffff;
+  background: radial-gradient(circle at 32% 26%,
+    color-mix(in srgb, var(--accent) 45%, #ffffff) 0%,
+    var(--accent) 46%,
+    color-mix(in srgb, var(--accent) 68%, #000000) 100%);
+  box-shadow:
+    inset 0 5px 14px rgba(255, 255, 255, 0.55),
+    inset 0 -14px 26px rgba(0, 0, 0, 0.28),
+    0 22px 44px -12px rgba(0, 0, 0, 0.45);
+}
+.aw-badge::before {
+  content: '';
+  position: absolute;
+  top: 13%;
+  left: 22%;
+  width: 42%;
+  height: 28%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.75), transparent 72%);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .aw-sec { padding: 72px 40px 90px; }
+  .aw-grid { gap: 16px; }
+  .aw-card { min-height: 500px; padding: 24px; }
+  .aw-card-title { margin-top: 88px; }
+}
+
+@media (max-width: 760px) {
+  .aw-sec { padding: 60px 20px 72px; }
+  .aw-grid {
+    grid-template-columns: 1fr;
+    max-width: 460px;
+  }
+  .aw-card { min-height: 480px; }
+  .aw-card-title { margin-top: 96px; }
+}

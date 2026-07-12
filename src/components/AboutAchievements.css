@@ -1,0 +1,187 @@
+.ach-sec {
+  background: #f2f2f0;
+  padding: 72px 100px 80px;
+}
+
+/* Header */
+.ach-head {
+  text-align: center;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ach-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.ach-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #c8e640;
+  flex-shrink: 0;
+}
+
+.ach-title {
+  font-size: clamp(24px, 2.8vw, 42px);
+  font-weight: 700;
+  color: #111110;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+/* Bento grid */
+.ach-grid {
+  display: grid;
+  grid-template-columns: 2fr 1.35fr 1.3fr;
+  grid-template-rows: 240px 240px;
+  gap: 10px;
+}
+
+.ach-top-left  { grid-column: 1; grid-row: 1; }
+.ach-top-mid   { grid-column: 2; grid-row: 1; }
+.ach-right     { grid-column: 3; grid-row: 1 / 3; }
+.ach-bot-left  { grid-column: 1; grid-row: 2; }
+.ach-bot-mid   { grid-column: 2; grid-row: 2; }
+
+/* Base card */
+.ach-card {
+  border-radius: 16px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+/* Stat card */
+.ach-card--stat {
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Numbers with slashed zeros */
+.ach-stat-number {
+  font-size: clamp(28px, 2.8vw, 44px);
+  font-weight: 700;
+  color: #111110;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 8px;
+  font-feature-settings: "zero" 1;
+}
+
+.ach-stat-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111110;
+  line-height: 1.45;
+}
+
+/* Trust row */
+.ach-trust-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.ach-avatars {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ach-avatars img {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ffffff;
+  margin-left: -7px;
+}
+
+.ach-avatars img:first-child {
+  margin-left: 0;
+}
+
+.ach-avatar-more {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #111110;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -7px;
+  border: 2px solid #ffffff;
+  flex-shrink: 0;
+}
+
+.ach-trust-text {
+  font-size: 13px;
+  font-weight: 400;
+  color: #888;
+  line-height: 1.5;
+}
+
+/* Description */
+.ach-desc {
+  font-size: 13px;
+  font-weight: 400;
+  color: #888;
+  line-height: 1.65;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+/* Image card */
+.ach-card--img {
+  background: none;
+}
+
+.ach-card--img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .ach-sec { padding: 64px 40px 72px; }
+  .ach-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 180px 180px 260px;
+    gap: 10px;
+  }
+  .ach-top-left  { grid-column: 1; grid-row: 1; }
+  .ach-top-mid   { grid-column: 2; grid-row: 1; }
+  .ach-bot-left  { grid-column: 1; grid-row: 2; }
+  .ach-bot-mid   { grid-column: 2; grid-row: 2; }
+  .ach-right     { grid-column: 1 / 3; grid-row: 3; }
+}
+
+@media (max-width: 640px) {
+  .ach-sec { padding: 52px 20px 60px; }
+  .ach-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 160px) 220px;
+  }
+  .ach-top-left  { grid-column: 1; grid-row: 1; }
+  .ach-top-mid   { grid-column: 1; grid-row: 2; }
+  .ach-bot-left  { grid-column: 1; grid-row: 3; }
+  .ach-bot-mid   { grid-column: 1; grid-row: 4; }
+  .ach-right     { grid-column: 1; grid-row: 5; }
+}

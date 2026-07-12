@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './ContactSection.css'
 
-export default function ContactSection() {
+export default function ContactSection({ hideForm = false }) {
   const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', subject: '', message: '' })
 
   const set = k => e => setForm(f => ({ ...f, [k]: e.target.value }))
@@ -23,7 +23,8 @@ export default function ContactSection() {
         </p>
       </div>
 
-      {/* Form */}
+      {/* Form — hidden when hideForm is set (e.g. About page) */}
+      {!hideForm && (
       <section className="cs-sec">
         <div className="cs-head">
           <h2 className="cs-title">Get in Touch</h2>
@@ -79,6 +80,7 @@ export default function ContactSection() {
           <button className="cs-submit" type="submit">Send Message</button>
         </form>
       </section>
+      )}
     </>
   )
 }

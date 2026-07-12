@@ -1,13 +1,21 @@
 import { useState, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
+import { useLocation } from 'react-router-dom'
 
 const PRIMARY_LINKS = [
   { label: 'Home',     href: '/' },
   { label: 'Listings', href: '/listings' },
-  { label: 'About Us', href: '/#about' },
+  { label: 'About Us', href: '/about' },
   { label: 'Off Plan', href: '/#properties' },
-  { label: 'Services', href: '/#services' },
+  { label: 'Services', href: '/services' },
 ]
+
+// Routes whose hero has a light background — the navbar must use dark text at the top
+const LIGHT_HERO_PATHS = ['/services']
+
+// Which nav link matches the current route (falls back to Home)
+const linkForPath = (pathname) =>
+  PRIMARY_LINKS.find(l => l.href === pathname)?.label ?? 'Home'
 
 const EXTRA_LINKS = [
   { label: 'Blogs',        href: '#blogs' },
@@ -21,7 +29,8 @@ const PORTAL_LINKS = [
 ]
 
 export default function Navbar() {
-  const [active, setActive]           = useState('Home')
+  const location = useLocation()
+  const [active, setActive]           = useState(() => linkForPath(location.pathname))
   const [isTop, setIsTop]             = useState(true)
   const [portalsOpen, setPortalsOpen] = useState(false)
   const [menuOpen, setMenuOpen]       = useState(false)
@@ -30,11 +39,20 @@ export default function Navbar() {
   const portalsButtonRef = useRef(null)
   const closeTimer       = useRef(null)
 
+  // Light-text treatment only when pinned at the top over a dark hero
+  const lightHero = LIGHT_HERO_PATHS.includes(location.pathname)
+  const navLight = isTop && !lightHero
+
   useEffect(() => {
     const onScroll = () => setIsTop(window.scrollY < 400)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  // Highlight the nav link that matches the current route
+  useEffect(() => {
+    setActive(linkForPath(location.pathname))
+  }, [location.pathname])
 
   const openPortals = () => {
     clearTimeout(closeTimer.current)
@@ -64,7 +82,7 @@ export default function Navbar() {
         textDecoration: 'none',
         transition: 'background 180ms, color 180ms',
         backgroundColor: active === label ? '#7ab4d8' : 'transparent',
-        color: isTop ? '#ffffff' : '#111110',
+        color: navLight ? '#ffffff' : '#111110',
       }}
     >
       {label}
@@ -90,7 +108,7 @@ export default function Navbar() {
           display: 'none',
           alignItems: 'center',
           gap: 1,
-          backgroundColor: isTop ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.85)',
+          backgroundColor: navLight ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.85)',
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
           borderRadius: 999,
@@ -130,7 +148,7 @@ export default function Navbar() {
                 fontFamily: 'inherit',
                 transition: 'background 180ms, color 180ms',
                 backgroundColor: portalsOpen ? 'rgba(255,255,255,0.22)' : 'transparent',
-                color: isTop ? '#ffffff' : '#111110',
+                color: navLight ? '#ffffff' : '#111110',
                 whiteSpace: 'nowrap',
               }}
             >

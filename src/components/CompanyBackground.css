@@ -1,0 +1,215 @@
+.cb-sec {
+  position: relative;
+  z-index: 2;
+  background: #ffffff;
+  padding: 0 100px 0;
+  margin-top: -140px;
+}
+
+/* Heading */
+.cb-heading {
+  margin-top: 0;
+  text-align: center;
+  font-size: clamp(34px, 4.2vw, 58px);
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+  color: #111110;
+}
+
+/* ================= Light feature band ================= */
+.cb-band {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-top: 50px;
+  padding: 50px 0 104px;
+  background: #ffffff;
+}
+
+.cb-band-inner {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 100px;
+}
+
+/* ---- Leadership team cards ---- */
+.cb-team-head {
+  text-align: center;
+  margin-bottom: 52px;
+}
+
+.cb-team-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid rgba(17, 17, 16, 0.1);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 22px;
+}
+
+.cb-team-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #7ab4d8;
+}
+
+.cb-team-title {
+  font-size: clamp(36px, 4.2vw, 62px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #111110;
+}
+
+.cb-team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.cb-team-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.cb-team-img {
+  border-radius: 18px;
+  overflow: hidden;
+  aspect-ratio: 1 / 0.92;
+  background: #e6e8ec;
+}
+
+.cb-team-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cb-team-namerow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 22px;
+}
+
+.cb-team-name {
+  font-size: clamp(19px, 1.7vw, 24px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #111110;
+}
+
+.cb-team-linkedin {
+  color: #111110;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.cb-team-linkedin svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.cb-team-linkedin:hover {
+  color: #7ab4d8;
+  opacity: 1;
+}
+
+.cb-team-role {
+  margin-top: 8px;
+  font-size: 15px;
+  color: #7a7a80;
+}
+
+/* ---- Mission & Vision (light editorial) ---- */
+.cb-mv-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 96px;
+  padding-top: 56px;
+  border-top: 1px solid rgba(17, 17, 16, 0.1);
+}
+
+.cb-mv-col {
+  padding-right: 72px;
+}
+
+.cb-mv-col + .cb-mv-col {
+  padding: 0 0 0 72px;
+  border-left: 1px solid rgba(17, 17, 16, 0.1);
+}
+
+.cb-mv-num {
+  display: block;
+  font-size: clamp(40px, 3.8vw, 58px);
+  font-weight: 200;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #b9d9ec;
+  margin-bottom: 22px;
+}
+
+.cb-mv-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #7ab4d8;
+  margin-bottom: 16px;
+}
+
+.cb-mv-body {
+  font-size: 15px;
+  line-height: 1.68;
+  color: #5f6067;
+  max-width: 460px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .cb-sec {
+    padding: 0 24px;
+  }
+  .cb-heading br {
+    display: none;
+  }
+  .cb-band {
+    margin-top: 56px;
+    padding: 64px 0 72px;
+  }
+  .cb-band-inner {
+    padding: 0 24px;
+  }
+  .cb-team-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    max-width: 420px;
+  }
+  .cb-team-title br {
+    display: none;
+  }
+  .cb-mv-wrap {
+    grid-template-columns: 1fr;
+    margin-top: 56px;
+  }
+  .cb-mv-col {
+    padding: 0;
+  }
+  .cb-mv-col + .cb-mv-col {
+    padding: 40px 0 0;
+    border-left: none;
+    border-top: 1px solid rgba(17, 17, 16, 0.1);
+    margin-top: 40px;
+  }
+}

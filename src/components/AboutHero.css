@@ -63,6 +63,13 @@
   margin-bottom: 22px;
 }
 
+.about-hero-title-italic {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
 .about-hero-sub {
   font-size: 18px;
   font-weight: 300;

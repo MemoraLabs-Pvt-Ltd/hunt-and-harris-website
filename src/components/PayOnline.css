@@ -1,0 +1,122 @@
+.po-sec {
+  position: relative;
+  background: #ffffff;
+  padding: 130px 40px 96px;
+  overflow: hidden;
+}
+
+/* ---------- Hero (mirrors the blog hero) ---------- */
+.po-hero {
+  text-align: center;
+}
+
+.po-title {
+  font-size: clamp(38px, 5.2vw, 76px);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  color: #111110;
+}
+.po-title-italic {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.po-sub {
+  margin: 26px auto 0;
+  max-width: 620px;
+  font-size: clamp(16px, 1.3vw, 19px);
+  line-height: 1.6;
+  color: rgba(17, 17, 16, 0.58);
+}
+
+/* ---------- Payment terms card ---------- */
+.po-card {
+  margin: 56px auto 0;
+  max-width: 640px;
+  background: #f6f7f7;
+  border: 1px solid rgba(17, 17, 16, 0.08);
+  border-radius: 26px;
+  padding: 48px 44px;
+  text-align: center;
+  box-shadow: 0 30px 60px -44px rgba(17, 17, 16, 0.4);
+}
+
+.po-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: #111110;
+  color: #ffffff;
+  margin-bottom: 22px;
+}
+.po-card-icon svg { width: 26px; height: 26px; }
+
+.po-card-title {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #111110;
+}
+
+.po-card-text {
+  margin: 16px auto 0;
+  max-width: 480px;
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: rgba(17, 17, 16, 0.62);
+}
+
+.po-card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 32px;
+  padding: 14px 14px 14px 30px;
+  background: linear-gradient(135deg, #8ec3e4 0%, #5a9fd0 52%, #3f86bd 100%);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 100px;
+  box-shadow: 0 24px 46px -20px rgba(63, 134, 189, 0.85);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.po-card-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 30px 52px -18px rgba(63, 134, 189, 0.9);
+}
+.po-card-btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #3f86bd;
+}
+.po-card-btn-icon svg { width: 15px; height: 15px; }
+
+.po-card-secure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(17, 17, 16, 0.5);
+}
+.po-card-secure svg { width: 15px; height: 15px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .po-sec { padding: 104px 20px 64px; }
+  .po-card { padding: 36px 24px; margin-top: 44px; }
+  .po-card-btn { font-size: 15px; padding: 13px 13px 13px 24px; }
+}

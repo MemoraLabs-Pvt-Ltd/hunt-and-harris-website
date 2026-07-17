@@ -11,16 +11,16 @@ const PRIMARY_LINKS = [
 ]
 
 // Routes whose hero has a light background — the navbar must use dark text at the top
-const LIGHT_HERO_PATHS = ['/services']
+const LIGHT_HERO_PATHS = ['/services', '/blog', '/pay-online']
 
 // Which nav link matches the current route (falls back to Home)
 const linkForPath = (pathname) =>
-  PRIMARY_LINKS.find(l => l.href === pathname)?.label ?? 'Home'
+  [...PRIMARY_LINKS, ...EXTRA_LINKS].find(l => l.href === pathname)?.label ?? 'Home'
 
 const EXTRA_LINKS = [
-  { label: 'Blogs',        href: '#blogs' },
+  { label: 'Blogs',        href: '/blog' },
   { label: 'Conveyancing', href: '#conveyancing' },
-  { label: 'Pay Online',   href: '#pay' },
+  { label: 'Pay Online',   href: '/pay-online' },
 ]
 
 const PORTAL_LINKS = [

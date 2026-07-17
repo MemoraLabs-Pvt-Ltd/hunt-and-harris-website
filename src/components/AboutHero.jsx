@@ -40,7 +40,10 @@ export default function AboutHero() {
           <motion.div className="about-hero-tint" style={{ opacity: tintOpacity }} />
 
           <motion.div className="about-hero-content" style={{ opacity: textOpacity, filter: textBlur, visibility: textVisibility }}>
-            <h1 className="about-hero-title">Built on trust.<br />Driven by results.</h1>
+            <h1 className="about-hero-title">
+              Built on <span className="about-hero-title-italic">trust</span>.<br />
+              Driven by <span className="about-hero-title-italic">results</span>.
+            </h1>
             <p className="about-hero-sub">
               We guide our clients through finding, buying and owning property in Ras Al Khaimah.
             </p>

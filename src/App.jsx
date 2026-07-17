@@ -4,7 +4,6 @@ import AwardsBanner from './components/AwardsBanner'
 import Properties from './components/Properties'
 import ClientsSection from './components/ClientsSection'
 import AboutSection2 from './components/AboutSection2'
-import GoogleReviews from './components/GoogleReviews'
 import Blog from './components/Blog'
 import ContactSection from './components/ContactSection'
 import Footer from './components/Footer'
@@ -19,7 +18,6 @@ export default function App() {
       <AboutSection2 />
       <Properties />
       <ClientsSection />
-      {/* <GoogleReviews /> */}
       <Blog />
       <ContactSection />
       <div style={{ height: '120px', background: 'linear-gradient(to bottom, #ffffff 0%, #d0d0d0 30%, #707070 60%, #0a0a0a 100%)', width: '100%' }} />

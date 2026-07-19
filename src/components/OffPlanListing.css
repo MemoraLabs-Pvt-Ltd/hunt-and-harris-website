@@ -1,0 +1,198 @@
+.opl-sec {
+  background: #ffffff;
+  padding: 140px 40px 96px;
+}
+
+/* Hero */
+.opl-hero { text-align: center; }
+.opl-title {
+  font-size: clamp(38px, 5.2vw, 78px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #111110;
+}
+.opl-italic {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.opl-sub {
+  margin: 26px auto 0;
+  max-width: 640px;
+  font-size: clamp(16px, 1.3vw, 19px);
+  line-height: 1.6;
+  color: rgba(17, 17, 16, 0.58);
+}
+
+/* Filters */
+.opl-filters {
+  margin: 52px auto 0;
+  max-width: 1120px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+.opl-filter {
+  padding: 11px 22px;
+  border-radius: 100px;
+  background: #ffffff;
+  border: 1px solid rgba(17, 17, 16, 0.12);
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #111110;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.opl-filter:hover { border-color: rgba(17, 17, 16, 0.3); }
+.opl-filter.is-active {
+  background: #111110;
+  border-color: #111110;
+  color: #ffffff;
+}
+.opl-filter-count {
+  font-weight: 400;
+  opacity: 0.5;
+}
+.opl-filter.is-active .opl-filter-count { opacity: 0.65; }
+
+.opl-count {
+  max-width: 1400px;
+  margin: 40px auto 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(17, 17, 16, 0.5);
+}
+
+/* Grid */
+.opl-grid {
+  max-width: 1400px;
+  margin: 20px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.opl-card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 22px 48px -34px rgba(17, 17, 16, 0.4);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+.opl-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 58px -34px rgba(17, 17, 16, 0.45);
+}
+
+.opl-card-img {
+  position: relative;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+}
+.opl-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.opl-card:hover .opl-card-img img { transform: scale(1.05); }
+
+.opl-card-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  background: #7ab4d8;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+.opl-card-handover {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 6px 12px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  font-size: 12px;
+  font-weight: 600;
+  color: #111110;
+}
+
+.opl-card-body {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 22px 22px;
+}
+.opl-card-loc {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(17, 17, 16, 0.5);
+}
+.opl-card-loc svg { width: 14px; height: 14px; }
+.opl-card-name {
+  margin-top: 8px;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #111110;
+}
+.opl-card-foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 18px;
+}
+.opl-card-price {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111110;
+  letter-spacing: -0.01em;
+}
+.opl-card-price-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(17, 17, 16, 0.45);
+}
+.opl-card-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f1f2f3;
+  color: #111110;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.opl-card-arrow svg { width: 17px; height: 17px; }
+.opl-card:hover .opl-card-arrow { background: #7ab4d8; color: #ffffff; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .opl-sec { padding: 124px 32px 80px; }
+  .opl-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .opl-sec { padding: 108px 20px 64px; }
+  .opl-grid { grid-template-columns: 1fr; }
+  .opl-filters { gap: 8px; }
+  .opl-filter { padding: 10px 16px; font-size: 13.5px; }
+}

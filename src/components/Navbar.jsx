@@ -6,12 +6,12 @@ const PRIMARY_LINKS = [
   { label: 'Home',     href: '/' },
   { label: 'Listings', href: '/listings' },
   { label: 'About Us', href: '/about' },
-  { label: 'Off Plan', href: '/#properties' },
+  { label: 'Off Plan', href: '/off-plan' },
   { label: 'Services', href: '/services' },
 ]
 
 // Routes whose hero has a light background — the navbar must use dark text at the top
-const LIGHT_HERO_PATHS = ['/services', '/blog', '/pay-online']
+const LIGHT_HERO_PATHS = ['/services', '/blog', '/pay-online', '/off-plan']
 
 // Which nav link matches the current route (falls back to Home)
 const linkForPath = (pathname) =>
@@ -19,7 +19,7 @@ const linkForPath = (pathname) =>
 
 const EXTRA_LINKS = [
   { label: 'Blogs',        href: '/blog' },
-  { label: 'Conveyancing', href: '#conveyancing' },
+  { label: 'Conveyancing', href: '/conveyancing' },
   { label: 'Pay Online',   href: '/pay-online' },
 ]
 

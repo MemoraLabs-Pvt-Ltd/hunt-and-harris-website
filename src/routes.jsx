@@ -6,6 +6,10 @@ import PayOnlinePage from './pages/PayOnlinePage.jsx'
 import ConveyancingPage from './pages/ConveyancingPage.jsx'
 import OffPlanPage from './pages/OffPlanPage.jsx'
 import OffPlanDetailPage from './pages/OffPlanDetailPage.jsx'
+import PortalLogin from './components/portal/PortalLogin.jsx'
+import TenantPortal from './components/portal/TenantPortal.jsx'
+import LandlordPortal from './components/portal/LandlordPortal.jsx'
+import AdminPortal from './components/portal/AdminPortal.jsx'
 import { properties } from './data/offPlan'
 
 const offPlanDetailRoutes = properties.map((p) => ({
@@ -22,4 +26,8 @@ export const routes = [
   { path: '/conveyancing', element: <ConveyancingPage /> },
   { path: '/off-plan', element: <OffPlanPage /> },
   ...offPlanDetailRoutes,
+  { path: '/portal/login', element: <PortalLogin /> },
+  { path: '/portal/tenant', element: <TenantPortal /> },
+  { path: '/portal/landlord', element: <LandlordPortal /> },
+  { path: '/portal/admin', element: <AdminPortal /> },
 ]

@@ -1,0 +1,72 @@
+/* Admin-only polish (layered on top of Portal.css) */
+
+/* Coloured stat tiles */
+.ad-stat { position: relative; overflow: hidden; }
+.ad-stat::after {
+  content: '';
+  position: absolute;
+  right: -30px;
+  top: -30px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  opacity: 0.06;
+  background: currentColor;
+}
+.ad-icon-blue { background: rgba(122, 180, 216, 0.16); color: #2f7cb0; }
+.ad-icon-green { background: rgba(58, 167, 90, 0.15); color: #2e8a4a; }
+.ad-icon-amber { background: rgba(214, 158, 46, 0.16); color: #a6791c; }
+.ad-icon-violet { background: rgba(124, 101, 214, 0.16); color: #6a55c8; }
+
+.ad-trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+  padding: 3px 9px;
+  border-radius: 100px;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+.ad-trend--up { background: rgba(58, 167, 90, 0.14); color: #2e8a4a; }
+.ad-trend--flat { background: rgba(17, 17, 16, 0.06); color: rgba(17, 17, 16, 0.55); }
+.ad-trend svg { width: 13px; height: 13px; }
+
+/* Mini bar chart */
+.ad-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  height: 180px;
+  padding-top: 8px;
+}
+.ad-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 10px; height: 100%; justify-content: flex-end; }
+.ad-bar {
+  width: 100%;
+  max-width: 42px;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(180deg, #8ec3e4 0%, #3f86bd 100%);
+  transition: height 0.4s ease;
+}
+.ad-bar-val { font-size: 12px; font-weight: 700; color: #111110; }
+.ad-bar-label { font-size: 10.5px; font-weight: 500; color: rgba(17, 17, 16, 0.5); text-align: center; line-height: 1.2; }
+
+/* Table thumbnails + hover */
+.ad-cell { display: flex; align-items: center; gap: 12px; }
+.ad-thumb { width: 42px; height: 42px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
+.ad-cat-dot { width: 32px; height: 32px; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; background: rgba(122,180,216,0.16); color: #2f7cb0; flex-shrink: 0; }
+.ad-cat-dot svg { width: 16px; height: 16px; }
+.pt-table tbody tr { transition: background 0.15s ease; }
+.pt-table tbody tr:hover { background: #fafbfc; }
+
+/* Section header row (title + count chip) */
+.ad-count-chip {
+  margin-left: 10px;
+  padding: 2px 10px;
+  border-radius: 100px;
+  background: rgba(17, 17, 16, 0.07);
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(17, 17, 16, 0.6);
+  vertical-align: middle;
+}

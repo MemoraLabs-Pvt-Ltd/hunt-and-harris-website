@@ -24,8 +24,8 @@ const EXTRA_LINKS = [
 ]
 
 const PORTAL_LINKS = [
-  { label: 'Tenant Portal',   href: '#tenant-portal' },
-  { label: 'Landlord Portal', href: '#landlord-portal' },
+  { label: 'Tenant Portal',   href: '/portal/login?role=tenant' },
+  { label: 'Landlord Portal', href: '/portal/login?role=landlord' },
 ]
 
 export default function Navbar() {

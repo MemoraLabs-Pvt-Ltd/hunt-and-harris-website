@@ -1,3 +1,4 @@
+import Seo from '../seo/Seo'
 import Navbar from '../components/Navbar'
 import AboutHero from '../components/AboutHero'
 import CompanyBackground from '../components/CompanyBackground'
@@ -10,6 +11,11 @@ import Footer from '../components/Footer'
 export default function AboutPage() {
   return (
     <>
+      <Seo
+        path="/about"
+        title="About Us"
+        description="Meet Hunt & Harris — a trusted Ras Al Khaimah real estate agency. Our history, awards, team and commitment to helping you buy, sell and rent with confidence."
+      />
       <Navbar />
       <AboutHero />
       <CompanyBackground />

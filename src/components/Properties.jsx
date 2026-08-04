@@ -1,140 +1,107 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
+import GridSkeleton from './GridSkeleton'
 import './Properties.css'
-
-const CarIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="1" y="8" width="22" height="10" rx="2"/>
-    <path d="M5 8l2-4h10l2 4"/>
-    <circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/>
-  </svg>
-)
 
 const BedIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M2 9V19M22 9V19M2 14h20M2 9a5 5 0 015-5h10a5 5 0 015 5"/>
-    <rect x="6" y="9" width="5" height="5" rx="1"/><rect x="13" y="9" width="5" height="5" rx="1"/>
+    <path d="M2 9V19M22 9V19M2 14h20M2 9a5 5 0 015-5h10a5 5 0 015 5" />
+    <rect x="6" y="9" width="5" height="5" rx="1" /><rect x="13" y="9" width="5" height="5" rx="1" />
   </svg>
 )
-
+const BathIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4 12V6a2 2 0 0 1 2-2 2 2 0 0 1 2 2M3 12h18v3a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4v-3zM6 20v1M18 20v1" />
+  </svg>
+)
 const AreaIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
-    <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+    <polyline points="15 3 21 3 21 9" /><polyline points="9 21 3 21 3 15" />
+    <line x1="21" y1="3" x2="14" y2="10" /><line x1="3" y1="21" x2="10" y2="14" />
   </svg>
 )
 
-const units = [
-  {
-    img: 'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=900&q=85',
-    badge: 'Villa',
-    addr: 'Al Hamra Village, RAK',
-    name: 'Sunset Bay Villa',
-    parking: 2, beds: 4, area: '4,200 sq.ft',
-    price: 'AED 2.8M',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=900&q=85',
-    badge: 'Mansion',
-    addr: 'Al Marjan Island, RAK',
-    name: 'The Fairway Estate',
-    parking: 3, beds: 6, area: '7,500 sq.ft',
-    price: 'AED 5.4M',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=900&q=85',
-    badge: 'Penthouse',
-    addr: 'Mina Al Arab, RAK',
-    name: 'Pearl Tower Penthouse',
-    parking: 1, beds: 3, area: '3,100 sq.ft',
-    price: 'AED 1.9M',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&q=85',
-    badge: 'Luxury',
-    addr: 'Al Zorah, Ajman',
-    name: 'The Zorah Residence',
-    parking: 2, beds: 5, area: '5,800 sq.ft',
-    price: 'AED 4.1M',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=85',
-    badge: 'Villa',
-    addr: 'Dafan Al Nakheel, RAK',
-    name: 'Palm Garden Villa',
-    parking: 2, beds: 4, area: '3,900 sq.ft',
-    price: 'AED 2.2M',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&q=85',
-    badge: 'Townhouse',
-    addr: 'Al Hamriyah, RAK',
-    name: 'Crest Townhouse',
-    parking: 1, beds: 3, area: '2,400 sq.ft',
-    price: 'AED 1.4M',
-  },
-]
+const money = (l) => {
+  const n = Number(l.price)
+  const amt = Number.isFinite(n) && n > 0 ? n.toLocaleString('en-US') : (l.price || '—')
+  const suffix = l.priceFreq === 'month' ? '/mo' : ''
+  return `${l.currency || 'AED'} ${amt}${suffix}`
+}
+const bedsLabel = (b) => (!b ? '—' : /studio/i.test(b) ? 'Studio' : b)
 
 export default function Properties() {
+  const [featured, setFeatured] = useState([])
+  const [loading, setLoading] = useState(true)
   const gridRef = useRef(null)
+
+  // Fetched client-side (same-origin static JSON) so the rest of the home page
+  // paints immediately — the feed never blocks the hero above.
+  useEffect(() => {
+    let alive = true
+    fetch('/data/home.json')
+      .then((r) => (r.ok ? r.json() : { featured: [] }))
+      .then((d) => { if (alive) setFeatured(d.featured || []) })
+      .catch(() => {})
+      .finally(() => { if (alive) setLoading(false) })
+    return () => { alive = false }
+  }, [])
 
   useEffect(() => {
     const cards = Array.from(gridRef.current?.querySelectorAll('.pcard') || [])
     if (!cards.length) return
-
     cards.forEach((card, i) => {
-      const delay = `${i % 3 * 150}ms`
+      const delay = `${(i % 4) * 120}ms`
       const badge = card.querySelector('.pcard-badge')
       const details = card.querySelector('.pcard-details')
       if (badge) badge.style.transitionDelay = delay
       if (details) details.style.transitionDelay = delay
     })
-
     const check = () => {
-      cards.forEach(card => {
+      cards.forEach((card) => {
         if (card.classList.contains('pcard-visible')) return
-        const rect = card.getBoundingClientRect()
-        if (rect.top < window.innerHeight - 60) {
-          card.classList.add('pcard-visible')
-        }
+        if (card.getBoundingClientRect().top < window.innerHeight - 60) card.classList.add('pcard-visible')
       })
     }
-
     check()
     window.addEventListener('scroll', check, { passive: true })
     return () => window.removeEventListener('scroll', check)
-  }, [])
+  }, [featured])
 
   return (
     <section className="prop-sec">
       <div className="prop-header">
         <h2 className="prop-title">Explore Our Latest Properties</h2>
-        <p className="prop-sub">Hand-picked luxury units across Ras Al Khaimah's finest communities</p>
+        <p className="prop-sub">Featured homes across Ras Al Khaimah &mdash; freshly listed and hand-picked</p>
       </div>
+
+      {loading && featured.length === 0 ? <GridSkeleton count={8} columns={4} /> : (
       <div className="prop-grid" ref={gridRef}>
-        {units.map(p => (
-          <div className="pcard" key={p.name}>
+        {featured.map((l) => (
+          <Link className="pcard" key={l.ref} to={`/property/${l.ref}`}>
             <div className="pcard-img-wrap">
-              <img src={p.img} alt={p.name} className="pcard-img" />
-              <span className="pcard-badge">{p.badge}</span>
+              {l.image ? <img src={l.image} alt={l.title} className="pcard-img" loading="lazy" /> : <div className="pcard-img" />}
+              <span className="pcard-badge">{l.type || l.propertyFor}</span>
             </div>
             <div className="pcard-body">
-              <div className="pcard-addr">{p.addr}</div>
-              <div className="pcard-name">{p.name}</div>
+              <div className="pcard-addr">{[l.subLocation, l.location].filter(Boolean).join(', ') || l.city}</div>
+              <div className="pcard-name">{l.title || l.tower || l.type}</div>
               <div className="pcard-details">
                 <div className="pcard-rule" />
                 <div className="pcard-footer">
                   <div className="pcard-specs">
-                    <span className="pcard-spec"><CarIcon />{p.parking}</span>
-                    <span className="pcard-spec"><BedIcon />{p.beds}</span>
-                    <span className="pcard-spec"><AreaIcon />{p.area}</span>
+                    <span className="pcard-spec"><BedIcon />{bedsLabel(l.beds)}</span>
+                    <span className="pcard-spec"><BathIcon />{l.baths || '—'}</span>
+                    {l.built && <span className="pcard-spec"><AreaIcon />{l.built} sq.ft</span>}
                   </div>
-                  <div className="pcard-price">{p.price}</div>
+                  <div className="pcard-price">{money(l)}</div>
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
+      )}
+
       <div className="prop-more-wrap">
         <a href="/listings" className="prop-more-btn">View More</a>
       </div>

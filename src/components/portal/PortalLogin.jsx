@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import Seo from '../../seo/Seo'
 import './Portal.css'
 
 const ROLES = ['tenant', 'landlord', 'admin']
@@ -25,6 +26,7 @@ export default function PortalLogin() {
 
   return (
     <div className="pl-page">
+      <Seo title="Portal Login" noindex />
       <div className="pl-form-side">
         <Link to="/" className="pl-logo">
           <img src="/homepage/hhlogo.svg" alt="Hunt & Harris" />

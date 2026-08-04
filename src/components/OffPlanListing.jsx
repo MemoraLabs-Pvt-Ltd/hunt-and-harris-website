@@ -1,17 +1,42 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { PLACES, properties } from '../data/offPlan'
+import GridSkeleton from './GridSkeleton'
 import './OffPlanListing.css'
 
-const COUNTS = properties.reduce((acc, p) => {
-  acc[p.location] = (acc[p.location] || 0) + 1
-  return acc
-}, {})
-const countFor = (p) => (p === 'All' ? properties.length : COUNTS[p] || 0)
+const money = (l) => {
+  const n = Number(l.price)
+  const amount = Number.isFinite(n) && n > 0 ? n.toLocaleString('en-US') : (l.price || '—')
+  return `${l.currency || 'AED'} ${amount}`
+}
+const bedsLabel = (b) => (!b ? '—' : /studio/i.test(b) ? 'Studio' : `${b} Bed`)
+const isPrimary = (l) => /primary/i.test(l.completion)
 
 export default function OffPlanListing() {
+  // Driven by the same-origin static JSON so the page shell paints instantly
+  // and navigation never blocks on the feed.
+  const [data, setData] = useState(null)
+  const [err, setErr] = useState(null)
   const [place, setPlace] = useState('All')
-  const list = place === 'All' ? properties : properties.filter((p) => p.location === place)
+  const [shown, setShown] = useState(36)
+
+  useEffect(() => {
+    let alive = true
+    fetch('/data/off-plan.json')
+      .then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json() })
+      .then((d) => { if (alive) setData(d) })
+      .catch((e) => { if (alive) setErr(String(e?.message || e)) })
+    return () => { alive = false }
+  }, [])
+
+  const listings = data?.listings || []
+  const places = data?.places || []
+  const total = data?.total || 0
+  const error = err
+
+  const filtered = place === 'All' ? listings : listings.filter((l) => l.location === place)
+  const visible = filtered.slice(0, shown)
+  const pick = (p) => { setPlace(p); setShown(36) }
+  const loading = !data && !err
 
   return (
     <section className="opl-sec">
@@ -21,48 +46,57 @@ export default function OffPlanListing() {
           Properties in Ras Al Khaimah
         </h1>
         <p className="opl-sub">
-          Secure the region&rsquo;s most anticipated launches early &mdash; with the best units,
-          payment plans and pricing across RAK&rsquo;s finest waterfront communities.
+          Secure the region&rsquo;s most anticipated launches early &mdash; direct from developers
+          and resale, across RAK&rsquo;s finest waterfront communities.
         </p>
       </div>
 
+      {error && <p className="opl-error">Could not load listings: {error}</p>}
+
+      {loading ? <GridSkeleton count={12} columns={3} /> : (
+      <>
       <div className="opl-filters">
-        {PLACES.map((p) => (
-          <button
-            key={p}
-            className={`opl-filter${place === p ? ' is-active' : ''}`}
-            onClick={() => setPlace(p)}
-          >
-            {p} <span className="opl-filter-count">({countFor(p)})</span>
+        <button className={`opl-filter${place === 'All' ? ' is-active' : ''}`} onClick={() => pick('All')}>
+          All <span className="opl-filter-count">({total})</span>
+        </button>
+        {places.map((p) => (
+          <button key={p.name} className={`opl-filter${place === p.name ? ' is-active' : ''}`} onClick={() => pick(p.name)}>
+            {p.name} <span className="opl-filter-count">({p.count})</span>
           </button>
         ))}
       </div>
 
       <div className="opl-count">
-        {list.length} {list.length === 1 ? 'development' : 'developments'}
+        {filtered.length} {filtered.length === 1 ? 'development' : 'developments'}
         {place !== 'All' && <> in {place}</>}
       </div>
 
       <div className="opl-grid">
-        {list.map((p) => (
-          <Link className="opl-card" to={`/off-plan/${p.slug}`} key={p.slug}>
+        {visible.map((l) => (
+          <Link className="opl-card" key={l.ref} to={`/property/${l.ref}`}>
             <div className="opl-card-img">
-              <img src={p.image} alt={p.name} loading="lazy" />
-              <span className="opl-card-badge">{p.status}</span>
-              <span className="opl-card-handover">Handover {p.handover}</span>
+              {l.image ? <img src={l.image} alt={l.title} loading="lazy" /> : <div className="opl-noimg">No image</div>}
+              <span className="opl-card-badge">Off-Plan</span>
+              <span className="opl-card-handover">{isPrimary(l) ? 'Direct from developer' : 'Resale'}</span>
+              <span className="opl-card-view">View {l.imageCount} photos</span>
             </div>
             <div className="opl-card-body">
               <div className="opl-card-loc">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
                 </svg>
-                {p.location}
+                {[l.subLocation, l.location].filter(Boolean).join(', ') || l.city}
               </div>
-              <h3 className="opl-card-name">{p.name}</h3>
+              <h3 className="opl-card-name">{l.title || l.tower || l.type}</h3>
+              <div className="opl-card-specs">
+                <span>{bedsLabel(l.beds)}</span>
+                <span>{l.baths || '—'} Bath</span>
+                {l.built && <span>{l.built} sqft</span>}
+              </div>
               <div className="opl-card-foot">
                 <div className="opl-card-price">
                   <span className="opl-card-price-label">From</span>
-                  {p.priceFrom}
+                  {money(l)}
                 </div>
                 <span className="opl-card-arrow">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -74,6 +108,14 @@ export default function OffPlanListing() {
           </Link>
         ))}
       </div>
+
+      {shown < filtered.length && (
+        <div className="opl-more-wrap">
+          <button className="opl-more" onClick={() => setShown((s) => s + 36)}>Load more</button>
+        </div>
+      )}
+      </>
+      )}
     </section>
   )
 }

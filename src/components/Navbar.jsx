@@ -11,11 +11,12 @@ const PRIMARY_LINKS = [
 ]
 
 // Routes whose hero has a light background — the navbar must use dark text at the top
-const LIGHT_HERO_PATHS = ['/services', '/blog', '/pay-online', '/off-plan']
+const LIGHT_HERO_PATHS = ['/services', '/blog', '/pay-online', '/off-plan', '/listings']
 
 // Which nav link matches the current route (falls back to Home)
 const linkForPath = (pathname) =>
-  [...PRIMARY_LINKS, ...EXTRA_LINKS].find(l => l.href === pathname)?.label ?? 'Home'
+  pathname.startsWith('/property/') ? 'Listings'
+    : [...PRIMARY_LINKS, ...EXTRA_LINKS].find(l => l.href === pathname)?.label ?? 'Home'
 
 const EXTRA_LINKS = [
   { label: 'Blogs',        href: '/blog' },
@@ -39,8 +40,9 @@ export default function Navbar() {
   const portalsButtonRef = useRef(null)
   const closeTimer       = useRef(null)
 
-  // Light-text treatment only when pinned at the top over a dark hero
-  const lightHero = LIGHT_HERO_PATHS.includes(location.pathname)
+  // Light-text treatment only when pinned at the top over a dark hero.
+  // Property detail pages have a white top → dark text (else the white font is invisible).
+  const lightHero = LIGHT_HERO_PATHS.includes(location.pathname) || location.pathname.startsWith('/property/')
   const navLight = isTop && !lightHero
 
   useEffect(() => {

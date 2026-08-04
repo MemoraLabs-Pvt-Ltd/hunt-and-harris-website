@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import Seo from '../../seo/Seo'
 import './Portal.css'
 
 export default function PortalShell({ role, brandColor, navItems, active, setActive, user, title, children }) {
@@ -8,6 +9,7 @@ export default function PortalShell({ role, brandColor, navItems, active, setAct
 
   return (
     <div className="pt-shell">
+      <Seo title={`${role} Portal`} noindex />
       <aside className={`pt-sidebar${menuOpen ? ' is-open' : ''}`}>
         <Link to="/" className="pt-logo">
           <img src="/homepage/hhlogo.svg" alt="Hunt & Harris" />

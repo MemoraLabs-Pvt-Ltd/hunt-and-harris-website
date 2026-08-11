@@ -75,6 +75,51 @@ function LazyMap({ property }) {
   return <div className="pd-map" ref={ref}>{show && <ListingsMap listings={[property]} />}</div>
 }
 
+// Horizontal, scroll-snapping carousel of related listings with arrow controls.
+function RelatedCarousel({ related }) {
+  const trackRef = useRef(null)
+  const scroll = (dir) => {
+    const el = trackRef.current
+    if (!el) return
+    const card = el.querySelector('.pd-rel')
+    const step = card ? card.getBoundingClientRect().width + 20 : el.clientWidth * 0.85
+    el.scrollBy({ left: dir * step, behavior: 'smooth' })
+  }
+  return (
+    <div className="pd-related">
+      <div className="pd-related-head">
+        <h2 className="pd-h2">Related Properties</h2>
+        <div className="pd-related-nav">
+          <button className="pd-related-arrow" onClick={() => scroll(-1)} aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
+          </button>
+          <button className="pd-related-arrow" onClick={() => scroll(1)} aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+          </button>
+        </div>
+      </div>
+      <div className="pd-related-track" ref={trackRef}>
+        {related.map((r) => (
+          <Link className="pd-rel" to={`/property/${r.ref}`} key={r.ref}>
+            <div className="pd-rel-img">
+              {r.image ? <img src={r.image} alt={r.title} loading="lazy" /> : <div className="pd-rel-noimg">No image</div>}
+              <span className={`pd-rel-badge ${r.propertyFor === 'Rent' ? 'is-rent' : 'is-sale'}`}>For {r.propertyFor}</span>
+            </div>
+            <div className="pd-rel-body">
+              <div className="pd-rel-loc">{[r.subLocation, r.location].filter(Boolean).join(', ') || r.city}</div>
+              <h3 className="pd-rel-title">{r.title || r.tower || r.type}</h3>
+              <div className="pd-rel-price">{money(r)}</div>
+              <div className="pd-rel-specs">
+                <span>{bedsLabel(r.beds)}</span><span>{r.baths || '—'} Bath</span>{r.built && <span>{r.built} sqft</span>}
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function PropertyDetail() {
   const { property: p, related = [] } = useLoaderData() || {}
   const [showAll, setShowAll] = useState(false)
@@ -228,29 +273,7 @@ export default function PropertyDetail() {
       </div>
 
       {/* Related properties */}
-      {related.length > 0 && (
-        <div className="pd-related">
-          <h2 className="pd-h2">Related Properties</h2>
-          <div className="pd-related-grid">
-            {related.map((r) => (
-              <Link className="pd-rel" to={`/property/${r.ref}`} key={r.ref}>
-                <div className="pd-rel-img">
-                  {r.image ? <img src={r.image} alt={r.title} loading="lazy" /> : <div className="pd-rel-noimg">No image</div>}
-                  <span className={`pd-rel-badge ${r.propertyFor === 'Rent' ? 'is-rent' : 'is-sale'}`}>For {r.propertyFor}</span>
-                </div>
-                <div className="pd-rel-body">
-                  <div className="pd-rel-loc">{[r.subLocation, r.location].filter(Boolean).join(', ') || r.city}</div>
-                  <h3 className="pd-rel-title">{r.title || r.tower || r.type}</h3>
-                  <div className="pd-rel-price">{money(r)}</div>
-                  <div className="pd-rel-specs">
-                    <span>{bedsLabel(r.beds)}</span><span>{r.baths || '—'} Bath</span>{r.built && <span>{r.built} sqft</span>}
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
+      {related.length > 0 && <RelatedCarousel related={related} />}
 
       {/* All-photos lightbox */}
       {showAll && (

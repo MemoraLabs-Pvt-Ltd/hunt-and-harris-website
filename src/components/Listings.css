@@ -9,36 +9,81 @@
 /* Filter bar */
 .lst-bar {
   position: sticky; top: 68px; z-index: 20;
-  display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+  display: flex; flex-wrap: nowrap; align-items: center; gap: 8px;
   max-width: 1440px; margin: 0 auto;
-  padding: 14px; border-radius: 16px;
+  padding: 8px 10px; border-radius: 14px;
   background: rgba(255, 255, 255, 0.9);
   -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
   border: 1px solid rgba(17, 17, 16, 0.08);
   box-shadow: 0 14px 40px -28px rgba(17, 17, 16, 0.4);
+  overflow-x: auto; scrollbar-width: none;
 }
+.lst-bar::-webkit-scrollbar { display: none; }
 
-.lst-seg { display: flex; gap: 4px; padding: 4px; background: #f2f3f4; border-radius: 100px; }
-.lst-seg-btn { padding: 9px 16px; border: none; background: none; border-radius: 100px; font-size: 13.5px; font-weight: 600; color: rgba(17, 17, 16, 0.6); cursor: pointer; white-space: nowrap; transition: background 0.18s, color 0.18s; }
+.lst-seg { display: flex; gap: 2px; padding: 3px; background: #f2f3f4; border-radius: 100px; flex-shrink: 0; }
+.lst-seg-btn { padding: 6px 11px; border: none; background: none; border-radius: 100px; font-size: 12.5px; font-weight: 600; color: rgba(17, 17, 16, 0.6); cursor: pointer; white-space: nowrap; transition: background 0.18s, color 0.18s; }
 .lst-seg-btn.is-active { background: #111110; color: #fff; }
 
-.lst-selects { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; flex: 1; }
-.lst-select { position: relative; display: inline-flex; align-items: center; }
+.lst-selects { display: flex; flex-wrap: nowrap; align-items: center; gap: 7px; flex: 1; }
+.lst-select { position: relative; display: inline-flex; align-items: center; flex-shrink: 0; }
 .lst-select select {
   appearance: none; -webkit-appearance: none;
-  padding: 11px 34px 11px 14px; border-radius: 11px;
+  padding: 8px 27px 8px 11px; border-radius: 9px;
   border: 1px solid rgba(17, 17, 16, 0.14); background: #fff;
-  font-size: 13.5px; font-weight: 500; color: #111110; cursor: pointer;
-  font-family: inherit; max-width: 180px;
+  font-size: 12.5px; font-weight: 500; color: #111110; cursor: pointer;
+  font-family: inherit; max-width: 150px;
 }
 .lst-select select:focus { outline: none; border-color: #7ab4d8; }
 .lst-select-label { position: absolute; left: 0; top: -16px; display: none; }
-.lst-select svg { position: absolute; right: 12px; width: 15px; height: 15px; pointer-events: none; color: rgba(17, 17, 16, 0.5); }
-.lst-clear { padding: 10px 16px; border: none; background: none; color: #c8402f; font-size: 13.5px; font-weight: 600; cursor: pointer; }
+.lst-select svg { position: absolute; right: 9px; width: 13px; height: 13px; pointer-events: none; color: rgba(17, 17, 16, 0.5); }
+.lst-clear { padding: 7px 10px; border: none; background: none; color: #c8402f; font-size: 12.5px; font-weight: 600; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
 
-.lst-toggle { display: flex; gap: 4px; padding: 4px; background: #f2f3f4; border-radius: 12px; margin-left: auto; }
-.lst-toggle-btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 16px; border: none; background: none; border-radius: 9px; font-size: 13.5px; font-weight: 600; color: rgba(17, 17, 16, 0.6); cursor: pointer; }
-.lst-toggle-btn svg { width: 16px; height: 16px; }
+/* Price popover */
+.lst-price { position: relative; display: inline-flex; flex-shrink: 0; }
+.lst-price-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 14px; border-radius: 9px;
+  border: 1px solid rgba(17, 17, 16, 0.14); background: #fff;
+  font-size: 13.5px; font-weight: 600; color: #111110; cursor: pointer;
+  font-family: inherit; white-space: nowrap;
+  transition: border-color 0.18s;
+}
+.lst-price-btn:hover { border-color: rgba(17, 17, 16, 0.3); }
+.lst-price-btn.is-active { border-color: #7ab4d8; font-weight: 600; }
+.lst-price-btn.is-open { border-color: #7ab4d8; }
+.lst-price-btn svg { width: 13px; height: 13px; color: rgba(17, 17, 16, 0.5); transition: transform 0.2s; }
+.lst-price-btn.is-open svg { transform: rotate(180deg); }
+
+.lst-price-pop {
+  position: fixed; z-index: 9999;
+  width: 340px; max-width: 92vw; padding: 18px;
+  background: #fff; border-radius: 16px;
+  border: 1px solid rgba(17, 17, 16, 0.08);
+  box-shadow: 0 20px 48px -20px rgba(17, 17, 16, 0.35);
+}
+.lst-price-pop-title { font-size: 15px; font-weight: 700; color: #111110; margin-bottom: 12px; }
+.lst-price-row { display: flex; align-items: center; gap: 10px; }
+.lst-price-input {
+  flex: 1; min-width: 0; padding: 12px 14px; border-radius: 10px;
+  border: 1px solid rgba(17, 17, 16, 0.18); background: #fff;
+  font-size: 13.5px; font-family: inherit; color: #111110;
+}
+.lst-price-input:focus { outline: none; border-color: #7ab4d8; }
+.lst-price-input::placeholder { color: rgba(17, 17, 16, 0.42); }
+.lst-price-dash { color: rgba(17, 17, 16, 0.4); flex-shrink: 0; }
+.lst-price-chips { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+.lst-price-chip {
+  padding: 7px 11px; border-radius: 100px; cursor: pointer;
+  border: 1px solid rgba(17, 17, 16, 0.14); background: #f7f8f8;
+  font-size: 12px; font-weight: 500; color: rgba(17, 17, 16, 0.72); font-family: inherit;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.lst-price-chip:hover { background: #111110; border-color: #111110; color: #fff; }
+.lst-price-reset { margin-top: 14px; padding: 0; border: none; background: none; color: #c8402f; font-size: 13px; font-weight: 600; cursor: pointer; }
+
+.lst-toggle { display: flex; gap: 3px; padding: 3px; background: #f2f3f4; border-radius: 10px; margin-left: auto; flex-shrink: 0; }
+.lst-toggle-btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 11px; border: none; background: none; border-radius: 8px; font-size: 12.5px; font-weight: 600; color: rgba(17, 17, 16, 0.6); cursor: pointer; white-space: nowrap; }
+.lst-toggle-btn svg { width: 15px; height: 15px; }
 .lst-toggle-btn.is-active { background: #fff; color: #111110; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); }
 
 .lst-count { max-width: 1440px; margin: 26px auto 16px; font-size: 14px; font-weight: 500; color: rgba(17, 17, 16, 0.5); }

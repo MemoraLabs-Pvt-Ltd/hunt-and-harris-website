@@ -95,7 +95,15 @@
 
 /* Related properties */
 .pd-related { margin-top: 48px; }
-.pd-related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.pd-related-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
+.pd-related-head .pd-h2 { margin: 0; }
+.pd-related-nav { display: flex; gap: 8px; flex-shrink: 0; }
+.pd-related-arrow { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(17,17,16,0.15); background: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #111110; transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
+.pd-related-arrow:hover { background: #111110; color: #fff; border-color: #111110; }
+.pd-related-arrow svg { width: 18px; height: 18px; }
+.pd-related-track { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 4px 4px 10px; margin: -4px -4px 0; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.pd-related-track::-webkit-scrollbar { display: none; }
+.pd-related-track .pd-rel { flex: 0 0 clamp(240px, 26%, 300px); scroll-snap-align: start; }
 .pd-rel { display: flex; flex-direction: column; background: #fff; border: 1px solid rgba(17,17,16,0.08); border-radius: 14px; overflow: hidden; transition: transform 0.25s ease, box-shadow 0.25s ease; }
 .pd-rel:hover { transform: translateY(-4px); box-shadow: 0 24px 46px -34px rgba(17,17,16,0.4); }
 .pd-rel-img { position: relative; aspect-ratio: 16 / 11; overflow: hidden; background: #e7e9ea; }
@@ -136,6 +144,5 @@
   .pd-stats { grid-template-columns: 1fr 1fr; }
   .pd-features { grid-template-columns: 1fr; }
   .pd-modal-grid { grid-template-columns: repeat(2, 1fr); }
-  .pd-related-grid { grid-template-columns: repeat(2, 1fr); }
 }
-@media (max-width: 560px) { .pd { padding: 96px 18px 64px; } .pd-stats { grid-template-columns: 1fr 1fr; } .pd-related-grid { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .pd { padding: 96px 18px 64px; } .pd-stats { grid-template-columns: 1fr 1fr; } .pd-related-track .pd-rel { flex-basis: 82%; } }

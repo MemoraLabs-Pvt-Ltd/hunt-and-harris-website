@@ -34,9 +34,13 @@
 .mc-donut-hole {
   width: 150px; height: 150px; border-radius: 50%; background: #fff;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 0 6px; box-sizing: border-box;
 }
-.mc-donut-amt { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; color: #111110; }
-.mc-donut-sub { font-size: 14px; color: rgba(17, 17, 16, 0.5); margin-top: 2px; }
+.mc-donut-amt {
+  font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: #111110;
+  white-space: nowrap; line-height: 1.1;
+}
+.mc-donut-sub { font-size: 14px; color: rgba(17, 17, 16, 0.5); margin-top: 2px; line-height: 1; }
 .mc-legend { display: flex; flex-direction: column; gap: 12px; width: 100%; }
 .mc-legend > div { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: rgba(17, 17, 16, 0.7); }
 .mc-legend b { margin-left: auto; color: #111110; }

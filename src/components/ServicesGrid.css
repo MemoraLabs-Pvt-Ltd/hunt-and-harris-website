@@ -55,6 +55,22 @@
   box-shadow: 0 30px 60px -40px rgba(17, 17, 16, 0.5);
 }
 
+/* "New" corner badge — site blue */
+.sg-card-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 3;
+  padding: 5px 13px;
+  border-radius: 100px;
+  background: #3f86bd;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 6px 16px -6px rgba(63, 134, 189, 0.9);
+}
+
 .sg-card-img {
   position: absolute;
   inset: 0;

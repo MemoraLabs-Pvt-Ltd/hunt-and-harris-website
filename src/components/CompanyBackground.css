@@ -22,8 +22,8 @@
   position: relative;
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  margin-top: 50px;
-  padding: 50px 0 104px;
+  margin-top: 12px;
+  padding: 20px 0 104px;
   background: #ffffff;
 }
 
@@ -185,8 +185,8 @@
     display: none;
   }
   .cb-band {
-    margin-top: 56px;
-    padding: 64px 0 72px;
+    margin-top: 16px;
+    padding: 24px 0 72px;
   }
   .cb-band-inner {
     padding: 0 24px;

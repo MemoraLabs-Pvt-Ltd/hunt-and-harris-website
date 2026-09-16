@@ -12,7 +12,10 @@ import AdminPortal from './components/portal/AdminPortal.jsx'
 import FeedPage from './pages/FeedPage.jsx'
 import ListingsPage from './pages/ListingsPage.jsx'
 import PropertyPage from './pages/PropertyPage.jsx'
+import ContactPage from './pages/ContactPage.jsx'
+import BlogPostPage from './pages/BlogPostPage.jsx'
 import { feedLoader, propertyLoader, propertyPaths } from './data/feedLoader'
+import { blogPostLoader, blogPostPaths } from './data/blogPosts'
 
 export const routes = [
   // No loader — the home page renders its top content immediately and the
@@ -27,8 +30,10 @@ export const routes = [
   { path: '/property/:ref', element: <PropertyPage />, loader: propertyLoader, getStaticPaths: propertyPaths },
   { path: '/services', element: <ServicesPage /> },
   { path: '/blog', element: <BlogPage /> },
+  { path: '/blog/:slug', element: <BlogPostPage />, loader: blogPostLoader, getStaticPaths: blogPostPaths },
   { path: '/pay-online', element: <PayOnlinePage /> },
   { path: '/conveyancing', element: <ConveyancingPage /> },
+  { path: '/contact', element: <ContactPage /> },
   // No loader — instant shell; the grid fetches /data/off-plan.json client-side.
   { path: '/off-plan', element: <OffPlanPage /> },
   { path: '/portal/login', element: <PortalLogin /> },

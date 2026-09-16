@@ -27,6 +27,7 @@ const MAIN = [
     title: 'Property Management',
     desc: "Hands-off ownership — we handle tenants, maintenance and rent collection so your investment works while you don't.",
     img: IMG('1600596542815-ffad4c1539a9', 1400, 720),
+    badge: 'New',
   },
 ]
 
@@ -44,9 +45,10 @@ const SUB = [
   },
 ]
 
-function Card({ title, desc, img, className = '' }) {
+function Card({ title, desc, img, className = '', badge }) {
   return (
     <article className={`sg-card ${className}`}>
+      {badge && <span className="sg-card-badge">{badge}</span>}
       <img className="sg-card-img" src={img} alt={title} loading="lazy" />
       <div className="sg-card-shade" />
       <div className="sg-card-top">

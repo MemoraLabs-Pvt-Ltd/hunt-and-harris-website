@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import ListingsMap from './ListingsMap'
 import GridSkeleton from './GridSkeleton'
 import './Listings.css'
@@ -111,13 +111,98 @@ function PricePopover({ min, max, steps, onChange }) {
   )
 }
 
+// Scroll container with an always-visible custom scrollbar (macOS hides the
+// native overlay scrollbar when idle, so we render our own draggable thumb).
+function ScrollList({ className, children }) {
+  const listRef = useRef(null)
+  const thumbRef = useRef(null)
+  const dragRef = useRef(null)
+
+  const layout = () => {
+    const el = listRef.current
+    const thumb = thumbRef.current
+    if (!el || !thumb) return
+    const trackH = thumb.parentElement.clientHeight
+    const { scrollHeight, clientHeight, scrollTop } = el
+    if (scrollHeight <= clientHeight + 2) { thumb.style.display = 'none'; return }
+    thumb.style.display = 'block'
+    const th = Math.max(32, (clientHeight / scrollHeight) * trackH)
+    const top = (trackH - th) * (scrollTop / (scrollHeight - clientHeight))
+    thumb.style.height = `${th}px`
+    thumb.style.transform = `translateY(${top}px)`
+  }
+
+  useEffect(() => {
+    const el = listRef.current
+    layout()
+    el.addEventListener('scroll', layout, { passive: true })
+    window.addEventListener('resize', layout)
+    return () => { el.removeEventListener('scroll', layout); window.removeEventListener('resize', layout) }
+  }, [])
+  useEffect(layout) // re-measure whenever the list content changes
+
+  const onThumbDown = (e) => {
+    e.preventDefault()
+    const el = listRef.current
+    const trackH = thumbRef.current.parentElement.clientHeight
+    dragRef.current = { y: e.clientY, top: el.scrollTop, sh: el.scrollHeight, ch: el.clientHeight, trackH }
+    const move = (ev) => {
+      const d = dragRef.current
+      if (!d) return
+      const th = Math.max(32, (d.ch / d.sh) * d.trackH)
+      const trackRange = d.trackH - th
+      if (trackRange > 0) el.scrollTop = d.top + ((ev.clientY - d.y) / trackRange) * (d.sh - d.ch)
+    }
+    const up = () => { dragRef.current = null; document.removeEventListener('mousemove', move); document.removeEventListener('mouseup', up) }
+    document.addEventListener('mousemove', move)
+    document.addEventListener('mouseup', up)
+  }
+
+  return (
+    <div className="lst-scroll">
+      <div className={className} ref={listRef}>{children}</div>
+      <div className="lst-scroll-track"><div className="lst-scroll-thumb" ref={thumbRef} onMouseDown={onThumbDown} /></div>
+    </div>
+  )
+}
+
+function PropertyCard({ l }) {
+  return (
+    <Link className="lst-card" to={`/property/${l.ref}`}>
+      <div className="lst-card-img">
+        {l.image ? <img src={l.image} alt={l.title} loading="lazy" /> : <div className="lst-noimg">No image</div>}
+        <span className={`lst-badge ${l.propertyFor === 'Rent' ? 'lst-badge--blue' : 'lst-badge--green'}`}>For {l.propertyFor}</span>
+        <span className="lst-badge lst-badge--status">{l.status}</span>
+      </div>
+      <div className="lst-card-body">
+        <div className="lst-card-loc">{[l.subLocation, l.location].filter(Boolean).join(', ') || l.city}</div>
+        <h3 className="lst-card-title">{l.title || l.tower || l.type}</h3>
+        <div className="lst-card-price">{money(l)}</div>
+        <div className="lst-card-specs">
+          <span>{l.type}</span><span>{bedsLabel(l.beds)}</span><span>{l.baths || '—'} Bath</span>{l.built && <span>{l.built} sqft</span>}
+        </div>
+      </div>
+    </Link>
+  )
+}
+
 export default function Listings() {
   // Driven entirely by the same-origin static JSON so the page shell paints
   // instantly and navigation never blocks on the feed.
   const [data, setData] = useState(null)
   const [err, setErr] = useState(null)
   const [view, setView] = useState('grid')
-  const [f, setF] = useState(DEFAULTS)
+  // Seed filters from the URL query (?for=&location=&type=&min=&max=…) so the
+  // home page hero search can deep-link into a pre-filtered listings page.
+  const [searchParams] = useSearchParams()
+  const [f, setF] = useState(() => {
+    const g = (k, d) => searchParams.get(k) || d
+    return {
+      for: g('for', 'All'), type: g('type', 'All'), location: g('location', 'All'),
+      city: g('city', 'All'), status: g('status', 'All'), beds: g('beds', 'All'),
+      min: g('min', ''), max: g('max', ''),
+    }
+  })
   const [shown, setShown] = useState(24)
 
   useEffect(() => {
@@ -162,6 +247,39 @@ export default function Listings() {
 
   const dirty = Object.keys(DEFAULTS).some((k) => f[k] !== DEFAULTS[k])
 
+  // Map view: the map acts as a filter — only listings inside the visible map
+  // area (or a hand-drawn box) appear in the side list.
+  const [mapBounds, setMapBounds] = useState(null)
+  const [drawMode, setDrawMode] = useState(false)
+  const [drawnBounds, setDrawnBounds] = useState(null)
+  const areaBounds = drawnBounds || mapBounds
+  const mapped = useMemo(() => filtered.filter((l) => l.lat != null && l.lng != null), [filtered])
+  const inBounds = useMemo(() => {
+    if (!areaBounds) return mapped
+    const { north, south, east, west } = areaBounds
+    return mapped.filter((l) => l.lat <= north && l.lat >= south && l.lng >= west && l.lng <= east)
+  }, [mapped, areaBounds])
+  const handleDraw = (b) => { setDrawMode(false); if (b) setDrawnBounds(b) }
+
+  // Nearby = listings closest to the centre of the current view / drawn box,
+  // shown as a horizontal-scroll strip below the map.
+  const nearby = useMemo(() => {
+    const list = inBounds.length ? inBounds : mapped
+    if (!areaBounds) return list.slice(0, 24)
+    const cLat = (areaBounds.north + areaBounds.south) / 2
+    const cLng = (areaBounds.east + areaBounds.west) / 2
+    const dist = (l) => (l.lat - cLat) ** 2 + (l.lng - cLng) ** 2
+    return [...list].sort((a, b) => dist(a) - dist(b)).slice(0, 24)
+  }, [inBounds, mapped, areaBounds])
+  const nearbyRef = useRef(null)
+  const scrollNearby = (dir) => {
+    const el = nearbyRef.current
+    if (!el) return
+    const card = el.querySelector('.lst-card')
+    const step = card ? card.getBoundingClientRect().width + 16 : el.clientWidth * 0.85
+    el.scrollBy({ left: dir * step, behavior: 'smooth' })
+  }
+
   return (
     <section className="lst-sec">
       <div className="lst-head">
@@ -203,39 +321,72 @@ export default function Listings() {
       </div>
 
       <div className="lst-count">
-        {filtered.length} {filtered.length === 1 ? 'result' : 'results'}
-        {view === 'map' && <> · {filtered.filter((l) => l.lat != null).length} on map</>}
+        {view === 'map'
+          ? <>{inBounds.length} {inBounds.length === 1 ? 'property' : 'properties'} {drawnBounds ? 'in your drawn area' : 'in this area'} · {drawnBounds ? 'clear the box to reset' : 'drag, zoom or draw a box to filter'}</>
+          : <>{filtered.length} {filtered.length === 1 ? 'result' : 'results'}</>}
       </div>
 
       {view === 'grid' ? (
         <>
           <div className="lst-grid">
-            {filtered.slice(0, shown).map((l) => (
-              <Link className="lst-card" key={l.ref} to={`/property/${l.ref}`}>
-                <div className="lst-card-img">
-                  {l.image ? <img src={l.image} alt={l.title} loading="lazy" /> : <div className="lst-noimg">No image</div>}
-                  <span className={`lst-badge ${l.propertyFor === 'Rent' ? 'lst-badge--blue' : 'lst-badge--green'}`}>For {l.propertyFor}</span>
-                  <span className="lst-badge lst-badge--status">{l.status}</span>
-                </div>
-                <div className="lst-card-body">
-                  <div className="lst-card-loc">{[l.subLocation, l.location].filter(Boolean).join(', ') || l.city}</div>
-                  <h3 className="lst-card-title">{l.title || l.tower || l.type}</h3>
-                  <div className="lst-card-price">{money(l)}</div>
-                  <div className="lst-card-specs">
-                    <span>{l.type}</span><span>{bedsLabel(l.beds)}</span><span>{l.baths || '—'} Bath</span>{l.built && <span>{l.built} sqft</span>}
-                  </div>
-                </div>
-              </Link>
-            ))}
+            {filtered.slice(0, shown).map((l) => <PropertyCard key={l.ref} l={l} />)}
           </div>
           {shown < filtered.length && (
             <div className="lst-more-wrap"><button className="lst-more" onClick={() => setShown((s) => s + 24)}>Load more</button></div>
           )}
         </>
       ) : (
+        <>
         <div className="lst-map-wrap">
-          <ListingsMap listings={filtered} />
+          <ScrollList className="lst-map-list">
+            {inBounds.length === 0
+              ? <div className="lst-map-empty">No properties in this area.<br />Zoom out or drag the map to see more.</div>
+              : inBounds.map((l) => <PropertyCard key={l.ref} l={l} />)}
+          </ScrollList>
+          <div className="lst-map-panel">
+            <div className="lst-map-tools">
+              {drawnBounds ? (
+                <button className="lst-draw-btn is-clear" onClick={() => { setDrawnBounds(null); setDrawMode(false) }}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18M6 6l12 12" /></svg>
+                  Clear area
+                </button>
+              ) : (
+                <button className={`lst-draw-btn${drawMode ? ' is-active' : ''}`} onClick={() => setDrawMode((d) => !d)}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 7V4a1 1 0 0 1 1-1h3M17 3h3a1 1 0 0 1 1 1v3M21 17v3a1 1 0 0 1-1 1h-3M7 21H4a1 1 0 0 1-1-1v-3" /></svg>
+                  {drawMode ? 'Drag on map…' : 'Draw area'}
+                </button>
+              )}
+            </div>
+            <ListingsMap
+              listings={mapped}
+              fitToData={false}
+              onBoundsChange={setMapBounds}
+              drawActive={drawMode}
+              drawnBounds={drawnBounds}
+              onDrawComplete={handleDraw}
+            />
+          </div>
         </div>
+
+        {nearby.length > 0 && (
+          <div className="lst-nearby">
+            <div className="lst-nearby-head">
+              <h3 className="lst-nearby-title">Nearby properties</h3>
+              <div className="lst-nearby-nav">
+                <button className="lst-nearby-arrow" onClick={() => scrollNearby(-1)} aria-label="Scroll left">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
+                </button>
+                <button className="lst-nearby-arrow" onClick={() => scrollNearby(1)} aria-label="Scroll right">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+                </button>
+              </div>
+            </div>
+            <div className="lst-nearby-track" ref={nearbyRef}>
+              {nearby.map((l) => <PropertyCard key={l.ref} l={l} />)}
+            </div>
+          </div>
+        )}
+        </>
       )}
       </>
       )}

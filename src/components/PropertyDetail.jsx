@@ -145,6 +145,16 @@ export default function PropertyDetail() {
   const grid = p.images.slice(1, 5)
   const fpImage = p.floorplanImages[0] || p.images[1] || main
 
+  // Agent contact links
+  const telHref = p.agent.mobile ? `tel:${p.agent.mobile.replace(/[^\d+]/g, '')}` : ''
+  const waNumber = p.agent.mobile ? p.agent.mobile.replace(/\D/g, '') : ''
+  const waHref = waNumber
+    ? `https://wa.me/${waNumber}?text=${encodeURIComponent(`Hi, I'm interested in ${p.title || p.type} (Ref: ${p.ref}). Is it still available?`)}`
+    : ''
+  const mailHref = p.agent.email
+    ? `mailto:${p.agent.email}?subject=${encodeURIComponent(`Enquiry: ${p.title || p.type} (${p.ref})`)}`
+    : ''
+
   return (
     <section className="pd">
       <Seo path={seo.path} title={seo.title} description={seo.desc} image={seo.image} type="product" jsonLd={seo.jsonLd} />
@@ -248,13 +258,25 @@ export default function PropertyDetail() {
         {/* Contact sidebar */}
         <aside className="pd-side" id="contact">
           <div className="pd-contact">
-            <div className="pd-contact-title">Contact property</div>
-            <button className="pd-btn pd-btn--primary">Request Tour</button>
-            <button className="pd-btn pd-btn--outline">Send Message</button>
-            {p.agent.mobile && <a className="pd-phone" href={`tel:${p.agent.mobile.replace(/\s/g, '')}`}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" /></svg>
-              {p.agent.mobile}
-            </a>}
+            <div className="pd-contact-title">Contact agent</div>
+            {waHref && (
+              <a className="pd-btn pd-btn--wa" href={waHref} target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.29-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.75-1.64-2.05-.17-.29-.02-.45.13-.6.13-.13.3-.34.44-.51.15-.17.2-.29.3-.49.1-.2.05-.37-.02-.51-.08-.15-.67-1.61-.92-2.2-.24-.58-.48-.5-.67-.51h-.57c-.2 0-.51.07-.78.37-.27.29-1.02 1-1.02 2.43 0 1.44 1.04 2.82 1.19 3.02.15.2 2.06 3.14 4.98 4.4.7.3 1.24.48 1.66.62.7.22 1.34.19 1.84.12.56-.08 1.76-.72 2-1.42.25-.69.25-1.29.17-1.42-.07-.13-.27-.2-.56-.35zM12 2a10 10 0 0 0-8.6 15.06L2 22l5.05-1.32A10 10 0 1 0 12 2z" /></svg>
+                WhatsApp
+              </a>
+            )}
+            {telHref && (
+              <a className="pd-btn pd-btn--outline" href={telHref}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" /></svg>
+                Call agent
+              </a>
+            )}
+            {mailHref && (
+              <a className="pd-email" href={mailHref}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>
+                {p.agent.email}
+              </a>
+            )}
             <div className="pd-contact-meta">
               <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18" strokeLinecap="round" /></svg> Language: English</span>
               <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg> Open Hours 9am – 5pm</span>
@@ -264,7 +286,7 @@ export default function PropertyDetail() {
                 {p.agent.photo && <img src={p.agent.photo} alt={p.agent.name} loading="lazy" />}
                 <div>
                   <div className="pd-agent-name">{p.agent.name}</div>
-                  <div className="pd-agent-meta">{p.agent.email}</div>
+                  <div className="pd-agent-meta">Hunt &amp; Harris</div>
                 </div>
               </div>
             )}

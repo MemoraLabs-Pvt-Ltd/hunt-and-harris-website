@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Hero.css'
 
 const SLIDES = [
@@ -8,40 +9,30 @@ const SLIDES = [
 ]
 
 const TABS = ['Buy', 'Rent', 'Sell']
+// Which propertyFor value each tab searches for (Sell → lead capture instead).
+const TAB_FOR = { Buy: 'Sale', Rent: 'Rent' }
 
-const LOCATIONS = [
-  'Select Location',
-  'Al Hamra Village',
-  'Al Marjan Island',
-  'Mina Al Arab',
-  'Al Zorah',
-  'Ras Al Khaimah City',
-  'Al Hamriyah',
-  'Dafan Al Nakheel',
-]
-
-const BUDGETS = [
-  'Any Budget',
-  'Under AED 500K',
-  'AED 500K – 1M',
-  'AED 1M – 2M',
-  'AED 2M – 5M',
-  'AED 5M+',
-]
-
-const TYPES = [
-  'Property Type',
-  'Apartment',
-  'Villa',
-  'Townhouse',
-  'Penthouse',
-  'Commercial',
-]
+// Budget bands → min/max query params for the /listings price filter.
+const BUDGET_RANGE = {
+  'Under AED 500K': { max: '500000' },
+  'AED 500K – 1M': { min: '500000', max: '1000000' },
+  'AED 1M – 2M': { min: '1000000', max: '2000000' },
+  'AED 2M – 5M': { min: '2000000', max: '5000000' },
+  'AED 5M+': { min: '5000000' },
+}
 
 export default function Hero() {
+  const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState('Buy')
   const [slide, setSlide] = useState(0)
   const [fading, setFading] = useState(false)
+
+  // Search selections + options pulled from the live feed facets.
+  const [location, setLocation] = useState('')
+  const [budget, setBudget] = useState('')
+  const [type, setType] = useState('')
+  const [locations, setLocations] = useState([])
+  const [types, setTypes] = useState([])
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -53,6 +44,36 @@ export default function Hero() {
     }, 60000)
     return () => clearInterval(timer)
   }, [])
+
+  // Populate Location + Property Type from the same-origin feed data.
+  useEffect(() => {
+    let alive = true
+    fetch('/data/listings-all.json')
+      .then(r => (r.ok ? r.json() : null))
+      .then(d => {
+        if (!alive || !d) return
+        setLocations((d.facets?.location || []).map(o => o.value))
+        setTypes((d.facets?.type || []).map(o => o.value))
+      })
+      .catch(() => {})
+    return () => { alive = false }
+  }, [])
+
+  const onSearch = () => {
+    // "Sell" is a seller intent → send them to the contact section, not a search.
+    if (activeTab === 'Sell') {
+      document.querySelector('.cs-sec')?.scrollIntoView({ behavior: 'smooth' })
+      return
+    }
+    const p = new URLSearchParams()
+    if (TAB_FOR[activeTab]) p.set('for', TAB_FOR[activeTab])
+    if (location) p.set('location', location)
+    if (type) p.set('type', type)
+    const band = BUDGET_RANGE[budget]
+    if (band?.min) p.set('min', band.min)
+    if (band?.max) p.set('max', band.max)
+    navigate(`/listings?${p.toString()}`)
+  }
 
   return (
     <section className="hero">
@@ -77,7 +98,7 @@ export default function Hero() {
               className="hero-char"
               style={{ animationDelay: `${200 + i * 60}ms` }}
             >
-              {char === ' ' ? ' ' : char}
+              {char === ' ' ? ' ' : char}
             </span>
           ))}
         </h1>
@@ -104,12 +125,9 @@ export default function Hero() {
         <div className="search-fields">
           <div className="sfield sfield-anim" style={{ animationDelay: '200ms' }}>
             <div className="sfield-label">Location</div>
-            <select defaultValue="">
-              {LOCATIONS.map(l => (
-                <option key={l} value={l === 'Select Location' ? '' : l} disabled={l === 'Select Location'}>
-                  {l}
-                </option>
-              ))}
+            <select value={location} onChange={e => setLocation(e.target.value)}>
+              <option value="">{locations.length ? 'Any Location' : 'Select Location'}</option>
+              {locations.map(l => <option key={l} value={l}>{l}</option>)}
             </select>
           </div>
 
@@ -117,12 +135,9 @@ export default function Hero() {
 
           <div className="sfield sfield-anim" style={{ animationDelay: '280ms' }}>
             <div className="sfield-label">Budget</div>
-            <select defaultValue="">
-              {BUDGETS.map(b => (
-                <option key={b} value={b === 'Any Budget' ? '' : b}>
-                  {b}
-                </option>
-              ))}
+            <select value={budget} onChange={e => setBudget(e.target.value)}>
+              <option value="">Any Budget</option>
+              {Object.keys(BUDGET_RANGE).map(b => <option key={b} value={b}>{b}</option>)}
             </select>
           </div>
 
@@ -130,17 +145,14 @@ export default function Hero() {
 
           <div className="sfield sfield-anim" style={{ animationDelay: '360ms' }}>
             <div className="sfield-label">Property Type</div>
-            <select defaultValue="">
-              {TYPES.map(t => (
-                <option key={t} value={t === 'Property Type' ? '' : t} disabled={t === 'Property Type'}>
-                  {t}
-                </option>
-              ))}
+            <select value={type} onChange={e => setType(e.target.value)}>
+              <option value="">{types.length ? 'Any Type' : 'Property Type'}</option>
+              {types.map(t => <option key={t} value={t}>{t}</option>)}
             </select>
           </div>
         </div>
 
-        <button className="ssub">
+        <button className="ssub" onClick={onSearch}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
           </svg>

@@ -1,6 +1,6 @@
 .sr-sec {
   background: #ffffff;
-  padding: 56px 100px 80px;
+  padding: 56px 100px 24px;
 }
 
 .sr-stats {
@@ -36,7 +36,7 @@
 }
 
 @media (max-width: 900px) {
-  .sr-sec { padding: 12px 24px 56px; }
+  .sr-sec { padding: 12px 24px 20px; }
   .sr-stats { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .sr-stat-card { padding: 28px 16px 24px; }
   .sr-stat-number { font-size: clamp(32px, 8vw, 48px); }

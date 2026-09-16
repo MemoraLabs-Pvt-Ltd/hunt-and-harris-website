@@ -47,7 +47,10 @@
 .pd-fp-img { border-radius: 12px; overflow: hidden; background: #f0f1f2; min-height: 150px; }
 .pd-fp-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-.pd-btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 20px; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; }
+.pd-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 20px; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; text-decoration: none; }
+.pd-btn svg { width: 17px; height: 17px; }
+.pd-btn--wa { width: 100%; background: #25d366; color: #fff; }
+.pd-btn--wa:hover { background: #1fbe5b; }
 .pd-btn--soft { background: #eef2fb; color: #3f6fb0; }
 .pd-btn--soft:hover { background: #e4ebf7; }
 .pd-btn--soft[disabled] { opacity: 0.5; cursor: not-allowed; }
@@ -85,6 +88,9 @@
 .pd-contact-title { text-align: center; font-size: 15px; font-weight: 700; color: #111110; margin-bottom: 16px; }
 .pd-phone { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; font-size: 15px; font-weight: 700; color: #c47d3a; }
 .pd-phone svg { width: 16px; height: 16px; }
+.pd-email { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 12px; font-size: 13.5px; font-weight: 500; color: #3f6fb0; text-decoration: none; word-break: break-all; }
+.pd-email svg { width: 16px; height: 16px; flex-shrink: 0; }
+.pd-email:hover { text-decoration: underline; }
 .pd-contact-meta { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(17,17,16,0.08); }
 .pd-contact-meta span { display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(17,17,16,0.6); }
 .pd-contact-meta svg { width: 15px; height: 15px; }

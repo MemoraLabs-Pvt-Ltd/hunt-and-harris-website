@@ -11,11 +11,12 @@ const PRIMARY_LINKS = [
 ]
 
 // Routes whose hero has a light background — the navbar must use dark text at the top
-const LIGHT_HERO_PATHS = ['/services', '/blog', '/pay-online', '/off-plan', '/listings']
+const LIGHT_HERO_PATHS = ['/services', '/blog', '/pay-online', '/off-plan', '/listings', '/contact']
 
 // Which nav link matches the current route (falls back to Home)
 const linkForPath = (pathname) =>
   pathname.startsWith('/property/') ? 'Listings'
+    : pathname.startsWith('/blog') ? 'Blogs'
     : [...PRIMARY_LINKS, ...EXTRA_LINKS].find(l => l.href === pathname)?.label ?? 'Home'
 
 const EXTRA_LINKS = [
@@ -28,6 +29,20 @@ const PORTAL_LINKS = [
   { label: 'Tenant Portal',   href: '/portal/login?role=tenant' },
   { label: 'Landlord Portal', href: '/portal/login?role=landlord' },
 ]
+
+// "New" badge (site blue) — used on the Services nav link
+const NEW_BADGE = {
+  position: 'absolute', top: -7, right: -8,
+  background: '#3f86bd', color: '#fff',
+  fontSize: 8.5, fontWeight: 700, lineHeight: 1, letterSpacing: '0.03em',
+  padding: '3px 6px', borderRadius: 999, textTransform: 'uppercase',
+  boxShadow: '0 3px 8px -2px rgba(63,134,189,0.9)', pointerEvents: 'none',
+}
+const NEW_BADGE_INLINE = {
+  marginLeft: 8, background: '#3f86bd', color: '#fff',
+  fontSize: 9, fontWeight: 700, letterSpacing: '0.03em',
+  padding: '2px 7px', borderRadius: 999, textTransform: 'uppercase', verticalAlign: 'middle',
+}
 
 export default function Navbar() {
   const location = useLocation()
@@ -42,7 +57,7 @@ export default function Navbar() {
 
   // Light-text treatment only when pinned at the top over a dark hero.
   // Property detail pages have a white top → dark text (else the white font is invisible).
-  const lightHero = LIGHT_HERO_PATHS.includes(location.pathname) || location.pathname.startsWith('/property/')
+  const lightHero = LIGHT_HERO_PATHS.includes(location.pathname) || location.pathname.startsWith('/property/') || location.pathname.startsWith('/blog/')
   const navLight = isTop && !lightHero
 
   useEffect(() => {
@@ -75,6 +90,7 @@ export default function Navbar() {
       href={href}
       onClick={() => setActive(label)}
       style={{
+        position: 'relative',
         display: 'block',
         padding: '6px 14px',
         borderRadius: 999,
@@ -88,6 +104,7 @@ export default function Navbar() {
       }}
     >
       {label}
+      {label === 'Services' && <span style={NEW_BADGE}>New</span>}
     </a>
   )
 
@@ -172,7 +189,7 @@ export default function Navbar() {
 
       {/* Contact us CTA */}
       <a
-        href="#contact"
+        href="/contact"
         style={{
           display: 'none',
           padding: '8px 20px',
@@ -230,10 +247,11 @@ export default function Navbar() {
               }}
             >
               {l.label}
+              {l.label === 'Services' && <span style={NEW_BADGE_INLINE}>New</span>}
             </a>
           ))}
           <a
-            href="#contact"
+            href="/contact"
             onClick={() => setMenuOpen(false)}
             style={{
               display: 'block', marginTop: 10,

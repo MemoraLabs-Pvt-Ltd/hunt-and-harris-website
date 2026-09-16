@@ -1,7 +1,7 @@
 import { motion, useInView } from 'motion/react'
 import { useRef } from 'react'
 import StatsRow from './StatsRow'
-import CeoStatement from './CeoStatement'
+import CeoStatementStatic from './CeoStatementStatic'
 import './CompanyBackground.css'
 
 const EASE = [0.22, 1, 0.36, 1]
@@ -25,7 +25,7 @@ export default function CompanyBackground() {
 
       <StatsRow />
 
-      <CeoStatement />
+      <CeoStatementStatic />
 
       <div className="cb-band">
         <div className="cb-band-inner">

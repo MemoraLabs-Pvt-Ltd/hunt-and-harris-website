@@ -4,6 +4,8 @@ import Seo from '../../seo/Seo'
 import './Portal.css'
 
 const ROLES = ['tenant', 'landlord', 'admin']
+// Real property-management portal — tenants & landlords sign in here.
+const PM_PORTAL_URL = 'https://pm.huntandharris-re.com/login?returnUrl=%2Fdashboard'
 
 export default function PortalLogin() {
   const [role, setRole] = useState('tenant')
@@ -48,25 +50,36 @@ export default function PortalLogin() {
             </button>
           </div>
 
-          <form className="pl-form" onSubmit={submit}>
-            <div className="pt-field">
-              <label className="pt-label">Email address</label>
-              <input className="pt-input" type="email" placeholder="you@example.com" required />
+          {role === 'admin' ? (
+            <form className="pl-form" onSubmit={submit}>
+              <div className="pt-field">
+                <label className="pt-label">Email address</label>
+                <input className="pt-input" type="email" placeholder="you@example.com" required />
+              </div>
+              <div className="pt-field">
+                <label className="pt-label">Password</label>
+                <input className="pt-input" type="password" placeholder="••••••••" required />
+              </div>
+              <div className="pl-row-between">
+                <label className="pl-check">
+                  <input type="checkbox" /> Remember me
+                </label>
+                <a href="#reset" className="pl-forgot">Forgot password?</a>
+              </div>
+              <button className="pl-submit" type="submit">
+                Sign in to {LABEL[role]} Portal
+              </button>
+            </form>
+          ) : (
+            <div className="pl-form">
+              <p className="pl-ext-note">
+                {LABEL[role]}s sign in securely on our property management portal.
+              </p>
+              <a className="pl-submit" href={PM_PORTAL_URL}>
+                Continue to {LABEL[role]} Portal
+              </a>
             </div>
-            <div className="pt-field">
-              <label className="pt-label">Password</label>
-              <input className="pt-input" type="password" placeholder="••••••••" required />
-            </div>
-            <div className="pl-row-between">
-              <label className="pl-check">
-                <input type="checkbox" /> Remember me
-              </label>
-              <a href="#reset" className="pl-forgot">Forgot password?</a>
-            </div>
-            <button className="pl-submit" type="submit">
-              Sign in to {LABEL[role]} Portal
-            </button>
-          </form>
+          )}
 
           <p className="pl-note">
             Don&rsquo;t have access yet? <a href="/#contact">Contact our team</a>

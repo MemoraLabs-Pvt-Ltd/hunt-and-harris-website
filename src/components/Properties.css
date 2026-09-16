@@ -146,6 +146,9 @@
   color: rgba(17,17,16,0.65);
   font-weight: 400;
   margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .pcard-name {
@@ -186,7 +189,7 @@
 }
 
 .pcard-price {
-  font-size: 26px;
+  font-size: 18px;
   font-weight: 500;
   color: #111110;
   letter-spacing: -0.03em;
@@ -233,6 +236,6 @@
   .prop-title { font-size: clamp(26px, 7vw, 40px); }
   .prop-sub { font-size: 14px; }
   .prop-grid { grid-template-columns: 1fr; }
-  .pcard-price { font-size: 20px; }
+  .pcard-price { font-size: 15px; }
   .sec { padding: 52px 20px; }
 }

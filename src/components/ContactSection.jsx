@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './ContactSection.css'
 
-export default function ContactSection({ hideForm = false }) {
+export default function ContactSection({ hideForm = false, hideTagline = false }) {
   const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', subject: '', message: '' })
 
   const set = k => e => setForm(f => ({ ...f, [k]: e.target.value }))
@@ -9,6 +9,7 @@ export default function ContactSection({ hideForm = false }) {
   return (
     <>
       {/* Tagline */}
+      {!hideTagline && (
       <div className="cs-tagline">
         <p className="cs-tagline-text">
           We guide our clients through finding, buying and owning
@@ -22,6 +23,7 @@ export default function ContactSection({ hideForm = false }) {
           property in Ras Al Khaimah.
         </p>
       </div>
+      )}
 
       {/* Form — hidden when hideForm is set (e.g. About page) */}
       {!hideForm && (

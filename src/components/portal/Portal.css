@@ -410,6 +410,8 @@ textarea.pt-input { resize: vertical; }
   margin-top: 4px;
 }
 .pl-submit:hover { opacity: 0.88; }
+a.pl-submit { display: block; text-align: center; text-decoration: none; }
+.pl-ext-note { font-size: 14px; line-height: 1.5; color: rgba(17, 17, 16, 0.6); margin-bottom: 4px; }
 .pl-note { margin-top: 22px; font-size: 13.5px; color: rgba(17, 17, 16, 0.5); text-align: center; }
 .pl-note a { color: #2f7cb0; font-weight: 600; }
 

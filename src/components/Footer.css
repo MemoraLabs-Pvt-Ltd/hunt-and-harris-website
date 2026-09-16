@@ -1,3 +1,28 @@
+/* Floating WhatsApp button */
+.fab-wa {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 900;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45), 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.fab-wa:hover {
+  transform: scale(1.08);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.55), 0 3px 10px rgba(0, 0, 0, 0.25);
+}
+.fab-wa:active { transform: scale(0.96); }
+@media (max-width: 640px) {
+  .fab-wa { right: 16px; bottom: 16px; width: 52px; height: 52px; }
+}
+
 /* Legacy classes kept for compatibility */
 .footer {
   background: #1a1918;

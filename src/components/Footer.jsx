@@ -1,8 +1,10 @@
 import './Footer.css'
+import FloatingWhatsApp from './FloatingWhatsApp'
 
 export default function Footer() {
   return (
     <footer style={{ margin: 0, padding: 0 }}>
+      <FloatingWhatsApp />
       <div style={{ background: '#0a0a0a' }}>
         <div className="footer-inner">
 

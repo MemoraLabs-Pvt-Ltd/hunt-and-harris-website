@@ -29,9 +29,11 @@ export default function Hero() {
 
   // Search selections + options pulled from the live feed facets.
   const [location, setLocation] = useState('')
+  const [beds, setBeds] = useState('')
   const [budget, setBudget] = useState('')
   const [type, setType] = useState('')
   const [locations, setLocations] = useState([])
+  const [bedsOptions, setBedsOptions] = useState([])
   const [types, setTypes] = useState([])
 
   useEffect(() => {
@@ -45,7 +47,7 @@ export default function Hero() {
     return () => clearInterval(timer)
   }, [])
 
-  // Populate Location + Property Type from the same-origin feed data.
+  // Populate Location + Bedrooms + Property Type from the same-origin feed data.
   useEffect(() => {
     let alive = true
     fetch('/data/listings-all.json')
@@ -53,6 +55,7 @@ export default function Hero() {
       .then(d => {
         if (!alive || !d) return
         setLocations((d.facets?.location || []).map(o => o.value))
+        setBedsOptions((d.facets?.beds || []).map(o => o.value))
         setTypes((d.facets?.type || []).map(o => o.value))
       })
       .catch(() => {})
@@ -68,6 +71,7 @@ export default function Hero() {
     const p = new URLSearchParams()
     if (TAB_FOR[activeTab]) p.set('for', TAB_FOR[activeTab])
     if (location) p.set('location', location)
+    if (beds) p.set('beds', beds)
     if (type) p.set('type', type)
     const band = BUDGET_RANGE[budget]
     if (band?.min) p.set('min', band.min)
@@ -134,6 +138,16 @@ export default function Hero() {
           <div className="sdiv search-sdiv-desktop" />
 
           <div className="sfield sfield-anim" style={{ animationDelay: '280ms' }}>
+            <div className="sfield-label">Bedrooms</div>
+            <select value={beds} onChange={e => setBeds(e.target.value)}>
+              <option value="">Any Beds</option>
+              {bedsOptions.map(b => <option key={b} value={b}>{/^studio$/i.test(b) ? b : `${b} Bed${b === '1' ? '' : 's'}`}</option>)}
+            </select>
+          </div>
+
+          <div className="sdiv search-sdiv-desktop" />
+
+          <div className="sfield sfield-anim" style={{ animationDelay: '360ms' }}>
             <div className="sfield-label">Budget</div>
             <select value={budget} onChange={e => setBudget(e.target.value)}>
               <option value="">Any Budget</option>
@@ -143,7 +157,7 @@ export default function Hero() {
 
           <div className="sdiv search-sdiv-desktop" />
 
-          <div className="sfield sfield-anim" style={{ animationDelay: '360ms' }}>
+          <div className="sfield sfield-anim" style={{ animationDelay: '440ms' }}>
             <div className="sfield-label">Property Type</div>
             <select value={type} onChange={e => setType(e.target.value)}>
               <option value="">{types.length ? 'Any Type' : 'Property Type'}</option>

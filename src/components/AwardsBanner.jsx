@@ -129,7 +129,7 @@ export default function AwardsBanner() {
   return (
     <div className="ab-strip">
       <div className="ab-label">
-        Recognised by leading<br />award bodies
+        Recognised by the leading<br />portals for the following awards
       </div>
       <div className="ab-track-wrap">
         <div className="ab-track">

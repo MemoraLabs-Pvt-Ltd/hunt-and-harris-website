@@ -159,7 +159,8 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #aaa;
-  margin-bottom: 3px;
+  margin-bottom: 0;
+  line-height: 1.1;
   text-align: center;
 }
 

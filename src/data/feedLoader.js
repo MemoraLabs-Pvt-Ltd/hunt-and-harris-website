@@ -197,7 +197,7 @@ export async function homeLoader() {
     const newest = (a, b) => (b.lastUpdate || '').localeCompare(a.lastUpdate || '')
     const featured = all.filter((l) => /^yes$/i.test(l.featured)).sort(newest)
     const rest = all.filter((l) => !/^yes$/i.test(l.featured)).sort(newest)
-    return { featured: [...featured, ...rest].slice(0, 8), featuredCount: featured.length }
+    return { featured: [...featured, ...rest].slice(0, 9), featuredCount: featured.length }
   } catch (e) {
     return { featured: [], error: String(e?.message || e) }
   }

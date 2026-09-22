@@ -74,7 +74,7 @@ export default function Properties() {
         <p className="prop-sub">Featured homes across Ras Al Khaimah &mdash; freshly listed and hand-picked</p>
       </div>
 
-      {loading && featured.length === 0 ? <GridSkeleton count={8} columns={4} /> : (
+      {loading && featured.length === 0 ? <GridSkeleton count={9} columns={4} /> : (
       <div className="prop-grid" ref={gridRef}>
         {featured.map((l) => (
           <Link className="pcard" key={l.ref} to={`/property/${l.ref}`}>

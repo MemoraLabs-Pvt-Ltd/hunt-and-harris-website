@@ -158,6 +158,13 @@
   color: #111110;
   line-height: 1.2;
   margin-bottom: 14px;
+  /* Reserve a fixed 2-line height so the divider, specs and price align
+     across cards regardless of title length. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 48px;
 }
 
 .pcard-rule {

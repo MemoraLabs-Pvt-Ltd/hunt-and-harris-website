@@ -214,6 +214,12 @@ export async function buildListings() {
     for (const l of listings) { const v = (l[key] || '').toString().trim(); if (v) m[v] = (m[v] || 0) + 1 }
     return Object.entries(m).sort((a, b) => b[1] - a[1]).map(([value, count]) => ({ value, count }))
   }
+  // Beds order: Studio first, then by bedroom count ascending (not by frequency).
+  const bedsFacet = () => facet('beds').sort((a, b) => {
+    const sa = /studio/i.test(a.value), sb = /studio/i.test(b.value)
+    if (sa !== sb) return sa ? -1 : 1
+    return (parseFloat(a.value) || 0) - (parseFloat(b.value) || 0)
+  })
   return {
     listings,
     total: listings.length,
@@ -224,7 +230,7 @@ export async function buildListings() {
       location: facet('location'),
       city: facet('city'),
       status: facet('status'),
-      beds: facet('beds'),
+      beds: bedsFacet(),
     },
   }
 }

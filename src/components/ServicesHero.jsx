@@ -72,7 +72,7 @@ export default function ServicesHero() {
           </h1>
 
           <p className="svh-sub">
-            From finding your first home to building an investment portfolio, Hunt &amp; Harris
+            From finding your first home to building an investment portfolio, Hunt &amp; Harris Real Estate
             handles every step &mdash; buying, selling, off-plan, conveyancing and property
             management across Ras Al Khaimah. Let us make your next move effortless.
           </p>
@@ -91,7 +91,8 @@ export default function ServicesHero() {
         <p className="svh-trusted">Trusted by 2,000+ homeowners and investors across Ras Al Khaimah</p>
       </div>
 
-      <div className="svh-logos">
+      {/* Builder/developer logo marquee — hidden for now (kept for later use) */}
+      <div className="svh-logos" hidden>
         <LogoRow logos={LOGOS_TOP} dir="left" />
         <LogoRow logos={LOGOS_BOTTOM} dir="right" />
       </div>

@@ -10,7 +10,7 @@ export default function BlogPage() {
       <Seo
         path="/blog"
         title="Property Blog & Market Insights"
-        description="News, guides and market insights on Ras Al Khaimah real estate — buying, renting, off-plan trends and investment tips from the Hunt & Harris team."
+        description="News, guides and market insights on Ras Al Khaimah real estate — buying, renting, off-plan trends and investment tips from the Hunt & Harris Real Estate team."
       />
       <Navbar />
       <BlogListing />

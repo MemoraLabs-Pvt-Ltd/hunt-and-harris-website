@@ -63,7 +63,7 @@ export default function CeoStatementStatic() {
           <p className="ceo-kicker">We built more than an agency.</p>
 
           <p className="ceo-body">
-            For nearly two decades, Hunt &amp; Harris has guided families, investors and
+            For nearly two decades, Hunt &amp; Harris Real Estate has guided families, investors and
             first-time buyers to the right home in Ras Al Khaimah &mdash; powered by honest
             advice, deep local knowledge, and a genuine belief that finding a home should
             feel personal, never transactional.
@@ -71,7 +71,7 @@ export default function CeoStatementStatic() {
 
           <p className="ceo-attr">
             <span className="ceo-attr-name">Neema Kataria</span>
-            <span className="ceo-attr-role">Managing Partner, Hunt &amp; Harris</span>
+            <span className="ceo-attr-role">Managing Partner, Hunt &amp; Harris Real Estate</span>
           </p>
         </div>
       </div>

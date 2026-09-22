@@ -162,14 +162,14 @@ export default function Conveyancing() {
 
       {/* ---------- Why choose ---------- */}
       <section className="cv-why">
-        <h2 className="cv-why-title">Why <span className="cv-italic">Choose</span><br />Hunt &amp; Harris?</h2>
+        <h2 className="cv-why-title">Why <span className="cv-italic">Choose</span><br />Hunt &amp; Harris Real Estate?</h2>
         <div className="cv-why-inner">
           <div className="cv-why-img">
-            <img src={IMG('1521737604893-d14cc237f11d', 860, 860)} alt="Hunt & Harris consultation" loading="lazy" />
+            <img src={IMG('1521737604893-d14cc237f11d', 860, 860)} alt="Hunt & Harris Real Estate consultation" loading="lazy" />
           </div>
           <div className="cv-why-right">
             <p className="cv-why-body">
-              At Hunt &amp; Harris, we combine unmatched expertise with exceptional customer
+              At Hunt &amp; Harris Real Estate, we combine unmatched expertise with exceptional customer
               service, striving to be the UAE&rsquo;s most inclusive and trusted real estate
               agency of choice.
             </p>

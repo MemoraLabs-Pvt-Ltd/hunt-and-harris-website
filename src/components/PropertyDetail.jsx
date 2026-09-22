@@ -26,7 +26,7 @@ function propertySeo(p) {
   const title = [bedsLabel(p.beds) !== '—' && bedsLabel(p.beds), p.type, forLabel, where && `in ${where}`]
     .filter(Boolean).join(' ')
   const desc = (stripHtml(p.desc) ||
-    `${bedsLabel(p.beds)} ${p.type} ${forLabel} in ${where}. ${money(p)}. Enquire with Hunt & Harris.`).slice(0, 300).trim()
+    `${bedsLabel(p.beds)} ${p.type} ${forLabel} in ${where}. ${money(p)}. Enquire with Hunt & Harris Real Estate.`).slice(0, 300).trim()
   const path = `/property/${p.ref}`
   const priceNum = Number(p.price)
 
@@ -196,9 +196,9 @@ export default function PropertyDetail() {
           {/* Stats */}
           <div className="pd-stats">
             <div className="pd-stat"><span className="pd-stat-label">{rentLabel}</span><span className="pd-stat-value">{money(p)}</span></div>
-            <div className="pd-stat"><span className="pd-stat-label">Bedrooms</span><span className="pd-stat-value">{bedsLabel(p.beds)}</span></div>
-            <div className="pd-stat"><span className="pd-stat-label">Bathrooms</span><span className="pd-stat-value">{p.baths || '—'} ba</span></div>
-            <div className="pd-stat"><span className="pd-stat-label">Square Feet</span><span className="pd-stat-value">{p.built ? `${p.built} ${p.sizeUnit.trim()}` : '—'}</span></div>
+            <div className="pd-stat"><span className="pd-stat-label">Bedrooms</span><span className="pd-stat-value">{/studio/i.test(p.beds) ? 'Studio' : (p.beds || '—')}</span></div>
+            <div className="pd-stat"><span className="pd-stat-label">Bathrooms</span><span className="pd-stat-value">{p.baths || '—'}</span></div>
+            <div className="pd-stat"><span className="pd-stat-label">Square Feet</span><span className="pd-stat-value">{p.built ? (Number.isFinite(Number(p.built)) ? Number(p.built).toLocaleString('en-US') : p.built) : '—'}</span></div>
           </div>
 
           {/* Pricing & Floor Plans */}
@@ -277,16 +277,12 @@ export default function PropertyDetail() {
                 {p.agent.email}
               </a>
             )}
-            <div className="pd-contact-meta">
-              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18" strokeLinecap="round" /></svg> Language: English</span>
-              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg> Open Hours 9am – 5pm</span>
-            </div>
             {p.agent.name && (
               <div className="pd-agent">
                 {p.agent.photo && <img src={p.agent.photo} alt={p.agent.name} loading="lazy" />}
                 <div>
                   <div className="pd-agent-name">{p.agent.name}</div>
-                  <div className="pd-agent-meta">Hunt &amp; Harris</div>
+                  <div className="pd-agent-meta">Hunt &amp; Harris Real Estate</div>
                 </div>
               </div>
             )}

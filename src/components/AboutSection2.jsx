@@ -6,7 +6,7 @@ const stats = [
   { value: 5000, suffix: '+', label: 'Happy Clients' },
   { value: 18,   suffix: '+', label: 'Years of Expertise' },
   { value: 200,  suffix: '+', label: 'Off-Plan Units Secured' },
-  { value: 98,   suffix: '%', label: 'Client Satisfaction' },
+  { value: 4.8,  suffix: '★', decimals: 1, label: 'Rated on Google' },
 ]
 
 const images = [
@@ -28,7 +28,11 @@ function StatCard({ stat, index }) {
       const controls = animate(motionVal, stat.value, {
         duration: 2,
         ease: [0.22, 1, 0.36, 1],
-        onUpdate: (v) => setDisplay(Math.round(v).toLocaleString()),
+        onUpdate: (v) => setDisplay(
+          stat.decimals
+            ? v.toFixed(stat.decimals)
+            : Math.round(v).toLocaleString()
+        ),
       })
       return controls.stop
     } else {
@@ -46,7 +50,7 @@ function StatCard({ stat, index }) {
       viewport={{ once: false, amount: 0.25 }}
       transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.08 * index }}
     >
-      <div className="as2-stat-number">{display}{stat.suffix}</div>
+      <div className="as2-stat-number">{display}<span style={stat.suffix === '★' ? { fontSize: '0.6em', verticalAlign: '0.08em', marginLeft: '0.05em' } : undefined}>{stat.suffix}</span></div>
       <div className="as2-stat-label">{stat.label}</div>
     </motion.div>
   )
@@ -102,10 +106,10 @@ export default function AboutSection2() {
         viewport={VP}
         transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
       >
-        <button className="as2-know-more-btn">
+        <a href="/about" className="as2-know-more-btn" style={{ textDecoration: 'none' }}>
           Know More About Us
           <span className="as2-arrow">↗</span>
-        </button>
+        </a>
       </motion.div>
 
     </section>

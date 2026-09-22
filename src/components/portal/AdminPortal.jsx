@@ -60,7 +60,7 @@ export default function AdminPortal() {
     { key: 'media', label: 'Media', icon: I.image },
   ]
 
-  const user = { name: 'Admin · Hunt & Harris', meta: 'Content Manager', initials: 'HH', greeting: 'Content & listings management' }
+  const user = { name: 'Admin · Hunt & Harris Real Estate', meta: 'Content Manager', initials: 'HH', greeting: 'Content & listings management' }
   const decide = (idx, status) => setSubs((s) => s.map((x, i) => (i === idx ? { ...x, status } : x)))
 
   return (

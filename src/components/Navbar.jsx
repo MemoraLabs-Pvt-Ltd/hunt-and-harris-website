@@ -118,7 +118,7 @@ export default function Navbar() {
     >
       {/* Logo */}
       <a href="/" style={{ flexShrink: 0 }}>
-        <img src="/homepage/hhlogo.svg" alt="Hunt & Harris" style={{ height: 36, width: 'auto' }} />
+        <img src="/homepage/hhlogo.svg" alt="Hunt & Harris Real Estate" style={{ height: 36, width: 'auto' }} />
       </a>
 
       {/* Desktop pill nav */}

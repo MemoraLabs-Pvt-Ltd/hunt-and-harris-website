@@ -14,7 +14,7 @@ export default function AboutPage() {
       <Seo
         path="/about"
         title="About Us"
-        description="Meet Hunt & Harris — a trusted Ras Al Khaimah real estate agency. Our history, awards, team and commitment to helping you buy, sell and rent with confidence."
+        description="Meet Hunt & Harris Real Estate — a trusted Ras Al Khaimah real estate agency. Our history, awards, team and commitment to helping you buy, sell and rent with confidence."
       />
       <Navbar />
       <AboutHero />

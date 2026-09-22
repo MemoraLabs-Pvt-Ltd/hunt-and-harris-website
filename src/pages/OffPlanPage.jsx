@@ -9,7 +9,7 @@ export default function OffPlanPage() {
       <Seo
         path="/off-plan"
         title="Off-Plan Properties in Ras Al Khaimah"
-        description="Explore exclusive off-plan launches across Ras Al Khaimah — waterfront apartments, villas and townhouses direct from developers, with flexible payment plans. Hunt & Harris."
+        description="Explore exclusive off-plan launches across Ras Al Khaimah — waterfront apartments, villas and townhouses direct from developers, with flexible payment plans. Hunt & Harris Real Estate."
       />
       <Navbar />
       <OffPlanListing />

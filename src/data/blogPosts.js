@@ -20,7 +20,7 @@ export const POSTS = [
     img: IMG('1512453979798-5ea266f8880c'),
     date: 'June 2026',
     read: '6 min read',
-    author: 'The Hunt & Harris Team',
+    author: 'The Hunt & Harris Real Estate Team',
     body: [
       P('For years, UAE property conversations started and ended with Dubai. That is changing. Ras Al Khaimah is now delivering gross rental yields that consistently edge out the more established emirate — and the gap is drawing serious investor attention.'),
       H('The yield story'),
@@ -38,7 +38,7 @@ export const POSTS = [
     img: IMG('1582407947304-fd86f028f716'),
     date: 'May 2026',
     read: '7 min read',
-    author: 'The Hunt & Harris Team',
+    author: 'The Hunt & Harris Real Estate Team',
     body: [
       P('Al Marjan Island has become the most talked-about address in Ras Al Khaimah — and the arrival of the region’s first integrated resort is the reason why. The ripple effects on nearby property values are already visible.'),
       H('A demand magnet'),
@@ -56,7 +56,7 @@ export const POSTS = [
     img: IMG('1560518883-ce09059eeffa'),
     date: 'April 2026',
     read: '8 min read',
-    author: 'The Hunt & Harris Team',
+    author: 'The Hunt & Harris Real Estate Team',
     body: [
       P('Ras Al Khaimah welcomes international buyers, and freehold ownership in designated areas is straightforward once you know the steps. Here is the process from offer to keys.'),
       H('Freehold zones'),
@@ -75,7 +75,7 @@ export const POSTS = [
     img: IMG('1600596542815-ffad4c1539a9'),
     date: 'April 2026',
     read: '5 min read',
-    author: 'The Hunt & Harris Team',
+    author: 'The Hunt & Harris Real Estate Team',
     body: [
       P('Some communities are hype; others are proven. Al Hamra Village is firmly in the second camp — a mature, waterfront community that investors keep coming back to.'),
       H('Why it works'),
@@ -93,7 +93,7 @@ export const POSTS = [
     img: IMG('1600585154340-be6161a56a0c'),
     date: 'March 2026',
     read: '5 min read',
-    author: 'The Hunt & Harris Team',
+    author: 'The Hunt & Harris Real Estate Team',
     body: [
       P('What is it really like to live in Ras Al Khaimah once the novelty wears off? We asked residents who have called RAK home for a year or more.'),
       H('The pace'),
@@ -111,7 +111,7 @@ export const POSTS = [
     img: IMG('1600607687939-ce8a6c25118c'),
     date: 'March 2026',
     read: '6 min read',
-    author: 'The Hunt & Harris Team',
+    author: 'The Hunt & Harris Real Estate Team',
     body: [
       P('Mina Al Arab and Al Marjan Island are two of RAK’s most sought-after waterfront communities — but they suit different buyers. Here is how they compare.'),
       H('Al Marjan Island'),
@@ -129,7 +129,7 @@ export const POSTS = [
     img: IMG('1568605114967-8130f3a36994'),
     date: 'February 2026',
     read: '4 min read',
-    author: 'The Hunt & Harris Team',
+    author: 'The Hunt & Harris Real Estate Team',
     body: [
       P('Before you list, it is tempting to renovate everything. Don’t. A handful of targeted upgrades deliver most of the return — the rest rarely pays for itself.'),
       H('Where to spend'),
@@ -147,7 +147,7 @@ export const POSTS = [
     img: IMG('1613490493576-7fde63acd811'),
     date: 'February 2026',
     read: '7 min read',
-    author: 'The Hunt & Harris Team',
+    author: 'The Hunt & Harris Real Estate Team',
     body: [
       P('The first half of 2026 has been an active one for Ras Al Khaimah property. Here is our data-led read on where prices moved, and why.'),
       H('The headline'),
@@ -165,7 +165,7 @@ export const POSTS = [
     img: IMG('1580587771525-78b9dba3b914'),
     date: 'January 2026',
     read: '6 min read',
-    author: 'The Hunt & Harris Team',
+    author: 'The Hunt & Harris Real Estate Team',
     body: [
       P('Should you rent your RAK property to holidaymakers or lock in an annual tenant? Both work — but they suit different investors and different properties.'),
       H('Short-term lets'),

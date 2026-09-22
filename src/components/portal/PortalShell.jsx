@@ -12,7 +12,7 @@ export default function PortalShell({ role, brandColor, navItems, active, setAct
       <Seo title={`${role} Portal`} noindex />
       <aside className={`pt-sidebar${menuOpen ? ' is-open' : ''}`}>
         <Link to="/" className="pt-logo">
-          <img src="/homepage/hhlogo.svg" alt="Hunt & Harris" />
+          <img src="/homepage/hhlogo.svg" alt="Hunt & Harris Real Estate" />
         </Link>
 
         <div className="pt-role" style={{ color: brandColor }}>{role} Portal</div>

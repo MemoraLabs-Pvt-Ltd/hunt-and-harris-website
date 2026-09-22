@@ -1,6 +1,6 @@
 // Site-wide floating WhatsApp button (bottom-right). Uses the company number.
 const WA_NUMBER = '97172434005'
-const WA_TEXT = "Hi Hunt & Harris, I'd like to know more about your properties."
+const WA_TEXT = "Hi Hunt & Harris Real Estate, I'd like to know more about your properties."
 const WA_HREF = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_TEXT)}`
 
 export default function FloatingWhatsApp() {

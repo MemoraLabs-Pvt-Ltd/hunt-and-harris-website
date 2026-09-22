@@ -9,7 +9,7 @@ const AWARDS = [
     titleSerif: 'Excellence',
     year: '2025',
     to: 'This award is proudly presented to',
-    name: 'Hunt & Harris',
+    name: 'Hunt & Harris Real Estate',
     desc: "Recognized as one of Bayut's highest-rated agencies in Ras Al Khaimah for consistent service and results.",
   },
   {
@@ -20,7 +20,7 @@ const AWARDS = [
     titleSerif: 'Superagent',
     year: '2026',
     to: 'This certificate is proudly presented to',
-    name: 'Hunt & Harris',
+    name: 'Hunt & Harris Real Estate',
     desc: 'Awarded for outstanding client ratings and market leadership across the Property Finder platform.',
     signed: true,
   },
@@ -33,7 +33,7 @@ const AWARDS = [
     year: '2025',
     to: 'This honour is proudly presented to',
     name: 'Neema Kataria & Wendy Stapleton',
-    desc: 'Celebrating the women leading Hunt & Harris and shaping the RAK property industry.',
+    desc: 'Celebrating the women leading Hunt & Harris Real Estate and shaping the RAK property industry.',
   },
 ]
 

@@ -9,7 +9,7 @@ export default function PayOnlinePage() {
       <Seo
         path="/pay-online"
         title="Pay Online"
-        description="Pay rent, deposits and agency fees securely online with Hunt & Harris via MamoPay — fast, safe card payments for tenants and clients in Ras Al Khaimah."
+        description="Pay rent, deposits and agency fees securely online with Hunt & Harris Real Estate via MamoPay — fast, safe card payments for tenants and clients in Ras Al Khaimah."
       />
       <Navbar />
       <PayOnline />

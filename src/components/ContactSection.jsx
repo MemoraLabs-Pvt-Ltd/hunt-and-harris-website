@@ -12,15 +12,7 @@ export default function ContactSection({ hideForm = false, hideTagline = false }
       {!hideTagline && (
       <div className="cs-tagline">
         <p className="cs-tagline-text">
-          We guide our clients through finding, buying and owning
-          <span className="cs-tagline-img-wrap">
-            <img
-              src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=160&h=100&q=80"
-              alt=""
-              className="cs-tagline-img"
-            />
-          </span>
-          property in Ras Al Khaimah.
+          We guide our clients through finding, buying and owning property in Ras Al Khaimah.
         </p>
       </div>
       )}

@@ -10,7 +10,7 @@ export default function ConveyancingPage() {
       <Seo
         path="/conveyancing"
         title="Property Conveyancing"
-        description="Secure, transparent property conveyancing in Ras Al Khaimah. Hunt & Harris manages contracts, transfers and due diligence so your purchase or sale completes smoothly."
+        description="Secure, transparent property conveyancing in Ras Al Khaimah. Hunt & Harris Real Estate manages contracts, transfers and due diligence so your purchase or sale completes smoothly."
       />
       <Navbar />
       <Conveyancing />

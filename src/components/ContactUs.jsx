@@ -37,7 +37,7 @@ export default function ContactUs() {
         </div>
 
         <div className="cu-hero-media">
-          <img src="/about-us/team.png" alt="The Hunt &amp; Harris team" />
+          <img src="/about-us/team.png" alt="The Hunt &amp; Harris Real Estate team" />
         </div>
       </div>
 

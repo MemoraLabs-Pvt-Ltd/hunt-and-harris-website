@@ -13,7 +13,7 @@ export default function Footer() {
 
             {/* Left column */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'flex-start' }}>
-              <img src="/homepage/hhlogo.svg" alt="Hunt & Harris" style={{ height: '36px', width: 'auto', display: 'block', margin: 0, padding: 0 }} />
+              <img src="/homepage/hhlogo.svg" alt="Hunt & Harris Real Estate" style={{ height: '36px', width: 'auto', display: 'block', margin: 0, padding: 0 }} />
 
               <div>
                 <p style={{ color: '#4b5563', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: '10px' }}>General Info</p>
@@ -109,13 +109,13 @@ export default function Footer() {
               © Copyright {new Date().getFullYear()} Hunt &amp; Harris Real Estate — All rights reserved. RERA Licensed.
             </p>
             <p style={{ color: '#6b7280', fontSize: '12px', lineHeight: 1.6 }}>
-              All data and communications are handled in accordance with applicable data protection laws and enterprise-grade security standards. Hunt &amp; Harris makes no representations or warranties regarding property valuations, legal compliance, or financial outcomes resulting from the use of any information provided.
+              All data and communications are handled in accordance with applicable data protection laws and enterprise-grade security standards. Hunt &amp; Harris Real Estate makes no representations or warranties regarding property valuations, legal compliance, or financial outcomes resulting from the use of any information provided.
             </p>
             <p style={{ color: '#6b7280', fontSize: '12px', lineHeight: 1.6 }}>
-              All third-party references, analyses, or data are provided "as is," and Hunt &amp; Harris assumes no responsibility for their accuracy, completeness, or continued availability. Hunt &amp; Harris does not provide accounting, tax, or regulatory advice unless explicitly agreed upon through a separate written agreement. Users are responsible for ensuring the accuracy of their financial records and maintaining compliance with all relevant local, national, or international regulations. Hunt &amp; Harris is not responsible for any losses resulting from misinterpretation, errors, or omissions in the information provided.
+              All third-party references, analyses, or data are provided "as is," and Hunt &amp; Harris Real Estate assumes no responsibility for their accuracy, completeness, or continued availability. Hunt &amp; Harris Real Estate does not provide accounting, tax, or regulatory advice unless explicitly agreed upon through a separate written agreement. Users are responsible for ensuring the accuracy of their financial records and maintaining compliance with all relevant local, national, or international regulations. Hunt &amp; Harris Real Estate is not responsible for any losses resulting from misinterpretation, errors, or omissions in the information provided.
             </p>
             <p style={{ color: '#6b7280', fontSize: '12px', lineHeight: 1.6 }}>
-              Hunt &amp; Harris is a licensed real estate agency registered in Ras Al Khaimah, UAE. For questions related to the information provided or data security, please refer to our Privacy Policy or contact{' '}
+              Hunt &amp; Harris Real Estate is a licensed real estate agency registered in Ras Al Khaimah, UAE. For questions related to the information provided or data security, please refer to our Privacy Policy or contact{' '}
               <a href="mailto:info@huntandharris.com" style={{ color: '#6b7280', textDecoration: 'underline' }}>
                 info@huntandharris.com
               </a>.

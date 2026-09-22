@@ -31,12 +31,12 @@ export default function PortalLogin() {
       <Seo title="Portal Login" noindex />
       <div className="pl-form-side">
         <Link to="/" className="pl-logo">
-          <img src="/homepage/hhlogo.svg" alt="Hunt & Harris" />
+          <img src="/homepage/hhlogo.svg" alt="Hunt & Harris Real Estate" />
         </Link>
 
         <div className="pl-form-wrap">
           <h1 className="pl-title">Welcome <span className="pl-title-italic">back</span></h1>
-          <p className="pl-sub">Sign in to access your Hunt &amp; Harris portal.</p>
+          <p className="pl-sub">Sign in to access your Hunt &amp; Harris Real Estate portal.</p>
 
           <div className="pl-tabs">
             <button className={`pl-tab${role === 'tenant' ? ' is-active' : ''}`} onClick={() => setRole('tenant')}>

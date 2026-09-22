@@ -10,7 +10,7 @@ export default function ContactPage() {
       <Seo
         path="/contact"
         title="Contact Us"
-        description="Get in touch with Hunt & Harris — call, email or visit our Ras Al Khaimah office. We help you buy, rent, sell and invest in property across RAK."
+        description="Get in touch with Hunt & Harris Real Estate — call, email or visit our Ras Al Khaimah office. We help you buy, rent, sell and invest in property across RAK."
       />
       <Navbar />
       <ContactUs />

@@ -16,7 +16,7 @@ export default function BlogListing() {
         </h1>
 
         <p className="blg-sub">
-          Explore market trends, buying guides and expert advice from the Hunt &amp; Harris
+          Explore market trends, buying guides and expert advice from the Hunt &amp; Harris Real Estate
           team, helping you make confident property decisions across Ras Al Khaimah.
         </p>
       </div>

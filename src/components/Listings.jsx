@@ -13,8 +13,28 @@ const money = (l) => {
 }
 const bedsLabel = (b) => (!b ? '—' : /studio/i.test(b) ? 'Studio' : `${b} Bed`)
 
-const DEFAULTS = { for: 'All', type: 'All', location: 'All', city: 'All', status: 'All', beds: 'All', min: '', max: '' }
+const DEFAULTS = { for: 'All', type: 'All', location: 'All', city: 'All', beds: 'All', min: '', max: '' }
 const EMPTY = [] // stable reference so the filter memo doesn't rerun every render
+
+// Sort options for the results list.
+const SORTS = [
+  { value: 'featured', label: 'Featured' },
+  { value: 'newest', label: 'Newest first' },
+  { value: 'price-asc', label: 'Price: Low to High' },
+  { value: 'price-desc', label: 'Price: High to Low' },
+  { value: 'beds-desc', label: 'Most bedrooms' },
+]
+const sortListings = (arr, sort) => {
+  const copy = [...arr]
+  const num = (v) => (Number.isFinite(Number(v)) ? Number(v) : 0)
+  switch (sort) {
+    case 'price-asc': return copy.sort((a, b) => (num(a.price) || Infinity) - (num(b.price) || Infinity))
+    case 'price-desc': return copy.sort((a, b) => num(b.price) - num(a.price))
+    case 'beds-desc': return copy.sort((a, b) => (parseFloat(b.beds) || 0) - (parseFloat(a.beds) || 0))
+    case 'newest': return copy.sort((a, b) => new Date(b.lastUpdate || 0) - new Date(a.lastUpdate || 0))
+    default: return arr // 'featured' keeps the source order
+  }
+}
 
 // Budget presets mirror the ranges used on propertyfinder.ae — lower steps for
 // rentals (yearly), higher steps for sales. Shown as quick chips in the popover.
@@ -172,7 +192,6 @@ function PropertyCard({ l }) {
       <div className="lst-card-img">
         {l.image ? <img src={l.image} alt={l.title} loading="lazy" /> : <div className="lst-noimg">No image</div>}
         <span className={`lst-badge ${l.propertyFor === 'Rent' ? 'lst-badge--blue' : 'lst-badge--green'}`}>For {l.propertyFor}</span>
-        <span className="lst-badge lst-badge--status">{l.status}</span>
       </div>
       <div className="lst-card-body">
         <div className="lst-card-loc">{[l.subLocation, l.location].filter(Boolean).join(', ') || l.city}</div>
@@ -199,11 +218,12 @@ export default function Listings() {
     const g = (k, d) => searchParams.get(k) || d
     return {
       for: g('for', 'All'), type: g('type', 'All'), location: g('location', 'All'),
-      city: g('city', 'All'), status: g('status', 'All'), beds: g('beds', 'All'),
+      city: g('city', 'All'), beds: g('beds', 'All'),
       min: g('min', ''), max: g('max', ''),
     }
   })
   const [shown, setShown] = useState(24)
+  const [sort, setSort] = useState('featured')
 
   useEffect(() => {
     let alive = true
@@ -238,12 +258,13 @@ export default function Listings() {
         (f.type === 'All' || l.type === f.type) &&
         (f.location === 'All' || l.location === f.location) &&
         (f.city === 'All' || l.city === f.city) &&
-        (f.status === 'All' || l.status === f.status) &&
         (f.beds === 'All' || l.beds === f.beds) &&
         okBudget
       )
     })
   }, [listings, f])
+
+  const sorted = useMemo(() => sortListings(filtered, sort), [filtered, sort])
 
   const dirty = Object.keys(DEFAULTS).some((k) => f[k] !== DEFAULTS[k])
 
@@ -304,7 +325,6 @@ export default function Listings() {
           <Select label="Beds" value={f.beds} options={facets.beds || []} onChange={set('beds')} />
           <PricePopover min={f.min} max={f.max} steps={priceSteps} onChange={setPrice} />
           <Select label="City" value={f.city} options={facets.city || []} onChange={set('city')} />
-          <Select label="Status" value={f.status} options={facets.status || []} onChange={set('status')} />
           {dirty && <button className="lst-clear" onClick={() => setF(DEFAULTS)}>Clear</button>}
         </div>
 
@@ -321,17 +341,28 @@ export default function Listings() {
       </div>
 
       <div className="lst-count">
-        {view === 'map'
-          ? <>{inBounds.length} {inBounds.length === 1 ? 'property' : 'properties'} {drawnBounds ? 'in your drawn area' : 'in this area'} · {drawnBounds ? 'clear the box to reset' : 'drag, zoom or draw a box to filter'}</>
-          : <>{filtered.length} {filtered.length === 1 ? 'result' : 'results'}</>}
+        <span>
+          {view === 'map'
+            ? <>{inBounds.length} {inBounds.length === 1 ? 'property' : 'properties'} {drawnBounds ? 'in your drawn area' : 'in this area'} · {drawnBounds ? 'clear the box to reset' : 'drag, zoom or draw a box to filter'}</>
+            : <>{filtered.length} {filtered.length === 1 ? 'result' : 'results'}</>}
+        </span>
+        {view === 'grid' && (
+          <label className="lst-sort">
+            <span className="lst-sort-label">Sort by</span>
+            <select value={sort} onChange={(e) => { setSort(e.target.value); setShown(24) }}>
+              {SORTS.map((s) => <option key={s.value} value={s.value}>{s.label}</option>)}
+            </select>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+          </label>
+        )}
       </div>
 
       {view === 'grid' ? (
         <>
           <div className="lst-grid">
-            {filtered.slice(0, shown).map((l) => <PropertyCard key={l.ref} l={l} />)}
+            {sorted.slice(0, shown).map((l) => <PropertyCard key={l.ref} l={l} />)}
           </div>
-          {shown < filtered.length && (
+          {shown < sorted.length && (
             <div className="lst-more-wrap"><button className="lst-more" onClick={() => setShown((s) => s + 24)}>Load more</button></div>
           )}
         </>

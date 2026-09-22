@@ -3,16 +3,16 @@ import './FaqSection.css'
 
 const FAQS = [
   {
-    q: 'Who founded Hunt & Harris and who runs it today?',
-    a: 'Hunt & Harris is led by Neema Kataria, our Managing Partner, and Wendy Stapleton, our Managing Director — two women who have shaped the agency around honest advice and genuine care since day one.',
+    q: 'Who founded Hunt & Harris Real Estate and who runs it today?',
+    a: 'Hunt & Harris Real Estate is led by Neema Kataria, our Managing Partner, and Wendy Stapleton, our Managing Director — two women who have shaped the agency around honest advice and genuine care since day one.',
   },
   {
-    q: 'How long has Hunt & Harris been in business?',
+    q: 'How long has Hunt & Harris Real Estate been in business?',
     a: 'We opened our doors in 2007 and have spent nearly two decades helping buyers, sellers and investors find the right home across Ras Al Khaimah.',
   },
   {
     q: 'Which areas in Ras Al Khaimah do you cover?',
-    a: "We work across all of RAK's most sought-after communities — Al Hamra Village, Al Marjan Island, Mina Al Arab, Al Zorah and Ras Al Khaimah City, among others.",
+    a: "We work across all of RAK's most sought-after communities — Al Hamra Village, Al Marjan Island, Mina Al Arab and Ras Al Khaimah City, among others.",
   },
   {
     q: 'Can foreign nationals buy property in RAK?',
@@ -31,7 +31,7 @@ const FAQS = [
     a: 'Yes — our in-house conveyancing team manages the legal paperwork and transfer end to end, saving you time and keeping the whole process stress-free.',
   },
   {
-    q: 'How do I list my property for sale with Hunt & Harris?',
+    q: 'How do I list my property for sale with Hunt & Harris Real Estate?',
     a: "Simply book a consultation. We'll arrange a valuation, agree a strategy, and market your property across our channels and qualified buyer network.",
   },
   {
@@ -39,7 +39,7 @@ const FAQS = [
     a: 'We do. From finding the right tenants to ongoing property management, our team looks after landlords and tenants alike.',
   },
   {
-    q: 'How is Hunt & Harris different from other RAK agencies?',
+    q: 'How is Hunt & Harris Real Estate different from other RAK agencies?',
     a: 'Honest, no-pressure advice, deep local knowledge and genuine after-sales support. We treat finding a home as something personal — never transactional.',
   },
 ]
@@ -65,11 +65,11 @@ export default function FaqSection() {
             <img
               className="faq-card-avatar"
               src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=160&h=160&fit=crop&crop=faces&auto=format&q=85"
-              alt="Hunt & Harris advisor"
+              alt="Hunt & Harris Real Estate advisor"
             />
             <h3 className="faq-card-title">Book an Intro Call</h3>
             <p className="faq-card-desc">
-              Time to get introduced and explore how Hunt &amp; Harris can help.
+              Time to get introduced and explore how Hunt &amp; Harris Real Estate can help.
             </p>
 
             <a href="#contact" className="faq-card-btn">
@@ -91,7 +91,7 @@ export default function FaqSection() {
               </span>
               <div className="faq-card-email-text">
                 <span className="faq-card-email-label">Do you prefer email communication?</span>
-                <a className="faq-card-email-addr" href="mailto:hello@huntandharris.ae">hello@huntandharris.ae</a>
+                <a className="faq-card-email-addr" href="mailto:info@huntandharris.com">info@huntandharris.com</a>
               </div>
             </div>
           </div>

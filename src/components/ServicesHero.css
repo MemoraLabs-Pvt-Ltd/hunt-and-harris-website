@@ -7,7 +7,7 @@
 /* ---------- Hero block (holds the grid guides) ---------- */
 .svh-hero {
   position: relative;
-  padding: 152px 24px 0;
+  padding: 152px 24px 72px;
   text-align: center;
 }
 
@@ -100,7 +100,7 @@
 .svh-trusted {
   position: relative;
   z-index: 2;
-  margin: 76px auto 0;
+  margin: 48px auto 0;
   font-size: 15px;
   font-weight: 500;
   color: rgba(17, 17, 16, 0.72);
@@ -117,6 +117,7 @@
   flex-direction: column;
   gap: 34px;
 }
+.svh-logos[hidden] { display: none; }
 
 .svh-logo-row {
   overflow: hidden;
@@ -189,7 +190,7 @@
   .svh-title { margin-top: 26px; }
   .svh-sub { margin-top: 22px; }
   .svh-cta { font-size: 15px; padding: 12px 12px 12px 24px; }
-  .svh-trusted { margin-top: 56px; }
+  .svh-trusted { margin-top: 24px; }
   .svh-logo-text { font-size: 18px; }
   .svh-logo-mark svg { width: 22px; height: 22px; }
 }

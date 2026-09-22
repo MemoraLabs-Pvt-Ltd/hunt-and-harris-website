@@ -41,7 +41,7 @@ export default function App() {
     <>
       <Seo
         path="/"
-        description="Discover homes for sale and rent across Ras Al Khaimah with Hunt & Harris — off-plan launches, waterfront apartments, villas and expert local guidance."
+        description="Discover homes for sale and rent across Ras Al Khaimah with Hunt & Harris Real Estate — off-plan launches, waterfront apartments, villas and expert local guidance."
         jsonLd={HOME_JSONLD}
       />
       <Navbar />

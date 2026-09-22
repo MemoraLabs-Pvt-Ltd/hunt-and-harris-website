@@ -23,8 +23,8 @@ export default function BlogPost() {
     description: post.excerpt,
     image: post.img,
     articleSection: post.category,
-    author: { '@type': 'Organization', name: post.author || 'Hunt & Harris' },
-    publisher: { '@type': 'Organization', name: 'Hunt & Harris' },
+    author: { '@type': 'Organization', name: post.author || 'Hunt & Harris Real Estate' },
+    publisher: { '@type': 'Organization', name: 'Hunt & Harris Real Estate' },
     mainEntityOfPage: absUrl(`/blog/${post.slug}`),
   }
 

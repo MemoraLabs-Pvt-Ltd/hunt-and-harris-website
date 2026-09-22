@@ -44,16 +44,46 @@
 }
 
 /* Trust badge */
+.cl-trust-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 32px;
+}
+
 .cl-trust {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  margin-top: 32px;
   background: #ffffff;
   border-radius: 100px;
   padding: 8px 20px 8px 8px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
 }
+
+/* Second pill — links out to the Google reviews page */
+.cl-trust-link {
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.cl-trust-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.24);
+}
+.cl-trust-g {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #f4f6f8;
+  flex-shrink: 0;
+}
+.cl-trust-g svg { width: 20px; height: 20px; }
+.cl-trust-link .cl-trust-label { color: #3f86bd; font-weight: 500; }
+.cl-trust-stars { color: #f5a623; font-size: 12px; margin-left: 6px; letter-spacing: 1px; }
 
 .cl-trust-avatars {
   display: flex;
@@ -76,6 +106,7 @@
   display: flex;
   flex-direction: column;
   line-height: 1.25;
+  gap: 3px;
 }
 
 .cl-trust-count {
@@ -151,6 +182,7 @@
   border: 1.2px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
   width: 520px;
+  height: 360px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -165,19 +197,28 @@
 
 .cl-stars {
   display: flex;
-  gap: 3px;
+  align-items: center;
+  justify-content: space-between;
   padding: 24px 28px 0;
   color: #f5a623;
 }
+.cl-stars-row {
+  display: flex;
+  gap: 3px;
+}
 
 .cl-card-text {
-  padding: 28px 28px 24px;
-  font-size: 18px;
+  padding: 22px 28px 20px;
+  font-size: 16.5px;
   font-weight: 300;
-  line-height: 1.7;
+  line-height: 1.65;
   color: rgba(255, 255, 255, 0.85);
   letter-spacing: -0.01em;
   flex: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
 }
 
 /* Footer */
@@ -202,6 +243,16 @@
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
+}
+.cl-avatar-initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #7ab4d8, #3f86bd);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .cl-author-name {
@@ -245,7 +296,7 @@
   .cl-head { padding: 0 48px; }
   .cl-track { padding: 0 48px; }
   .cl-controls { padding: 0 48px; }
-  .cl-card { width: 420px; }
+  .cl-card { width: 420px; height: 400px; }
   .cl-card-text { font-size: 16px; }
 }
 
@@ -256,15 +307,15 @@
   .cl-sub { font-size: 15px; }
   .cl-track { padding: 0 24px; gap: 14px; }
   .cl-controls { padding: 0 24px; margin-top: 28px; }
-  .cl-card { width: 320px; }
-  .cl-card-text { font-size: 15px; padding: 20px 20px 16px; }
+  .cl-card { width: 320px; height: 430px; }
+  .cl-card-text { font-size: 15px; padding: 20px 20px 16px; -webkit-line-clamp: 8; }
   .cl-stars { padding: 20px 20px 0; }
   .cl-card-author { padding: 12px 16px; gap: 10px; }
   .cl-location { padding: 0 14px; font-size: 12px; }
 }
 
 @media (max-width: 480px) {
-  .cl-card { width: 280px; }
-  .cl-card-text { font-size: 14px; }
+  .cl-card { width: 280px; height: 450px; }
+  .cl-card-text { font-size: 14px; -webkit-line-clamp: 9; }
   .cl-author-role { display: none; }
 }

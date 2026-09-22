@@ -154,6 +154,7 @@
 .opl-card-body {
   display: flex;
   flex-direction: column;
+  flex: 1;
   padding: 20px 22px 22px;
 }
 .opl-card-loc {
@@ -163,20 +164,31 @@
   font-size: 13px;
   font-weight: 500;
   color: rgba(17, 17, 16, 0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.opl-card-loc svg { width: 14px; height: 14px; }
+.opl-card-loc svg { width: 14px; height: 14px; flex-shrink: 0; }
 .opl-card-name {
   margin-top: 8px;
   font-size: 21px;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: #111110;
+  line-height: 1.25;
+  /* Fixed 2-line height so specs + price align across all cards. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 53px;
 }
 .opl-card-foot {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-top: 18px;
+  margin-top: auto;
+  padding-top: 18px;
 }
 .opl-card-price {
   display: flex;

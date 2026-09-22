@@ -113,10 +113,6 @@ export default function OffPlanDetail({ slug }) {
             <span className="opd-fact-label">Bedrooms</span>
             <span className="opd-fact-value">{property.beds}</span>
           </div>
-          <div className="opd-fact">
-            <span className="opd-fact-label">Status</span>
-            <span className="opd-fact-value">{property.status}</span>
-          </div>
         </aside>
       </section>
 

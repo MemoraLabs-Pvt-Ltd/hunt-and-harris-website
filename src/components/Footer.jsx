@@ -106,7 +106,7 @@ export default function Footer() {
           {/* Bottom bar */}
           <div className="footer-bottom-bar">
             <p style={{ color: '#d1d5db', fontSize: '12px', lineHeight: 1.6 }}>
-              © Copyright {new Date().getFullYear()} Hunt &amp; Harris Real Estate — All rights reserved. RERA Licensed.
+              © Copyright {new Date().getFullYear()} Hunt &amp; Harris Real Estate — All rights reserved.
             </p>
             <p style={{ color: '#6b7280', fontSize: '12px', lineHeight: 1.6 }}>
               All data and communications are handled in accordance with applicable data protection laws and enterprise-grade security standards. Hunt &amp; Harris Real Estate makes no representations or warranties regarding property valuations, legal compliance, or financial outcomes resulting from the use of any information provided.

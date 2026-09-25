@@ -167,6 +167,7 @@ export default function PropertyDetail() {
           {p.locationDetail || [p.subLocation, p.location, p.city].filter(Boolean).join(', ')}
         </div>
         <div className="pd-accent">{[p.type, p.subLocation || p.location].filter(Boolean).join(' · ')}</div>
+        {p.ref && <div className="pd-ref">Ref: {p.ref}</div>}
       </div>
 
       {/* Gallery */}
@@ -282,6 +283,7 @@ export default function PropertyDetail() {
                 {p.agent.photo && <img src={p.agent.photo} alt={p.agent.name} loading="lazy" />}
                 <div>
                   <div className="pd-agent-name">{p.agent.name}</div>
+                  <div className="pd-agent-role">Agent</div>
                   <div className="pd-agent-meta">Hunt &amp; Harris Real Estate</div>
                 </div>
               </div>

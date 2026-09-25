@@ -14,6 +14,7 @@ import ListingsPage from './pages/ListingsPage.jsx'
 import PropertyPage from './pages/PropertyPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import BlogPostPage from './pages/BlogPostPage.jsx'
+import GuidesPage from './pages/GuidesPage.jsx'
 import { feedLoader, propertyLoader, propertyPaths } from './data/feedLoader'
 import { blogPostLoader, blogPostPaths } from './data/blogPosts'
 
@@ -30,6 +31,7 @@ export const routes = [
   { path: '/property/:ref', element: <PropertyPage />, loader: propertyLoader, getStaticPaths: propertyPaths },
   { path: '/services', element: <ServicesPage /> },
   { path: '/blog', element: <BlogPage /> },
+  { path: '/guides', element: <GuidesPage /> },
   { path: '/blog/:slug', element: <BlogPostPage />, loader: blogPostLoader, getStaticPaths: blogPostPaths },
   { path: '/pay-online', element: <PayOnlinePage /> },
   { path: '/conveyancing', element: <ConveyancingPage /> },

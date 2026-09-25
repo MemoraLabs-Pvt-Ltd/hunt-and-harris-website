@@ -49,7 +49,14 @@
 .mc-form { display: flex; flex-direction: column; }
 .mc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 40px; }
 .mc-field { display: flex; flex-direction: column; }
-.mc-label { font-size: 13px; font-weight: 700; color: #111110; margin-bottom: 6px; }
+.mc-label { font-size: 13px; font-weight: 700; color: #111110; margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between; flex-wrap: nowrap; white-space: nowrap; gap: 8px; height: 24px; }
+.mc-dp-toggle { display: inline-flex; flex-shrink: 0; border: 1px solid rgba(17, 17, 16, 0.16); border-radius: 100px; overflow: hidden; }
+.mc-dp-toggle button {
+  border: none; background: none; cursor: pointer; font-family: inherit;
+  font-size: 10.5px; font-weight: 700; color: rgba(17, 17, 16, 0.55);
+  padding: 2px 8px; line-height: 1.4; transition: background 0.15s, color 0.15s;
+}
+.mc-dp-toggle button.is-active { background: #7ab4d8; color: #fff; }
 .mc-input {
   border: none; border-bottom: 1px solid rgba(17, 17, 16, 0.2); background: none;
   padding: 8px 0; font-size: 15px; color: #111110; outline: none; font-family: inherit;

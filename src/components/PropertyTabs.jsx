@@ -3,42 +3,58 @@ import './PropertyTabs.css'
 
 const fmt = (n) => (Math.round((Number(n) || 0) * 100) / 100).toLocaleString('en-US', { maximumFractionDigits: 2 })
 
-function compute({ total, down, rate, years, tax, insurance }) {
+function compute({ total, downAmt, rate, years }) {
   const T = Number(total) || 0
-  const dp = Number(down) || 0
+  const D = Math.min(T, Math.max(0, Number(downAmt) || 0))
   const r = (Number(rate) || 0) / 100 / 12
   const n = (Number(years) || 0) * 12
-  const loan = Math.max(0, T * (1 - dp / 100))
+  const loan = Math.max(0, T - D)
   const pi = n <= 0 ? 0 : r > 0 ? (loan * r) / (1 - Math.pow(1 + r, -n)) : loan / n
-  const taxM = (Number(tax) || 0) / 12
-  const insM = (Number(insurance) || 0) / 12
-  return { pi, taxM, insM, monthly: pi + taxM + insM }
+  return { pi, loan, monthly: pi }
 }
 
-const FIELDS = [
-  ['total', 'Total Amount (AED)'],
-  ['down', 'Down Payment (%)'],
+// Fields other than the down payment (which has its own %/AED control).
+const FIELD_TOTAL = ['total', 'Total Amount (AED)']
+const FIELDS_REST = [
   ['rate', 'Interest Rate %'],
   ['years', 'Loan Terms (Years)'],
-  ['tax', 'Property Tax (AED / yr)'],
-  ['insurance', 'Home Insurance (AED / yr)'],
 ]
 
 function Calculator({ price }) {
-  const [f, setF] = useState({ total: price || 1000000, down: 20, rate: 4.5, years: 25, tax: 0, insurance: 0 })
-  const [res, setRes] = useState(() => compute({ total: price || 1000000, down: 20, rate: 4.5, years: 25, tax: 0, insurance: 0 }))
+  const base = price || 1000000
+  const [f, setF] = useState({ total: base, down: 20, downAmt: Math.round(base * 0.2), rate: 4.5, years: 25 })
+  const [downMode, setDownMode] = useState('pct') // 'pct' | 'amt'
+  const [res, setRes] = useState(() => compute({ total: base, downAmt: Math.round(base * 0.2), rate: 4.5, years: 25 }))
+
   const on = (k) => (e) => setF((p) => ({ ...p, [k]: e.target.value }))
 
-  const t = res.monthly || 1
-  const a = (res.pi / t) * 100
-  const b = (res.taxM / t) * 100
+  // Keep down % and down amount in sync when the total changes.
+  const onTotal = (e) => setF((p) => {
+    const total = e.target.value
+    const T = Number(total) || 0
+    return downMode === 'pct'
+      ? { ...p, total, downAmt: Math.round(T * (Number(p.down) || 0) / 100) }
+      : { ...p, total, down: T > 0 ? Math.round((Number(p.downAmt) || 0) / T * 1000) / 10 : 0 }
+  })
+
+  // Editing the down payment updates both the % and the amount.
+  const onDown = (e) => setF((p) => {
+    const v = e.target.value
+    const T = Number(p.total) || 0
+    if (downMode === 'pct') {
+      const pct = Number(v) || 0
+      return { ...p, down: v, downAmt: Math.round(T * pct / 100) }
+    }
+    const amt = Number(v) || 0
+    return { ...p, downAmt: v, down: T > 0 ? Math.round(amt / T * 1000) / 10 : 0 }
+  })
 
   return (
     <div className="mc">
       <div className="mc-chart">
         <div
           className="mc-donut"
-          style={{ background: `conic-gradient(#2f6fd0 0 ${a}%, #7ab4d8 ${a}% ${a + b}%, #cfe0ef ${a + b}% 100%)` }}
+          style={{ background: `conic-gradient(#3f86bd 0 75%, #7ab4d8 75% 100%)` }}
         >
           <div className="mc-donut-hole">
             <span className="mc-donut-amt">AED {fmt(res.monthly)}</span>
@@ -46,15 +62,35 @@ function Calculator({ price }) {
           </div>
         </div>
         <div className="mc-legend">
-          <div><span className="mc-dot" style={{ background: '#2f6fd0' }} /> Principal &amp; Interest <b>{fmt(res.pi)}</b></div>
-          <div><span className="mc-dot" style={{ background: '#7ab4d8' }} /> Property Tax <b>{fmt(res.taxM)}</b></div>
-          <div><span className="mc-dot" style={{ background: '#cfe0ef' }} /> Home Insurance <b>{fmt(res.insM)}</b></div>
+          <div><span className="mc-dot" style={{ background: '#3f86bd' }} /> Monthly Payment <b>{fmt(res.monthly)}</b></div>
+          <div><span className="mc-dot" style={{ background: '#7ab4d8' }} /> Loan Amount <b>{fmt(res.loan)}</b></div>
         </div>
       </div>
 
       <div className="mc-form">
         <div className="mc-grid">
-          {FIELDS.map(([k, label]) => (
+          <label className="mc-field">
+            <span className="mc-label">{FIELD_TOTAL[1]}</span>
+            <input className="mc-input" type="number" value={f.total} onChange={onTotal} />
+          </label>
+
+          <label className="mc-field">
+            <span className="mc-label">
+              Down Payment
+              <span className="mc-dp-toggle">
+                <button type="button" className={downMode === 'pct' ? 'is-active' : ''} onClick={() => setDownMode('pct')}>%</button>
+                <button type="button" className={downMode === 'amt' ? 'is-active' : ''} onClick={() => setDownMode('amt')}>AED</button>
+              </span>
+            </span>
+            <input
+              className="mc-input"
+              type="number"
+              value={downMode === 'pct' ? f.down : f.downAmt}
+              onChange={onDown}
+            />
+          </label>
+
+          {FIELDS_REST.map(([k, label]) => (
             <label className="mc-field" key={k}>
               <span className="mc-label">{label}</span>
               <input className="mc-input" type="number" value={f[k]} onChange={on(k)} />

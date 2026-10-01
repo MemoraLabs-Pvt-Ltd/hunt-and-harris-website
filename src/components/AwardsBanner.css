@@ -9,9 +9,9 @@
 
 .ab-label {
   flex-shrink: 0;
-  width: 340px;
-  padding: 0 36px 0 52px;
-  font-size: 19px;
+  width: 440px;
+  padding: 0 24px 0 52px;
+  font-size: 22px;
   font-weight: 700;
   color: #111110;
   line-height: 1.4;
@@ -31,53 +31,53 @@
   align-items: center;
   height: 130px;
   width: max-content;
-  animation: ab-scroll 36s linear infinite;
+  animation: ab-scroll 32s linear infinite;
 }
-
-.ab-track:hover {
-  animation-play-state: paused;
-}
+.ab-track:hover { animation-play-state: paused; }
 
 @keyframes ab-scroll {
   0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  100% { transform: translateX(-33.3333%); }
 }
 
-.ab-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 0 56px;
-}
-
-.ab-icon {
+/* Brand wordmarks — greyscale by default, full colour on hover */
+.ab-logo {
   flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #444;
-  opacity: 0.9;
-}
-
-.ab-name {
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  color: #777;
+  padding: 0 60px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1;
   white-space: nowrap;
+  filter: grayscale(1);
+  opacity: 0.55;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+  user-select: none;
+}
+.ab-logo:hover {
+  filter: none;
+  opacity: 1;
 }
 
-@media (max-width: 1024px) {
-  .ab-label { width: 240px; padding: 0 20px 0 32px; font-size: 16px; }
-}
+/* propertyfinder — navy bold + pink */
+.ab-logo--propertyfinder { color: #ef5da8; font-weight: 300; letter-spacing: -0.5px; }
+.ab-logo--propertyfinder b { color: #0b2244; font-weight: 700; }
+
+/* bayut — brand green */
+.ab-logo--bayut { color: #28b16d; font-weight: 700; letter-spacing: -0.5px; }
+
+/* dubizzle — brand red */
+.ab-logo--dubizzle { color: #e4002b; font-weight: 700; letter-spacing: -0.5px; }
+
+/* uniestate — navy, spaced caps */
+.ab-logo--uniestate { color: #17457f; font-weight: 800; font-size: 32px; letter-spacing: 2px; }
 
 @media (max-width: 700px) {
   .ab-label { display: none; }
 }
-
 @media (max-width: 640px) {
-  .ab-strip { height: 100px; }
-  .ab-track { height: 100px; }
-  .ab-item { padding: 0 32px; gap: 10px; }
-  .ab-name { font-size: 11px; letter-spacing: 0.1em; }
+  .ab-strip { height: 104px; }
+  .ab-track { height: 104px; }
+  .ab-logo { padding: 0 30px; font-size: 24px; }
+  .ab-logo--uniestate { font-size: 20px; }
 }

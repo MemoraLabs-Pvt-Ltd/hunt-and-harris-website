@@ -7,7 +7,7 @@ const milestones = [
     year: '2007',
     title: 'The idea sparked',
     body: 'It all started with a few passionate agents who believed real estate could be simpler, more transparent, and a lot more human. With a few laptops, endless coffee, and a shared dream, the journey began from a small office with big ambitions.',
-    img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&h=520&fit=crop&auto=format&q=85',
+    img: '/photos/waterfront-townhouses.jpg',
   },
   {
     year: '2011',
@@ -19,7 +19,7 @@ const milestones = [
     year: '2015',
     title: 'Growing across RAK',
     body: 'We expanded our team and opened new doors across Ras Al Khaimah, becoming a trusted name for buyers, sellers and investors looking for guidance they could truly rely on.',
-    img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&h=520&fit=crop&auto=format&q=85',
+    img: '/photos/rak-aerial-3.jpg',
   },
   {
     year: '2019',
@@ -31,7 +31,7 @@ const milestones = [
     year: '2026',
     title: 'Where we are today',
     body: "Thousands of happy families later, we're still driven by the same belief we started with — that finding a home should feel personal, honest and effortless.",
-    img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&h=520&fit=crop&auto=format&q=85',
+    img: '/photos/rak-aerial-hero.jpg',
   },
 ]
 

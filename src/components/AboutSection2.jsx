@@ -10,9 +10,9 @@ const stats = [
 ]
 
 const images = [
-  'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=520&h=380&fit=crop&auto=format&q=85',
-  'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=520&h=380&fit=crop&auto=format&q=85',
-  'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=520&h=380&fit=crop&auto=format&q=85',
+  '/photos/rak-aerial-2.jpg',
+  '/photos/villa-dusk.jpg',
+  '/photos/interior-living-1.jpg',
 ]
 
 const VP = { once: false, amount: 0.25 }

@@ -1,6 +1,5 @@
 import './Conveyancing.css'
 
-const IMG = (id, w, h) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&h=${h}&q=85`
 
 const FEATURES = [
   {
@@ -51,31 +50,31 @@ const ADDITIONAL = [
     title: 'Property Ownership Transfer',
     desc: 'Legal and administrative management of property ownership transfer in full compliance with UAE regulations.',
     price: 'AED 3,000 + VAT',
-    img: IMG('1600585154340-be6161a56a0c', 700, 620),
+    img: '/photos/waterfront-townhouses.jpg',
   },
   {
     title: 'Rental Dispute Services',
     desc: 'Professional preparation of legal notices and rental dispute support in accordance with UAE rental laws.',
     price: 'AED 2,000 + VAT',
-    img: IMG('1600210492493-0946911123ea', 700, 620),
+    img: '/photos/interior-living-1.jpg',
   },
   {
     title: 'Lost Title Deed Replacement',
     desc: 'Confirmation of legal ownership and replacement of lost title deeds through the required regulatory procedures.',
     price: 'AED 5,000 + VAT',
-    img: IMG('1613490493576-7fde63acd811', 700, 620),
+    img: '/photos/terrace-seaview.jpg',
   },
   {
     title: 'Power Of Attorney Representation',
     desc: 'Property-related Power of Attorney setup and representation for clients unable to attend in person.',
     price: 'AED 5,000 + VAT (+AED 1,500 court fees)',
-    img: IMG('1570129477492-45c003edd2be', 700, 620),
+    img: '/photos/staircase.jpg',
   },
   {
     title: 'Document Translation',
     desc: 'Certified translation of property and legal documents in compliance with official requirements.',
     price: 'Pricing based on document volume',
-    img: IMG('1600585154526-990dced4db0d', 700, 620),
+    img: '/photos/dining-1.jpg',
   },
 ]
 
@@ -93,7 +92,7 @@ export default function Conveyancing() {
       {/* ---------- Hero ---------- */}
       <section
         className="cv-hero"
-        style={{ backgroundImage: `url(${IMG('1512917774080-9991f1c4c750', 1920, 1080)})` }}
+        style={{ backgroundImage: `url(${'/photos/rak-aerial-2.jpg'})` }}
       >
         <div className="cv-hero-overlay" />
         <div className="cv-hero-content">
@@ -165,7 +164,7 @@ export default function Conveyancing() {
         <h2 className="cv-why-title">Why <span className="cv-italic">Choose</span><br />Hunt &amp; Harris Real Estate?</h2>
         <div className="cv-why-inner">
           <div className="cv-why-img">
-            <img src={IMG('1521737604893-d14cc237f11d', 860, 860)} alt="Hunt & Harris Real Estate consultation" loading="lazy" />
+            <img src={'/photos/lounge-view.jpg'} alt="Hunt & Harris Real Estate consultation" loading="lazy" />
           </div>
           <div className="cv-why-right">
             <p className="cv-why-body">

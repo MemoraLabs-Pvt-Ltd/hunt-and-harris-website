@@ -2,38 +2,37 @@ import './AwardsHonors.css'
 
 const AWARDS = [
   {
-    accent: '#3aa75a', // Bayut green
+    accent: '#28b16d', // Bayut green
     letter: 'B',
     brand: 'Bayut',
-    titleMain: 'Top Agency',
-    titleSerif: 'Excellence',
-    year: '2025',
+    titleMain: 'Agency of the',
+    titleSerif: 'Year',
+    year: '2020',
     to: 'This award is proudly presented to',
     name: 'Hunt & Harris Real Estate',
-    desc: "Recognized as one of Bayut's highest-rated agencies in Ras Al Khaimah for consistent service and results.",
+    desc: "Named Bayut's Agency of the Year, with repeat podium finishes in 2021 and 2023.",
   },
   {
     accent: '#ef5e4e', // Property Finder coral
     letter: 'P',
     brand: 'Property Finder',
-    titleMain: 'Community',
-    titleSerif: 'Superagent',
-    year: '2026',
+    titleMain: 'Quality',
+    titleSerif: 'Brokerage',
+    year: '2023',
     to: 'This certificate is proudly presented to',
     name: 'Hunt & Harris Real Estate',
-    desc: 'Awarded for outstanding client ratings and market leadership across the Property Finder platform.',
-    signed: true,
+    desc: "Winner of Property Finder's Quality Brokerage award — recognising top client ratings and market leadership.",
   },
   {
-    accent: '#c1912f', // Women in Leadership gold
-    letter: 'W',
-    brand: 'Women in Leadership',
-    titleMain: 'Real Estate',
-    titleSerif: 'Leadership',
+    accent: '#e4002b', // Dubizzle red
+    letter: 'D',
+    brand: 'Dubizzle',
+    titleMain: 'Agency of',
+    titleSerif: 'the Year',
     year: '2025',
-    to: 'This honour is proudly presented to',
-    name: 'Neema Kataria & Wendy Stapleton',
-    desc: 'Celebrating the women leading Hunt & Harris Real Estate and shaping the RAK property industry.',
+    to: 'This award is proudly presented to',
+    name: 'Hunt & Harris Real Estate',
+    desc: 'Honoured in the dubizzle Ruby Club as Agency of the Year and among the Top Deal Makers of 2025.',
   },
 ]
 
@@ -54,9 +53,9 @@ export default function AwardsHonors() {
       </h2>
 
       <p className="aw-sub">
-        Our work has been recognized with <b>55+ awards</b> from the region&rsquo;s most trusted
-        names &mdash; <b>Bayut</b>, <b>Dubizzle</b>, <b>Property Finder</b> and the{' '}
-        <b>Women in Leadership Awards</b>.
+        Our work has been recognized with <b>30+ awards</b> from the region&rsquo;s most trusted
+        names &mdash; <b>Bayut</b>, <b>Property Finder</b>, <b>Dubizzle</b> and <b>Uniestate</b>{' '}
+        &mdash; including <b>Women in Leadership</b> honours.
       </p>
 
       <div className="aw-grid">

@@ -8,25 +8,26 @@ const MAIN = [
     area: 'a',
     title: 'Property Search',
     desc: 'From your first viewing to the right shortlist — we help you find homes that truly fit your life and budget across Ras Al Khaimah.',
-    img: IMG('1600585154340-be6161a56a0c', 900, 1300),
+    img: '/photos/villa-dusk.jpg',
   },
   {
     area: 'b',
     title: 'Buying & Selling',
     desc: "Expert guidance and sharp negotiation, whether you're buying your dream home or selling for the best possible price.",
-    img: IMG('1600607687939-ce8a6c25118c', 1000, 760),
+    img: '/photos/community-1.jpg',
   },
   {
     area: 'c',
     title: 'Off-Plan Investment',
     desc: "Early access to RAK's most anticipated launches, with the payment plans and insight to invest with confidence.",
-    img: IMG('1568605114967-8130f3a36994', 1000, 760),
+    img: '/photos/rak-aerial-4.jpg',
   },
   {
     area: 'd',
     title: 'Property Management',
     desc: "Hands-off ownership — we handle tenants, maintenance and rent collection so your investment works while you don't.",
-    img: IMG('1600596542815-ffad4c1539a9', 1400, 720),
+    img: '/photos/towers.jpg',
+    imgPos: 'top',
     badge: 'New',
   },
 ]
@@ -45,11 +46,11 @@ const SUB = [
   },
 ]
 
-function Card({ title, desc, img, className = '', badge }) {
+function Card({ title, desc, img, className = '', badge, imgPos }) {
   return (
     <article className={`sg-card ${className}`}>
       {badge && <span className="sg-card-badge">{badge}</span>}
-      <img className="sg-card-img" src={img} alt={title} loading="lazy" />
+      <img className="sg-card-img" src={img} alt={title} loading="lazy" style={imgPos ? { objectPosition: imgPos } : undefined} />
       <div className="sg-card-shade" />
       <div className="sg-card-top">
         <h3 className="sg-card-title">{title}</h3>

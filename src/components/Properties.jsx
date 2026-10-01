@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import GridSkeleton from './GridSkeleton'
 import './Properties.css'
+import { prefetchProperty } from '../utils/prefetch'
 
 const BedIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -77,7 +78,7 @@ export default function Properties() {
       {loading && featured.length === 0 ? <GridSkeleton count={9} columns={4} /> : (
       <div className="prop-grid" ref={gridRef}>
         {featured.map((l) => (
-          <Link className="pcard" key={l.ref} to={`/property/${l.ref}`}>
+          <Link className="pcard" key={l.ref} to={`/property/${l.ref}`} onMouseEnter={() => prefetchProperty(l.ref)} onFocus={() => prefetchProperty(l.ref)}>
             <div className="pcard-img-wrap">
               {l.image ? <img src={l.image} alt={l.title} className="pcard-img" loading="lazy" /> : <div className="pcard-img" />}
               <span className="pcard-badge">{l.type || l.propertyFor}</span>

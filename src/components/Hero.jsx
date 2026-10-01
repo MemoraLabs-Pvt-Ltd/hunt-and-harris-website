@@ -24,8 +24,6 @@ const BUDGET_RANGE = {
 export default function Hero() {
   const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState('Buy')
-  const [slide, setSlide] = useState(0)
-  const [fading, setFading] = useState(false)
 
   // Search selections + options pulled from the live feed facets.
   const [location, setLocation] = useState('')
@@ -35,17 +33,6 @@ export default function Hero() {
   const [locations, setLocations] = useState([])
   const [bedsOptions, setBedsOptions] = useState([])
   const [types, setTypes] = useState([])
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setFading(true)
-      setTimeout(() => {
-        setSlide(s => (s + 1) % SLIDES.length)
-        setFading(false)
-      }, 700)
-    }, 60000)
-    return () => clearInterval(timer)
-  }, [])
 
   // Populate Location + Bedrooms + Property Type from the same-origin feed data.
   useEffect(() => {
@@ -81,17 +68,10 @@ export default function Hero() {
 
   return (
     <section className="hero">
-      {SLIDES.map((src, i) => (
-        <div
-          key={src}
-          className="hero-bg"
-          style={{
-            backgroundImage: `url(${src})`,
-            opacity: i === slide ? (fading ? 0 : 1) : 0,
-            transition: 'opacity 700ms ease-in-out',
-          }}
-        />
-      ))}
+      <div
+        className="hero-bg"
+        style={{ backgroundImage: `url(${SLIDES[0]})`, opacity: 1 }}
+      />
       <div className="hero-overlay" />
 
       <div className="hero-text">

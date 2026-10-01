@@ -8,29 +8,28 @@ const SIZE = 170
 const OUTER = 420
 const INNER = 130
 const IN = 'calc(13% + 72px)'
-const IMG = (id, faces) =>
-  `https://images.unsplash.com/photo-${id}?w=420&h=420&fit=crop${faces ? '&crop=faces' : ''}&auto=format&q=80`
+const J = (n) => `/photos/journey/j${n}.jpg`
 
 const MEDIA = [
   // left — outer column (second row removed, rows below pulled up)
   { side: 'left', x: '1.5%', top: 0,   speed: OUTER,      video: '/about-us/company-bg1.mp4' },
-  { side: 'left', x: '1.5%', top: 320, speed: OUTER,      src: IMG('1543269865-cbf427effbad') },
-  { side: 'left', x: '1.5%', top: 640, speed: OUTER + 8,  src: IMG('1600585154340-be6161a56a0c') },
+  { side: 'left', x: '1.5%', top: 320, speed: OUTER,      src: J(1) },
+  { side: 'left', x: '1.5%', top: 640, speed: OUTER + 8,  src: J(2) },
   // left — inner column
-  { side: 'left', x: IN, top: 160, speed: INNER,      src: IMG('1600596542815-ffad4c1539a9') },
-  { side: 'left', x: IN, top: 480, speed: INNER,      src: IMG('1600210492493-0946911123ea') },
-  { side: 'left', x: IN, top: 800, speed: INNER + 10, src: IMG('1449844908441-8829872d2607') },
+  { side: 'left', x: IN, top: 160, speed: INNER,      src: J(3) },
+  { side: 'left', x: IN, top: 480, speed: INNER,      src: J(4) },
+  { side: 'left', x: IN, top: 800, speed: INNER + 10, src: J(5) },
   // right — outer column
-  { side: 'right', x: '1.5%', top: 0,   speed: OUTER + 8,  src: IMG('1512917774080-9991f1c4c750') },
-  { side: 'right', x: '1.5%', top: 320, speed: OUTER + 10, src: IMG('1521737604893-d14cc237f11d') },
-  { side: 'right', x: '1.5%', top: 640, speed: OUTER,      src: IMG('1568605114967-8130f3a36994') },
+  { side: 'right', x: '1.5%', top: 0,   speed: OUTER + 8,  src: J(6) },
+  { side: 'right', x: '1.5%', top: 320, speed: OUTER + 10, src: J(7) },
+  { side: 'right', x: '1.5%', top: 640, speed: OUTER,      src: J(8) },
   // right — inner column
-  { side: 'right', x: IN, top: 160, speed: INNER + 8,  src: IMG('1600585154526-990dced4db0d') },
-  { side: 'right', x: IN, top: 480, speed: INNER + 10, src: IMG('1580587771525-78b9dba3b914') },
-  { side: 'right', x: IN, top: 800, speed: INNER,      src: IMG('1570129477492-45c003edd2be') },
+  { side: 'right', x: IN, top: 160, speed: INNER + 8,  src: J(9) },
+  { side: 'right', x: IN, top: 480, speed: INNER + 10, src: J(10) },
+  { side: 'right', x: IN, top: 800, speed: INNER,      src: J(11) },
   // centre
-  { center: true, pos: 'top',    top: 20,   size: 200, speed: 0, src: IMG('1564013799919-ab600027ffc6') },
-  { center: true, pos: 'bottom', top: 1080, size: 200, speed: 0, src: IMG('1600880292203-757bb62b4baf') },
+  { center: true, pos: 'top',    top: 20,   size: 200, speed: 0, src: J(12) },
+  { center: true, pos: 'bottom', top: 1080, size: 200, speed: 0, src: J(13) },
 ]
 
 function StaticItem({ item }) {
@@ -51,10 +50,13 @@ function StaticItem({ item }) {
   )
 }
 
+// Set to true to show the scattered photos around the statement again.
+const SHOW_MEDIA = false
+
 export default function CeoStatementStatic() {
   return (
-    <section className="ceo-sec ceo-static">
-      {MEDIA.map((m, i) => (
+    <section className={`ceo-sec ceo-static${SHOW_MEDIA ? '' : ' ceo-nomedia'}`}>
+      {SHOW_MEDIA && MEDIA.map((m, i) => (
         <StaticItem key={i} item={m} />
       ))}
 

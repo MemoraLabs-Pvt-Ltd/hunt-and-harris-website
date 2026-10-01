@@ -30,7 +30,7 @@ export default function ServicesShowcase() {
         <div className="sw-gallery">
           <img
             className="sw-image"
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&h=820&q=85"
+            src="/photos/living-luxe.jpg"
             alt="Luxury waterfront villa in Ras Al Khaimah"
           />
         </div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import GridSkeleton from './GridSkeleton'
 import './OffPlanListing.css'
+import { prefetchProperty } from '../utils/prefetch'
 
 const money = (l) => {
   const n = Number(l.price)
@@ -73,7 +74,7 @@ export default function OffPlanListing() {
 
       <div className="opl-grid">
         {visible.map((l) => (
-          <Link className="opl-card" key={l.ref} to={`/property/${l.ref}`}>
+          <Link className="opl-card" key={l.ref} to={`/property/${l.ref}`} onMouseEnter={() => prefetchProperty(l.ref)} onFocus={() => prefetchProperty(l.ref)}>
             <div className="opl-card-img">
               {l.image ? <img src={l.image} alt={l.title} loading="lazy" /> : <div className="opl-noimg">No image</div>}
               <span className="opl-card-badge">Off-Plan</span>

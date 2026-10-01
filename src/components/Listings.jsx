@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import { Link, useSearchParams } from 'react-router-dom'
 import ListingsMap from './ListingsMap'
 import GridSkeleton from './GridSkeleton'
+import { prefetchProperty } from '../utils/prefetch'
 import './Listings.css'
 
 const money = (l) => {
@@ -188,7 +189,12 @@ function ScrollList({ className, children }) {
 
 function PropertyCard({ l }) {
   return (
-    <Link className="lst-card" to={`/property/${l.ref}`}>
+    <Link
+      className="lst-card"
+      to={`/property/${l.ref}`}
+      onMouseEnter={() => prefetchProperty(l.ref)}
+      onFocus={() => prefetchProperty(l.ref)}
+    >
       <div className="lst-card-img">
         {l.image ? <img src={l.image} alt={l.title} loading="lazy" /> : <div className="lst-noimg">No image</div>}
         <span className={`lst-badge ${l.propertyFor === 'Rent' ? 'lst-badge--blue' : 'lst-badge--green'}`}>For {l.propertyFor}</span>

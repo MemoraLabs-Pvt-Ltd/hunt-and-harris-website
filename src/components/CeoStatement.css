@@ -148,3 +148,7 @@
   .ceo-static { height: 1040px; }
   .ceo-static .ceo-media-bottom { top: 872px !important; }
 }
+
+/* Media hidden — collapse the tall section so only the centred statement shows */
+.ceo-static.ceo-nomedia { height: auto !important; min-height: 0 !important; padding: 56px 24px !important; }
+.ceo-static.ceo-nomedia .ceo-center { position: static !important; transform: none !important; height: auto !important; top: auto !important; }

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link, useLoaderData } from 'react-router-dom'
 import Seo from '../seo/Seo'
 import { absUrl } from '../seo/siteConfig'
+import { prefetchProperty } from '../utils/prefetch'
 import ListingsMap from './ListingsMap'
 import PropertyTabs from './PropertyTabs'
 import './PropertyDetail.css'
@@ -100,7 +101,7 @@ function RelatedCarousel({ related }) {
       </div>
       <div className="pd-related-track" ref={trackRef}>
         {related.map((r) => (
-          <Link className="pd-rel" to={`/property/${r.ref}`} key={r.ref}>
+          <Link className="pd-rel" to={`/property/${r.ref}`} key={r.ref} onMouseEnter={() => prefetchProperty(r.ref)} onFocus={() => prefetchProperty(r.ref)}>
             <div className="pd-rel-img">
               {r.image ? <img src={r.image} alt={r.title} loading="lazy" /> : <div className="pd-rel-noimg">No image</div>}
               <span className={`pd-rel-badge ${r.propertyFor === 'Rent' ? 'is-rent' : 'is-sale'}`}>For {r.propertyFor}</span>
@@ -173,7 +174,7 @@ export default function PropertyDetail() {
       {/* Gallery */}
       <div className="pd-gallery">
         <button className="pd-gallery-main" onClick={() => setShowAll(true)}>
-          {main ? <img src={main} alt={p.title} /> : <span className="pd-noimg">No image</span>}
+          {main ? <img src={main} alt={p.title} fetchpriority="high" decoding="async" /> : <span className="pd-noimg">No image</span>}
         </button>
         <div className="pd-gallery-grid">
           {grid.map((url, i) => (

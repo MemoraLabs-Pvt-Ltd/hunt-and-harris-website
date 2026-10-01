@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigation } from 'react-router-dom'
+import { warmManifest } from '../utils/prefetch'
 
 const PRIMARY_LINKS = [
   { label: 'Home',     href: '/' },
@@ -26,9 +27,11 @@ const EXTRA_LINKS = [
   { label: 'Pay Online',   href: '/pay-online' },
 ]
 
+// Both portals open the real property-management portal directly.
+const PM_PORTAL_URL = 'https://pm.huntandharris-re.com/login'
 const PORTAL_LINKS = [
-  { label: 'Tenant Portal',   href: '/portal/login?role=tenant' },
-  { label: 'Landlord Portal', href: '/portal/login?role=landlord' },
+  { label: 'Tenant Portal',   href: PM_PORTAL_URL },
+  { label: 'Landlord Portal', href: PM_PORTAL_URL },
 ]
 
 // "New" badge (site blue) — used on the Services nav link
@@ -47,6 +50,11 @@ const NEW_BADGE_INLINE = {
 
 export default function Navbar() {
   const location = useLocation()
+  const navigation = useNavigation()
+  // While a route loader is running, React Router keeps the current page on
+  // screen. Show instant feedback: a top progress bar always, plus a full
+  // skeleton when navigating to a property detail page.
+  const pending = navigation.state === 'loading'
   const [active, setActive]           = useState(() => linkForPath(location.pathname))
   const [isTop, setIsTop]             = useState(true)
   const [portalsOpen, setPortalsOpen] = useState(false)
@@ -65,6 +73,14 @@ export default function Navbar() {
     const onScroll = () => setIsTop(window.scrollY < 400)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // Warm the static-loader-data manifest once the page is idle so the first
+  // property click doesn't wait on it.
+  useEffect(() => {
+    const ric = window.requestIdleCallback || ((fn) => setTimeout(fn, 1200))
+    const id = ric(() => warmManifest())
+    return () => (window.cancelIdleCallback || clearTimeout)(id)
   }, [])
 
   // Highlight the nav link that matches the current route
@@ -239,6 +255,7 @@ export default function Navbar() {
             <a
               key={l.label}
               href={l.href}
+              {...(l.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
               onClick={() => { setActive(l.label); setMenuOpen(false) }}
               style={{
                 display: 'block', padding: '11px 0',
@@ -283,6 +300,8 @@ export default function Navbar() {
               <a
                 key={l.label}
                 href={l.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   display: 'block', padding: '9px 16px',
                   fontSize: 13, color: '#374151', textDecoration: 'none',
@@ -299,12 +318,24 @@ export default function Navbar() {
         document.body
       )}
 
+      {/* Instant navigation feedback — top progress bar during route loads */}
+      {pending && createPortal(<div className="nav-progress" />, document.body)}
+
       <style>{`
         @media (min-width: 768px) {
           .desktop-nav  { display: flex !important; }
           .desktop-cta  { display: block !important; }
           .mobile-menu-btn { display: none !important; }
         }
+
+        /* Top progress bar during route loads */
+        .nav-progress {
+          position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 10000;
+          background: linear-gradient(90deg, #7ab4d8, #3f86bd, #7ab4d8);
+          background-size: 200% 100%;
+          animation: nav-prog 1s linear infinite;
+        }
+        @keyframes nav-prog { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
       `}</style>
     </nav>
   )

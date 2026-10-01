@@ -6,8 +6,6 @@ import PayOnlinePage from './pages/PayOnlinePage.jsx'
 import ConveyancingPage from './pages/ConveyancingPage.jsx'
 import OffPlanPage from './pages/OffPlanPage.jsx'
 import PortalLogin from './components/portal/PortalLogin.jsx'
-import TenantPortal from './components/portal/TenantPortal.jsx'
-import LandlordPortal from './components/portal/LandlordPortal.jsx'
 import AdminPortal from './components/portal/AdminPortal.jsx'
 import FeedPage from './pages/FeedPage.jsx'
 import ListingsPage from './pages/ListingsPage.jsx'
@@ -39,8 +37,6 @@ export const routes = [
   // No loader — instant shell; the grid fetches /data/off-plan.json client-side.
   { path: '/off-plan', element: <OffPlanPage /> },
   { path: '/portal/login', element: <PortalLogin /> },
-  { path: '/portal/tenant', element: <TenantPortal /> },
-  { path: '/portal/landlord', element: <LandlordPortal /> },
   { path: '/portal/admin', element: <AdminPortal /> },
   { path: '/feed', element: <FeedPage />, loader: feedLoader },
 ]

@@ -315,3 +315,14 @@
   .opd-register { padding: 56px 20px; }
   .opd-register-card { padding: 30px 22px; }
 }
+
+/* Register-interest status feedback */
+.opd-submit:disabled { opacity: .6; cursor: default; }
+.opd-form-note {
+  margin: 4px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+}
+.opd-form-note--ok { color: #7ef0b0; }
+.opd-form-note--err { color: #ffb3a8; }

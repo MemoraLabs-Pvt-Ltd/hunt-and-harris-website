@@ -27,3 +27,8 @@ public/robots.txt
 *.njsproj
 *.sln
 *.sw?
+
+# Local env (secrets / endpoints)
+.env
+.env.local
+.env.*.local

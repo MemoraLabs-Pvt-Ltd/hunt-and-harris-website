@@ -10,7 +10,6 @@ const money = (l) => {
   return `${l.currency || 'AED'} ${amount}`
 }
 const bedsLabel = (b) => (!b ? '—' : /studio/i.test(b) ? 'Studio' : `${b} Bed`)
-const isPrimary = (l) => /primary/i.test(l.completion)
 
 export default function OffPlanListing() {
   // Driven by the same-origin static JSON so the page shell paints instantly
@@ -78,7 +77,6 @@ export default function OffPlanListing() {
             <div className="opl-card-img">
               {l.image ? <img src={l.image} alt={l.title} loading="lazy" /> : <div className="opl-noimg">No image</div>}
               <span className="opl-card-badge">Off-Plan</span>
-              <span className="opl-card-handover">{isPrimary(l) ? 'Direct from developer' : 'Resale'}</span>
               <span className="opl-card-view">View {l.imageCount} photos</span>
             </div>
             <div className="opl-card-body">

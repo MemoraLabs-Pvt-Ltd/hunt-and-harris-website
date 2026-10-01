@@ -1,10 +1,27 @@
 import { useState } from 'react'
 import './ContactSection.css'
+import { submitLead } from '../utils/submitLead'
+
+const EMPTY = { name: '', company: '', email: '', phone: '', subject: '', message: '' }
 
 export default function ContactSection({ hideForm = false, hideTagline = false }) {
-  const [form, setForm] = useState({ name: '', company: '', email: '', phone: '', subject: '', message: '' })
+  const [form, setForm] = useState(EMPTY)
+  const [status, setStatus] = useState('idle') // idle | sending | success | error
 
   const set = k => e => setForm(f => ({ ...f, [k]: e.target.value }))
+
+  const onSubmit = async e => {
+    e.preventDefault()
+    if (status === 'sending') return
+    setStatus('sending')
+    const res = await submitLead({ form: 'Contact', page: 'Contact', ...form })
+    if (res.ok) {
+      setStatus('success')
+      setForm(EMPTY)
+    } else {
+      setStatus('error')
+    }
+  }
 
   return (
     <>
@@ -25,7 +42,7 @@ export default function ContactSection({ hideForm = false, hideTagline = false }
           <p className="cs-sub">We'd love to hear from you. Fill out the form and we'll get back to you as soon as possible.</p>
         </div>
 
-        <form className="cs-form" onSubmit={e => e.preventDefault()}>
+        <form className="cs-form" onSubmit={onSubmit}>
           <div className="cs-row">
             <div className="cs-field">
               <label className="cs-label">Full Name <span>*</span></label>
@@ -71,7 +88,16 @@ export default function ContactSection({ hideForm = false, hideTagline = false }
             <textarea className="cs-textarea" placeholder="Tell us how we can help you..." value={form.message} onChange={set('message')} rows={5} required />
           </div>
 
-          <button className="cs-submit" type="submit">Send Message</button>
+          <button className="cs-submit" type="submit" disabled={status === 'sending'}>
+            {status === 'sending' ? 'Sending…' : 'Send Message'}
+          </button>
+
+          {status === 'success' && (
+            <p className="cs-form-note cs-form-note--ok">Thanks — we've received your message and will be in touch shortly.</p>
+          )}
+          {status === 'error' && (
+            <p className="cs-form-note cs-form-note--err">Something went wrong sending your message. Please try again, or email us at info@huntandharris.com.</p>
+          )}
         </form>
       </section>
       )}

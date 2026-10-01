@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getProperty } from '../data/offPlan'
+import { submitLead } from '../utils/submitLead'
 import './OffPlanDetail.css'
 
 const ACTIONS = [
@@ -15,6 +16,7 @@ export default function OffPlanDetail({ slug }) {
   const pausedRef = useRef(false)
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }))
+  const [status, setStatus] = useState('idle') // idle | sending | success | error
 
   // Open each property at the top (hero), not at the listing's scroll position
   useEffect(() => {
@@ -52,6 +54,24 @@ export default function OffPlanDetail({ slug }) {
   }
 
   const photos = property.gallery.slice(0, 3)
+
+  const onSubmit = async (e) => {
+    e.preventDefault()
+    if (status === 'sending') return
+    setStatus('sending')
+    const res = await submitLead({
+      form: 'Off-Plan Register Interest',
+      property: property.name,
+      page: `/off-plan/${slug}`,
+      ...form,
+    })
+    if (res.ok) {
+      setStatus('success')
+      setForm({ name: '', email: '', phone: '', message: '' })
+    } else {
+      setStatus('error')
+    }
+  }
 
   return (
     <>
@@ -151,12 +171,20 @@ export default function OffPlanDetail({ slug }) {
           <p className="opd-register-sub">
             Leave your details and our team will share pricing, availability and payment plans for {property.name}.
           </p>
-          <form className="opd-form" onSubmit={(e) => e.preventDefault()}>
+          <form className="opd-form" onSubmit={onSubmit}>
             <input className="opd-input" type="text" placeholder="Full name" value={form.name} onChange={set('name')} required />
             <input className="opd-input" type="email" placeholder="Email address" value={form.email} onChange={set('email')} required />
             <input className="opd-input" type="tel" placeholder="Phone number" value={form.phone} onChange={set('phone')} />
             <textarea className="opd-input opd-textarea" placeholder="Message (optional)" rows={3} value={form.message} onChange={set('message')} />
-            <button className="opd-submit" type="submit">Register Interest</button>
+            <button className="opd-submit" type="submit" disabled={status === 'sending'}>
+              {status === 'sending' ? 'Sending…' : 'Register Interest'}
+            </button>
+            {status === 'success' && (
+              <p className="opd-form-note opd-form-note--ok">Thank you — your interest is registered. Our team will be in touch with pricing and availability.</p>
+            )}
+            {status === 'error' && (
+              <p className="opd-form-note opd-form-note--err">Something went wrong. Please try again, or email info@huntandharris.com.</p>
+            )}
           </form>
         </div>
       </section>

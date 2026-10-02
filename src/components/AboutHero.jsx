@@ -2,6 +2,9 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform, easeInOut } from 'motion/react'
 import './AboutHero.css'
 
+// Toggle the overlay text (title + subtitle) on the About hero
+const SHOW_CONTENT = false
+
 export default function AboutHero() {
   const containerRef = useRef(null)
   const { scrollYProgress } = useScroll({
@@ -18,7 +21,6 @@ export default function AboutHero() {
   const textOpacity = useTransform(scrollYProgress, [0, 0.26], [1, 0])
   const textBlur = useTransform(scrollYProgress, [0, 0.26], ['blur(0px)', 'blur(10px)'])
   const textVisibility = useTransform(scrollYProgress, v => (v >= 0.28 ? 'hidden' : 'visible'))
-  const tintOpacity = useTransform(scrollYProgress, [0, 0.3], [0.32, 0])
 
   return (
     <section className="about-hero-scroll" ref={containerRef}>
@@ -33,12 +35,13 @@ export default function AboutHero() {
             muted
             loop
             playsInline
+            preload="auto"
+            poster="/about-us/rak-hero-poster.jpg"
           >
-            <source src="/about-us/company-bg.mp4" type="video/mp4" />
+            <source src="/about-us/rak-hero.mp4" type="video/mp4" />
           </video>
 
-          <motion.div className="about-hero-tint" style={{ opacity: tintOpacity }} />
-
+          {SHOW_CONTENT && (
           <motion.div className="about-hero-content" style={{ opacity: textOpacity, filter: textBlur, visibility: textVisibility }}>
             <h1 className="about-hero-title">
               Built on <span className="about-hero-title-italic">trust</span>.<br />
@@ -48,6 +51,7 @@ export default function AboutHero() {
               We guide our clients through finding, buying and owning property in Ras Al Khaimah.
             </p>
           </motion.div>
+          )}
         </motion.div>
       </div>
     </section>

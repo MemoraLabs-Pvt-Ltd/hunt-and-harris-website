@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import './Hero.css'
 
 const SLIDES = [
-  '/hero-desert.jpg',
-  // 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=85',
-  // 'https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1920&q=85',
+  '/hero-1.jpg',
+  '/hero-2.jpg',
+  '/hero-3.jpg',
 ]
 
 const TABS = ['Buy', 'Rent', 'Sell']
@@ -24,6 +24,14 @@ const BUDGET_RANGE = {
 export default function Hero() {
   const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState('Buy')
+  const [slide, setSlide] = useState(0)
+
+  // Crossfade through the hero images behind the "Dream RAK" title.
+  useEffect(() => {
+    if (SLIDES.length < 2) return
+    const id = setInterval(() => setSlide(s => (s + 1) % SLIDES.length), 6000)
+    return () => clearInterval(id)
+  }, [])
 
   // Search selections + options pulled from the live feed facets.
   const [location, setLocation] = useState('')
@@ -68,10 +76,13 @@ export default function Hero() {
 
   return (
     <section className="hero">
-      <div
-        className="hero-bg"
-        style={{ backgroundImage: `url(${SLIDES[0]})`, opacity: 1 }}
-      />
+      {SLIDES.map((src, i) => (
+        <div
+          key={src}
+          className="hero-bg"
+          style={{ backgroundImage: `url(${src})`, opacity: i === slide ? 1 : 0 }}
+        />
+      ))}
       <div className="hero-overlay" />
 
       <div className="hero-text">

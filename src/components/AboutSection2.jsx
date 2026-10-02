@@ -108,7 +108,6 @@ export default function AboutSection2() {
       >
         <a href="/about" className="as2-know-more-btn" style={{ textDecoration: 'none' }}>
           Know More About Us
-          <span className="as2-arrow">↗</span>
         </a>
       </motion.div>
 

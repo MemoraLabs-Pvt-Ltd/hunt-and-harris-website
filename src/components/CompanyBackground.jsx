@@ -39,8 +39,8 @@ export default function CompanyBackground() {
 
           <div className="cb-team-grid">
             {[
-              { name: 'Neema Kataria', role: 'Managing Partner', img: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=760&h=680&fit=crop&crop=faces&auto=format&q=90' },
-              { name: 'Wendy Stapleton', role: 'Managing Director', img: 'https://images.unsplash.com/photo-1590650213165-c1fef80648c4?w=760&h=680&fit=crop&crop=faces&auto=format&q=90' },
+              { name: 'Neema Kataria', role: 'Managing Partner', img: '/team/neema.jpg' },
+              { name: 'Wendy Stapleton', role: 'Managing Director', img: '/team/wendy.jpg' },
             ].map((p, i) => (
               <motion.div className="cb-team-card" key={p.name} {...rise(0.15 + i * 0.12)}>
                 <div className="cb-team-img">

@@ -94,16 +94,38 @@ export default function Footer() {
                 <div>
                   <p style={{ color: '#4b5563', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: '18px' }}>Navigation</p>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                    {['Home', 'Listings', 'About Us', 'Off Plan', 'Services', 'Blogs'].map(item => (
-                      <li key={item}><a href="#" style={{ color: '#d1d5db', fontSize: '14px', textDecoration: 'none' }}>{item}</a></li>
+                    {[
+                      { label: 'Home',     href: '/' },
+                      { label: 'Listings', href: '/listings' },
+                      { label: 'About Us', href: '/about' },
+                      { label: 'Off Plan', href: '/off-plan' },
+                      { label: 'Services', href: '/services' },
+                      { label: 'Blogs',    href: '/blog' },
+                    ].map(({ label, href }) => (
+                      <li key={label}><a href={href} style={{ color: '#d1d5db', fontSize: '14px', textDecoration: 'none' }}>{label}</a></li>
                     ))}
                   </ul>
                 </div>
                 <div>
                   <p style={{ color: '#4b5563', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: '18px' }}>Information</p>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                    {['FAQ', 'Contact', 'Privacy Policy', 'Conveyancing', 'Pay Online', 'Portals'].map(item => (
-                      <li key={item}><a href="#" style={{ color: '#d1d5db', fontSize: '14px', textDecoration: 'none' }}>{item}</a></li>
+                    {[
+                      { label: 'FAQ',            href: '/about#faq' },
+                      { label: 'Contact',        href: '/contact' },
+                      { label: 'Privacy Policy', href: '/privacy' },
+                      { label: 'Conveyancing',   href: '/conveyancing' },
+                      { label: 'Pay Online',     href: '/pay-online' },
+                      { label: 'Portals',        href: 'https://pm.huntandharris-re.com/login', external: true },
+                    ].map(({ label, href, external }) => (
+                      <li key={label}>
+                        <a
+                          href={href}
+                          {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                          style={{ color: '#d1d5db', fontSize: '14px', textDecoration: 'none' }}
+                        >
+                          {label}
+                        </a>
+                      </li>
                     ))}
                   </ul>
                 </div>

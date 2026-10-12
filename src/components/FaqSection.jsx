@@ -48,7 +48,7 @@ export default function FaqSection() {
   const [open, setOpen] = useState(0)
 
   return (
-    <section className="faq-sec">
+    <section className="faq-sec" id="faq" style={{ scrollMarginTop: '90px' }}>
       <div className="faq-inner">
         {/* Left — heading + contact card */}
         <div className="faq-left">

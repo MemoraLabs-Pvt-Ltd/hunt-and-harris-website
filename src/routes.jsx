@@ -5,8 +5,6 @@ import BlogPage from './pages/BlogPage.jsx'
 import PayOnlinePage from './pages/PayOnlinePage.jsx'
 import ConveyancingPage from './pages/ConveyancingPage.jsx'
 import OffPlanPage from './pages/OffPlanPage.jsx'
-import PortalLogin from './components/portal/PortalLogin.jsx'
-import AdminPortal from './components/portal/AdminPortal.jsx'
 import FeedPage from './pages/FeedPage.jsx'
 import ListingsPage from './pages/ListingsPage.jsx'
 import PropertyPage from './pages/PropertyPage.jsx'
@@ -14,6 +12,7 @@ import ContactPage from './pages/ContactPage.jsx'
 import BlogPostPage from './pages/BlogPostPage.jsx'
 import GuidesPage from './pages/GuidesPage.jsx'
 import PropertyManagementPage from './pages/PropertyManagementPage.jsx'
+import PrivacyPage from './pages/PrivacyPage.jsx'
 import { feedLoader, propertyLoader, propertyPaths } from './data/feedLoader'
 import { blogPostLoader, blogPostPaths } from './data/blogPosts'
 
@@ -32,13 +31,12 @@ export const routes = [
   { path: '/blog', element: <BlogPage /> },
   { path: '/guides', element: <GuidesPage /> },
   { path: '/property-management', element: <PropertyManagementPage /> },
+  { path: '/privacy', element: <PrivacyPage /> },
   { path: '/blog/:slug', element: <BlogPostPage />, loader: blogPostLoader, getStaticPaths: blogPostPaths },
   { path: '/pay-online', element: <PayOnlinePage /> },
   { path: '/conveyancing', element: <ConveyancingPage /> },
   { path: '/contact', element: <ContactPage /> },
   // No loader — instant shell; the grid fetches /data/off-plan.json client-side.
   { path: '/off-plan', element: <OffPlanPage /> },
-  { path: '/portal/login', element: <PortalLogin /> },
-  { path: '/portal/admin', element: <AdminPortal /> },
   { path: '/feed', element: <FeedPage />, loader: feedLoader },
 ]

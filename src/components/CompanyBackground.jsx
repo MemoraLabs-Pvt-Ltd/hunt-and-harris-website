@@ -39,8 +39,8 @@ export default function CompanyBackground() {
 
           <div className="cb-team-grid">
             {[
-              { name: 'Neema Kataria', role: 'Managing Partner', img: '/team/neema.jpg' },
-              { name: 'Wendy Stapleton', role: 'Managing Director', img: '/team/wendy.jpg' },
+              { name: 'Neema Kataria', role: 'Managing Partner', img: '/team/neema.jpg', linkedin: 'https://www.linkedin.com/in/neema-kataria-833a3a15' },
+              { name: 'Wendy Stapleton', role: 'Managing Director', img: '/team/wendy.jpg', linkedin: 'https://www.linkedin.com/in/wendy-stapleton-47925521' },
             ].map((p, i) => (
               <motion.div className="cb-team-card" key={p.name} {...rise(0.15 + i * 0.12)}>
                 <div className="cb-team-img">
@@ -48,7 +48,7 @@ export default function CompanyBackground() {
                 </div>
                 <div className="cb-team-namerow">
                   <span className="cb-team-name">{p.name}</span>
-                  <a className="cb-team-linkedin" href="#" aria-label={`${p.name} on LinkedIn`}>
+                  <a className="cb-team-linkedin" href={p.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${p.name} on LinkedIn`}>
                     <svg viewBox="0 0 24 24" fill="currentColor">
                       <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.02 8h4.96v16H.02V8zm7.5 0h4.75v2.2h.07c.66-1.25 2.27-2.57 4.67-2.57 5 0 5.92 3.29 5.92 7.57V24h-4.96v-7.1c0-1.69-.03-3.87-2.36-3.87-2.36 0-2.72 1.84-2.72 3.75V24H7.52V8z" />
                     </svg>

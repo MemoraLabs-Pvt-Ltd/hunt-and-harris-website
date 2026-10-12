@@ -12,7 +12,7 @@ const PRIMARY_LINKS = [
 ]
 
 // Routes whose hero has a light background — the navbar must use dark text at the top
-const LIGHT_HERO_PATHS = ['/services', '/blog', '/guides', '/pay-online', '/off-plan', '/listings', '/contact', '/property-management']
+const LIGHT_HERO_PATHS = ['/services', '/blog', '/guides', '/pay-online', '/off-plan', '/listings', '/contact', '/property-management', '/privacy']
 
 // Which nav link matches the current route (falls back to Home)
 const linkForPath = (pathname) =>

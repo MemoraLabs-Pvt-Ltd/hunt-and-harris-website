@@ -312,3 +312,20 @@
   .cv-add-img { min-height: 200px; }
   .cv-why { padding: 64px 20px 72px; }
 }
+
+/* Guide download button */
+.cv-guide-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  padding: 13px 24px;
+  border-radius: 9999px;
+  background: #7ab4d8;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.cv-guide-btn:hover { background: #3f86bd; transform: translateY(-1px); }

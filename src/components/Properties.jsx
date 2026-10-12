@@ -81,7 +81,7 @@ export default function Properties() {
           <Link className="pcard" key={l.ref} to={`/property/${l.ref}`} onMouseEnter={() => prefetchProperty(l.ref)} onFocus={() => prefetchProperty(l.ref)}>
             <div className="pcard-img-wrap">
               {l.image ? <img src={l.image} alt={l.title} className="pcard-img" loading="lazy" /> : <div className="pcard-img" />}
-              <span className="pcard-badge">{l.type || l.propertyFor}</span>
+              <span className="pcard-badge">{l.type || (/off\s*plan/i.test(l.propertyFor) ? 'Off-Plan' : l.propertyFor)}</span>
             </div>
             <div className="pcard-body">
               <div className="pcard-addr">{[l.subLocation, l.location].filter(Boolean).join(', ') || l.city}</div>

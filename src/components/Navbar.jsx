@@ -12,19 +12,25 @@ const PRIMARY_LINKS = [
 ]
 
 // Routes whose hero has a light background — the navbar must use dark text at the top
-const LIGHT_HERO_PATHS = ['/services', '/blog', '/guides', '/pay-online', '/off-plan', '/listings', '/contact']
+const LIGHT_HERO_PATHS = ['/services', '/blog', '/guides', '/pay-online', '/off-plan', '/listings', '/contact', '/property-management']
 
 // Which nav link matches the current route (falls back to Home)
 const linkForPath = (pathname) =>
   pathname.startsWith('/property/') ? 'Listings'
     : pathname.startsWith('/blog') ? 'Blogs'
-    : [...PRIMARY_LINKS, ...EXTRA_LINKS].find(l => l.href === pathname)?.label ?? 'Home'
+    : [...PRIMARY_LINKS, ...EXTRA_LINKS, ...PM_LINKS].find(l => l.href === pathname)?.label ?? 'Home'
 
 const EXTRA_LINKS = [
   { label: 'Blogs',        href: '/blog' },
   { label: 'Guides',       href: '/guides' },
   { label: 'Conveyancing', href: '/conveyancing' },
   { label: 'Pay Online',   href: '/pay-online' },
+]
+
+// "Property Management" dropdown items
+const PM_LINKS = [
+  { label: 'List Property',            href: '/property-management' },
+  { label: 'Residential & Commercial', href: '/property-management#residential-commercial' },
 ]
 
 // Both portals open the real property-management portal directly.
@@ -60,9 +66,13 @@ export default function Navbar() {
   const [portalsOpen, setPortalsOpen] = useState(false)
   const [menuOpen, setMenuOpen]       = useState(false)
   const [portalPos, setPortalPos]     = useState({ top: 0, left: 0 })
+  const [pmOpen, setPmOpen]           = useState(false)
+  const [pmPos, setPmPos]             = useState({ top: 0, left: 0 })
 
   const portalsButtonRef = useRef(null)
   const closeTimer       = useRef(null)
+  const pmButtonRef      = useRef(null)
+  const pmCloseTimer     = useRef(null)
 
   // Light-text treatment only when pinned at the top over a dark hero.
   // Property detail pages have a white top → dark text (else the white font is invisible).
@@ -99,6 +109,19 @@ export default function Navbar() {
 
   const closePortals = () => {
     closeTimer.current = setTimeout(() => setPortalsOpen(false), 150)
+  }
+
+  const openPm = () => {
+    clearTimeout(pmCloseTimer.current)
+    if (pmButtonRef.current) {
+      const rect = pmButtonRef.current.getBoundingClientRect()
+      setPmPos({ top: rect.bottom + 6, left: rect.left + rect.width / 2 })
+    }
+    setPmOpen(true)
+  }
+
+  const closePm = () => {
+    pmCloseTimer.current = setTimeout(() => setPmOpen(false), 150)
   }
 
   const pillLink = (label, href) => (
@@ -167,6 +190,39 @@ export default function Navbar() {
         >
           <div style={{ overflow: 'hidden', display: 'flex', alignItems: 'center', gap: 1, minWidth: 0 }}>
             {EXTRA_LINKS.map(l => pillLink(l.label, l.href))}
+
+            {/* Property Management dropdown */}
+            <button
+              ref={pmButtonRef}
+              onMouseEnter={openPm}
+              onMouseLeave={closePm}
+              style={{
+                display: 'flex', alignItems: 'center', gap: 4,
+                padding: '6px 14px',
+                borderRadius: 999,
+                fontSize: 13,
+                fontWeight: pmOpen ? 600 : 500,
+                cursor: 'pointer',
+                border: 'none',
+                fontFamily: 'inherit',
+                transition: 'background 180ms, color 180ms',
+                backgroundColor: pmOpen ? 'rgba(255,255,255,0.22)' : 'transparent',
+                color: navLight ? '#ffffff' : '#111110',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              Property Management
+              <svg
+                style={{
+                  width: 12, height: 12,
+                  transform: pmOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition: 'transform 200ms',
+                }}
+                fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
 
             {/* Portals button */}
             <button
@@ -251,7 +307,7 @@ export default function Navbar() {
           boxShadow: '0 8px 40px rgba(0,0,0,0.18)',
           padding: '14px 18px',
         }}>
-          {[...PRIMARY_LINKS, ...EXTRA_LINKS, ...PORTAL_LINKS].map((l, i, arr) => (
+          {[...PRIMARY_LINKS, ...EXTRA_LINKS, ...PM_LINKS, ...PORTAL_LINKS].map((l, i, arr) => (
             <a
               key={l.label}
               href={l.href}
@@ -302,6 +358,39 @@ export default function Navbar() {
                 href={l.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                style={{
+                  display: 'block', padding: '9px 16px',
+                  fontSize: 13, color: '#374151', textDecoration: 'none',
+                  transition: 'background 150ms',
+                }}
+                onMouseEnter={e => e.currentTarget.style.background = '#f9fafb'}
+                onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+              >
+                {l.label}
+              </a>
+            ))}
+          </div>
+        </div>,
+        document.body
+      )}
+
+      {/* Property Management dropdown */}
+      {pmOpen && createPortal(
+        <div
+          style={{ position: 'fixed', top: pmPos.top, left: pmPos.left, transform: 'translateX(-50%)', zIndex: 9999 }}
+          onMouseEnter={openPm}
+          onMouseLeave={closePm}
+        >
+          <div style={{
+            backgroundColor: '#ffffff', borderRadius: 14,
+            boxShadow: '0 8px 32px rgba(0,0,0,0.16)',
+            padding: '6px 0', minWidth: 180,
+            border: '1px solid rgba(0,0,0,0.06)',
+          }}>
+            {PM_LINKS.map(l => (
+              <a
+                key={l.label}
+                href={l.href}
                 style={{
                   display: 'block', padding: '9px 16px',
                   fontSize: 13, color: '#374151', textDecoration: 'none',

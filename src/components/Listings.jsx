@@ -197,7 +197,7 @@ function PropertyCard({ l }) {
     >
       <div className="lst-card-img">
         {l.image ? <img src={l.image} alt={l.title} loading="lazy" /> : <div className="lst-noimg">No image</div>}
-        <span className={`lst-badge ${l.propertyFor === 'Rent' ? 'lst-badge--blue' : 'lst-badge--green'}`}>For {l.propertyFor}</span>
+        <span className={`lst-badge ${l.propertyFor === 'Rent' ? 'lst-badge--blue' : 'lst-badge--green'}`}>{/off\s*plan/i.test(l.propertyFor) ? 'Off-Plan' : `For ${l.propertyFor}`}</span>
       </div>
       <div className="lst-card-body">
         <div className="lst-card-loc">{[l.subLocation, l.location].filter(Boolean).join(', ') || l.city}</div>

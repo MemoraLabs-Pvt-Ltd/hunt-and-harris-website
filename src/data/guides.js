@@ -36,4 +36,18 @@ export const GUIDES = [
     file: '/guides/why-list-exclusively.pdf',
     img: '/photos/living-luxe.jpg',
   },
+  {
+    slug: 'property-management-brochure',
+    title: 'Property Management Brochure',
+    desc: 'How Hunt & Harris manages your residential and commercial property — tenant screening, rent collection, maintenance and maximum exposure.',
+    file: '/guides/property-management-brochure.pdf',
+    img: '/photos/pm-feature.jpg',
+  },
+  {
+    slug: 'conveyancing-services',
+    title: 'Conveyancing Services',
+    desc: 'Our complete conveyancing service in Ras Al Khaimah — the legal and administrative process behind a smooth, secure property transfer.',
+    file: '/guides/conveyancing-services.pdf',
+    img: '/photos/waterfront-townhouses.jpg',
+  },
 ]

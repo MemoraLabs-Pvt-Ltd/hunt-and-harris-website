@@ -13,6 +13,7 @@ import PropertyPage from './pages/PropertyPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import BlogPostPage from './pages/BlogPostPage.jsx'
 import GuidesPage from './pages/GuidesPage.jsx'
+import PropertyManagementPage from './pages/PropertyManagementPage.jsx'
 import { feedLoader, propertyLoader, propertyPaths } from './data/feedLoader'
 import { blogPostLoader, blogPostPaths } from './data/blogPosts'
 
@@ -30,6 +31,7 @@ export const routes = [
   { path: '/services', element: <ServicesPage /> },
   { path: '/blog', element: <BlogPage /> },
   { path: '/guides', element: <GuidesPage /> },
+  { path: '/property-management', element: <PropertyManagementPage /> },
   { path: '/blog/:slug', element: <BlogPostPage />, loader: blogPostLoader, getStaticPaths: blogPostPaths },
   { path: '/pay-online', element: <PayOnlinePage /> },
   { path: '/conveyancing', element: <ConveyancingPage /> },

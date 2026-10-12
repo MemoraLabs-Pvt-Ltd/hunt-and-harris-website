@@ -104,7 +104,7 @@ function RelatedCarousel({ related }) {
           <Link className="pd-rel" to={`/property/${r.ref}`} key={r.ref} onMouseEnter={() => prefetchProperty(r.ref)} onFocus={() => prefetchProperty(r.ref)}>
             <div className="pd-rel-img">
               {r.image ? <img src={r.image} alt={r.title} loading="lazy" /> : <div className="pd-rel-noimg">No image</div>}
-              <span className={`pd-rel-badge ${r.propertyFor === 'Rent' ? 'is-rent' : 'is-sale'}`}>For {r.propertyFor}</span>
+              <span className={`pd-rel-badge ${r.propertyFor === 'Rent' ? 'is-rent' : 'is-sale'}`}>{/off\s*plan/i.test(r.propertyFor) ? 'Off-Plan' : `For ${r.propertyFor}`}</span>
             </div>
             <div className="pd-rel-body">
               <div className="pd-rel-loc">{[r.subLocation, r.location].filter(Boolean).join(', ') || r.city}</div>

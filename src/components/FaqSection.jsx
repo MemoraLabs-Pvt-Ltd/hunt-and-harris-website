@@ -72,7 +72,7 @@ export default function FaqSection() {
               Time to get introduced and explore how Hunt &amp; Harris Real Estate can help.
             </p>
 
-            <a href="#contact" className="faq-card-btn">
+            <a href="/contact" className="faq-card-btn">
               Book a Call
               <span className="faq-card-btn-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

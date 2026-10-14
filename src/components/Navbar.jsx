@@ -12,7 +12,7 @@ const PRIMARY_LINKS = [
 ]
 
 // Routes whose hero has a light background — the navbar must use dark text at the top
-const LIGHT_HERO_PATHS = ['/services', '/blog', '/guides', '/pay-online', '/off-plan', '/listings', '/contact', '/property-management', '/privacy']
+const LIGHT_HERO_PATHS = ['/services', '/blog', '/guides', '/pay-online', '/off-plan', '/listings', '/contact', '/property-management', '/privacy', '/foreign-exchange', '/interior-design', '/mortgage-consultancy']
 
 // Which nav link matches the current route (falls back to Home)
 const linkForPath = (pathname) =>
@@ -21,10 +21,9 @@ const linkForPath = (pathname) =>
     : [...PRIMARY_LINKS, ...EXTRA_LINKS, ...PM_LINKS].find(l => l.href === pathname)?.label ?? 'Home'
 
 const EXTRA_LINKS = [
-  { label: 'Blogs',        href: '/blog' },
-  { label: 'Guides',       href: '/guides' },
-  { label: 'Conveyancing', href: '/conveyancing' },
-  { label: 'Pay Online',   href: '/pay-online' },
+  { label: 'Blogs',      href: '/blog' },
+  { label: 'Guides',     href: '/guides' },
+  { label: 'Pay Online', href: '/pay-online' },
 ]
 
 // "Property Management" dropdown items

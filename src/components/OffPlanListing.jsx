@@ -49,6 +49,12 @@ export default function OffPlanListing() {
           Secure the region&rsquo;s most anticipated launches early &mdash; direct from developers
           and resale, across RAK&rsquo;s finest waterfront communities.
         </p>
+        <a className="opl-guide-btn" href="/guides/off-plan-guide.pdf" download target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Download Off-Plan Guide
+        </a>
       </div>
 
       {error && <p className="opl-error">Could not load listings: {error}</p>}

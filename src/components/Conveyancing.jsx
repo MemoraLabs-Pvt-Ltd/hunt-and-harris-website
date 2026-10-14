@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './Conveyancing.css'
 
 
@@ -96,6 +97,12 @@ export default function Conveyancing() {
       >
         <div className="cv-hero-overlay" />
         <div className="cv-hero-content">
+          <Link to="/services" className="cv-back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" />
+            </svg>
+            Back to Services
+          </Link>
           <h1 className="cv-hero-title">
             Conveyancing <span className="cv-italic">Services</span><br />in Ras Al Khaimah
           </h1>

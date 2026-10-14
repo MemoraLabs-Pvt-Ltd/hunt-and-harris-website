@@ -8,7 +8,7 @@ const SLIDES = [
   '/hero-3.jpg',
 ]
 
-const TABS = ['Buy', 'Rent', 'Sell']
+const TABS = ['Buy', 'Rent']
 // Which propertyFor value each tab searches for (Sell → lead capture instead).
 const TAB_FOR = { Buy: 'Sale', Rent: 'Rent' }
 

@@ -1,11 +1,28 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { POSTS, CATEGORIES } from '../data/blogPosts'
+import { submitLead } from '../utils/submitLead'
 import './BlogListing.css'
 
 export default function BlogListing() {
   const [active, setActive] = useState('All')
   const posts = active === 'All' ? POSTS : POSTS.filter((p) => p.category === active)
+
+  const [email, setEmail] = useState('')
+  const [subStatus, setSubStatus] = useState('idle') // idle | sending | success | error
+
+  const onSubscribe = async (e) => {
+    e.preventDefault()
+    if (subStatus === 'sending') return
+    setSubStatus('sending')
+    const res = await submitLead({ form: 'Blog Subscribe', page: '/blog', email })
+    if (res.ok) {
+      setSubStatus('success')
+      setEmail('')
+    } else {
+      setSubStatus('error')
+    }
+  }
 
   return (
     <section className="blg-sec">
@@ -54,6 +71,29 @@ export default function BlogListing() {
             </div>
           </Link>
         ))}
+      </div>
+
+      {/* Subscribe band */}
+      <div className="blg-sub-band">
+        <div className="blg-sub-copy">
+          <h2 className="blg-sub-title">Stay in the loop</h2>
+          <p className="blg-sub-text">Get the latest RAK market insights and new listings straight to your inbox.</p>
+        </div>
+        <form className="blg-sub-form" onSubmit={onSubscribe}>
+          <input
+            className="blg-sub-input"
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <button className="blg-sub-btn" type="submit" disabled={subStatus === 'sending'}>
+            {subStatus === 'sending' ? 'Subscribing…' : 'Subscribe'}
+          </button>
+          {subStatus === 'success' && <p className="blg-sub-note blg-sub-note--ok">You&rsquo;re subscribed — thank you!</p>}
+          {subStatus === 'error' && <p className="blg-sub-note blg-sub-note--err">Something went wrong. Please try again.</p>}
+        </form>
       </div>
     </section>
   )

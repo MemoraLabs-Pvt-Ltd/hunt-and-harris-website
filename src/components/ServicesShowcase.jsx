@@ -16,7 +16,7 @@ export default function ServicesShowcase() {
             right tenant for your property, our team makes every step simple.
           </p>
 
-          <a href="#contact" className="sw-cta">
+          <a href="/contact" className="sw-cta">
             Book a Viewing
             <span className="sw-cta-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

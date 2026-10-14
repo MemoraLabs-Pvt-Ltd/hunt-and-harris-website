@@ -329,3 +329,24 @@
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 .cv-guide-btn:hover { background: #3f86bd; transform: translateY(-1px); }
+
+/* Back to Services button in the hero */
+.cv-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto 22px;
+  padding: 9px 18px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.cv-back:hover { background: rgba(255, 255, 255, 0.26); transform: translateY(-1px); }
+.cv-back svg { width: 16px; height: 16px; }

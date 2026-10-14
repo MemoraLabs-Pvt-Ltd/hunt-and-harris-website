@@ -72,12 +72,13 @@ export default function ServicesHero() {
           </h1>
 
           <p className="svh-sub">
-            From finding your first home to building an investment portfolio, Hunt &amp; Harris Real Estate
-            handles every step &mdash; buying, selling, off-plan, conveyancing and property
-            management across Ras Al Khaimah. Let us make your next move effortless.
+            At Hunt &amp; Harris Real Estate we go beyond property to provide a range of complementary
+            services designed to simplify your financial and lifestyle needs. From international currency
+            transfers and bespoke interior design to mortgage consultancy, we connect you with trusted
+            specialists to help you make informed decisions with confidence.
           </p>
 
-          <a href="#contact" className="svh-cta">
+          <a href="/contact" className="svh-cta">
             Book a Free Consultation
             <span className="svh-cta-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

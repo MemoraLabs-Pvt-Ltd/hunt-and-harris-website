@@ -13,6 +13,9 @@ import BlogPostPage from './pages/BlogPostPage.jsx'
 import GuidesPage from './pages/GuidesPage.jsx'
 import PropertyManagementPage from './pages/PropertyManagementPage.jsx'
 import PrivacyPage from './pages/PrivacyPage.jsx'
+import ForeignExchangePage from './pages/ForeignExchangePage.jsx'
+import InteriorDesignPage from './pages/InteriorDesignPage.jsx'
+import MortgageConsultancyPage from './pages/MortgageConsultancyPage.jsx'
 import { feedLoader, propertyLoader, propertyPaths } from './data/feedLoader'
 import { blogPostLoader, blogPostPaths } from './data/blogPosts'
 
@@ -32,6 +35,9 @@ export const routes = [
   { path: '/guides', element: <GuidesPage /> },
   { path: '/property-management', element: <PropertyManagementPage /> },
   { path: '/privacy', element: <PrivacyPage /> },
+  { path: '/foreign-exchange', element: <ForeignExchangePage /> },
+  { path: '/interior-design', element: <InteriorDesignPage /> },
+  { path: '/mortgage-consultancy', element: <MortgageConsultancyPage /> },
   { path: '/blog/:slug', element: <BlogPostPage />, loader: blogPostLoader, getStaticPaths: blogPostPaths },
   { path: '/pay-online', element: <PayOnlinePage /> },
   { path: '/conveyancing', element: <ConveyancingPage /> },

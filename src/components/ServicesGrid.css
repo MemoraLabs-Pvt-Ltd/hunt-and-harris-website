@@ -157,3 +157,20 @@
   .sg-d { grid-column: auto; }
   .sg-main .sg-card, .sg-sub .sg-card { min-height: 300px; }
 }
+
+/* Two-action card footer (e.g. Conveyancing: Download Guide + Learn More) */
+.sg-card-actions {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+  padding: 0 26px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 24px;
+}
+.sg-card-more--inline {
+  margin-top: 0;
+  padding: 0;
+  font-size: 15px;
+}
+.sg-card-more--inline .sg-card-more-icon { width: 30px; height: 30px; }

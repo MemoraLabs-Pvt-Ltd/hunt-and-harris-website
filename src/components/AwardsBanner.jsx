@@ -17,7 +17,7 @@ export default function AwardsBanner() {
   return (
     <div className="ab-strip">
       <div className="ab-label">
-        Recognised by the leading<br />portals for the following awards
+        Recognised by the leading brands for the following awards
       </div>
       <div className="ab-track-wrap">
         <div className="ab-track">

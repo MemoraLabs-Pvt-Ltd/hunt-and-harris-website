@@ -84,6 +84,7 @@ const SUB = [
     desc: 'Expert mortgage guidance and tailored financing solutions in the UAE and overseas, through our licensed consultancy partners.',
     img: IMG('1560518883-ce09059eeffa', 1100, 760),
     actions: [
+      { label: 'Download Guide', href: '/guides/mortgage-consultancy-guide.pdf', download: true },
       { label: 'Learn More', href: '/mortgage-consultancy' },
     ],
   },
@@ -92,6 +93,7 @@ const SUB = [
     desc: 'Competitive exchange rates and seamless international transfers through our FX partner, Agility Forex UK Ltd.',
     img: '/photos/terrace-seaview.jpg',
     actions: [
+      { label: 'Download Guide', href: '/guides/foreign-exchange-guide.pdf', download: true },
       { label: 'Learn More', href: '/foreign-exchange' },
     ],
   },
@@ -100,6 +102,7 @@ const SUB = [
     desc: 'Beautifully furnished spaces tailored to your needs and budget — from furniture packages to full turnkey solutions.',
     img: '/photos/living-luxe.jpg',
     actions: [
+      { label: 'Download Guide', href: '/guides/interior-design-guide.pdf', download: true },
       { label: 'Learn More', href: '/interior-design' },
     ],
   },

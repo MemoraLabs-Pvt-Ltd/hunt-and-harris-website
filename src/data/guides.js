@@ -50,4 +50,25 @@ export const GUIDES = [
     file: '/guides/conveyancing-services.pdf',
     img: '/photos/waterfront-townhouses.jpg',
   },
+  {
+    slug: 'interior-design-guide',
+    title: 'Interior Design & Furnishing',
+    desc: 'Beautifully furnished spaces tailored to your needs and budget — from furniture packages to complete turnkey furnishing solutions.',
+    file: '/guides/interior-design-guide.pdf',
+    img: '/photos/living-luxe.jpg',
+  },
+  {
+    slug: 'foreign-exchange-guide',
+    title: 'Foreign Currency Exchange',
+    desc: 'Competitive exchange rates and seamless international transfers through our FX partner, Agility Forex UK Ltd.',
+    file: '/guides/foreign-exchange-guide.pdf',
+    img: '/photos/rak-aerial-hero.jpg',
+  },
+  {
+    slug: 'mortgage-consultancy-guide',
+    title: 'Mortgage Consultancy',
+    desc: 'Expert mortgage guidance and tailored financing solutions in the UAE and overseas, through our licensed consultancy partners.',
+    file: '/guides/mortgage-consultancy-guide.pdf',
+    img: '/photos/lounge-view.jpg',
+  },
 ]

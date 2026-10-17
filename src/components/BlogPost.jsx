@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Link, useLoaderData } from 'react-router-dom'
 import Seo from '../seo/Seo'
 import { absUrl } from '../seo/siteConfig'
@@ -5,6 +6,12 @@ import './BlogPost.css'
 
 export default function BlogPost() {
   const { post, related = [] } = useLoaderData() || {}
+
+  // Open every article at the top (e.g. when clicking "More articles" from the
+  // bottom of another post), not at the previous scroll position.
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [post?.slug])
 
   if (!post) {
     return (

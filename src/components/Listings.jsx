@@ -45,12 +45,12 @@ const RENT_STEPS = [20000, 40000, 60000, 80000, 100000, 150000, 200000, 300000, 
 const ALL_STEPS = [20000, 50000, 100000, 250000, 500000, 1000000, 2000000, 5000000, 10000000, 20000000]
 const fmtNum = (n) => Number(n).toLocaleString('en-US')
 
-function Select({ label, value, options, onChange }) {
+function Select({ label, value, options, onChange, allLabel }) {
   return (
     <label className="lst-select">
       <span className="lst-select-label">{label}</span>
       <select value={value} onChange={(e) => onChange(e.target.value)}>
-        <option value="All">All {label}</option>
+        <option value="All">{allLabel || `All ${label}`}</option>
         {options.map((o) => <option key={o.value} value={o.value}>{o.value} ({o.count})</option>)}
       </select>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6" /></svg>
@@ -204,7 +204,7 @@ function PropertyCard({ l }) {
         <h3 className="lst-card-title">{l.title || l.tower || l.type}</h3>
         <div className="lst-card-price">{money(l)}</div>
         <div className="lst-card-specs">
-          <span>{l.type}</span><span>{bedsLabel(l.beds)}</span><span>{l.baths || '—'} Bath</span>{l.built && <span>{l.built} sqft</span>}
+          <span>{l.type}</span><span>{bedsLabel(l.beds)}</span><span>{l.baths || '—'} Bath</span>{l.built && <span>{Number.isFinite(Number(l.built)) ? Number(l.built).toLocaleString('en-US') : l.built} sqft</span>}
         </div>
       </div>
     </Link>
@@ -330,7 +330,7 @@ export default function Listings() {
           <Select label="Location" value={f.location} options={facets.location || []} onChange={set('location')} />
           <Select label="Beds" value={f.beds} options={facets.beds || []} onChange={set('beds')} />
           <PricePopover min={f.min} max={f.max} steps={priceSteps} onChange={setPrice} />
-          <Select label="City" value={f.city} options={facets.city || []} onChange={set('city')} />
+          <Select label="City" value={f.city} options={facets.city || []} onChange={set('city')} allLabel="All Cities" />
           {dirty && <button className="lst-clear" onClick={() => setF(DEFAULTS)}>Clear</button>}
         </div>
 

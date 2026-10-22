@@ -50,7 +50,7 @@ const SEGMENTS = [
 const PM_STATS = [
   { value: '19+', label: 'Years of property management experience in the Northern Emirates' },
   { value: '90%', label: 'Occupancy rate with high-quality tenants for your property' },
-  { value: '30+', label: 'Bayut, Dubizzle & Property Finder awards' },
+  { value: '50+', label: 'Bayut, Dubizzle & Property Finder awards' },
 ]
 
 export default function PropertyManagement() {

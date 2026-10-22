@@ -38,7 +38,6 @@ export default function ForeignExchangePage() {
         ctaText="Speak to our team to discover how our foreign exchange partner can support your currency exchange and international payment needs."
       />
       <ContactSection hideForm />
-      <div style={{ height: '120px', background: 'linear-gradient(to bottom, #ffffff 0%, #d0d0d0 30%, #707070 60%, #0a0a0a 100%)', width: '100%' }} />
       <Footer />
     </>
   )

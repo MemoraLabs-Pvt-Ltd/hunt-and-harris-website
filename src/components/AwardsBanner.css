@@ -31,7 +31,7 @@
   align-items: center;
   height: 150px;
   width: max-content;
-  animation: ab-scroll 32s linear infinite;
+  animation: ab-scroll 90s linear infinite;
 }
 .ab-track:hover { animation-play-state: paused; }
 

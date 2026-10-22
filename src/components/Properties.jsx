@@ -92,7 +92,7 @@ export default function Properties() {
                   <div className="pcard-specs">
                     <span className="pcard-spec"><BedIcon />{bedsLabel(l.beds)}</span>
                     <span className="pcard-spec"><BathIcon />{l.baths || '—'}</span>
-                    {l.built && <span className="pcard-spec"><AreaIcon />{l.built} sq.ft</span>}
+                    {l.built && <span className="pcard-spec"><AreaIcon />{Number.isFinite(Number(l.built)) ? Number(l.built).toLocaleString('en-US') : l.built} sq.ft</span>}
                   </div>
                   <div className="pcard-price">{money(l)}</div>
                 </div>

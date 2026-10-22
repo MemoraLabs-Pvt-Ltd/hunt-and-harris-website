@@ -53,7 +53,7 @@ export default function AwardsHonors() {
       </h2>
 
       <p className="aw-sub">
-        Our work has been recognized with <b>30+ awards</b> from the region&rsquo;s most trusted
+        Our work has been recognized with <b>50+ awards</b> from the region&rsquo;s most trusted
         names &mdash; <b>Bayut</b>, <b>Property Finder</b>, <b>Dubizzle</b> and <b>Uniestate</b>{' '}
         &mdash; including <b>Women in Leadership</b> honours.
       </p>

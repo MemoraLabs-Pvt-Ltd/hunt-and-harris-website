@@ -96,7 +96,7 @@ export default function OffPlanListing() {
               <div className="opl-card-specs">
                 <span>{bedsLabel(l.beds)}</span>
                 <span>{l.baths || '—'} Bath</span>
-                {l.built && <span>{l.built} sqft</span>}
+                {l.built && <span>{Number.isFinite(Number(l.built)) ? Number(l.built).toLocaleString('en-US') : l.built} sqft</span>}
               </div>
               <div className="opl-card-foot">
                 <div className="opl-card-price">

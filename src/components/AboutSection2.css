@@ -159,10 +159,6 @@
   box-shadow: 0 8px 32px rgba(122, 180, 216, 0.35);
 }
 
-.as2-arrow {
-  font-size: 16px;
-  line-height: 1;
-}
 
 @media (max-width: 1024px) {
   .as2-sec { padding: 80px 48px 90px; }

@@ -121,7 +121,7 @@ export default function Hero() {
           <div className="sfield sfield-anim" style={{ animationDelay: '200ms' }}>
             <div className="sfield-label">Location</div>
             <select value={location} onChange={e => setLocation(e.target.value)}>
-              <option value="">{locations.length ? 'Any Location' : 'Select Location'}</option>
+              <option value="">{locations.length ? 'All Locations' : 'Select Location'}</option>
               {locations.map(l => <option key={l} value={l}>{l}</option>)}
             </select>
           </div>
@@ -131,7 +131,7 @@ export default function Hero() {
           <div className="sfield sfield-anim" style={{ animationDelay: '280ms' }}>
             <div className="sfield-label">Bedrooms</div>
             <select value={beds} onChange={e => setBeds(e.target.value)}>
-              <option value="">Any Beds</option>
+              <option value="">All Beds</option>
               {bedsOptions.map(b => <option key={b} value={b}>{/^studio$/i.test(b) ? b : `${b} Bed${b === '1' ? '' : 's'}`}</option>)}
             </select>
           </div>
@@ -141,7 +141,7 @@ export default function Hero() {
           <div className="sfield sfield-anim" style={{ animationDelay: '360ms' }}>
             <div className="sfield-label">Budget</div>
             <select value={budget} onChange={e => setBudget(e.target.value)}>
-              <option value="">Any Budget</option>
+              <option value="">All Budgets</option>
               {Object.keys(BUDGET_RANGE).map(b => <option key={b} value={b}>{b}</option>)}
             </select>
           </div>
@@ -151,7 +151,7 @@ export default function Hero() {
           <div className="sfield sfield-anim" style={{ animationDelay: '440ms' }}>
             <div className="sfield-label">Property Type</div>
             <select value={type} onChange={e => setType(e.target.value)}>
-              <option value="">{types.length ? 'Any Type' : 'Property Type'}</option>
+              <option value="">{types.length ? 'All Types' : 'Property Type'}</option>
               {types.map(t => <option key={t} value={t}>{t}</option>)}
             </select>
           </div>

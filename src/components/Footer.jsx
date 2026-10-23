@@ -75,6 +75,7 @@ export default function Footer() {
                   { label: 'Facebook', href: 'https://www.facebook.com/HuntandHarrisUAE/', path: 'M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.78-3.91 1.1 0 2.24.2 2.24.2v2.47H15.2c-1.24 0-1.63.78-1.63 1.57v1.88h2.78l-.44 2.9h-2.34V22c4.78-.76 8.43-4.92 8.43-9.94z' },
                   { label: 'LinkedIn', href: 'https://www.linkedin.com/company/hunt-and-harris-real-estate/', path: 'M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.02 8h4.96v16H.02V8zm7.5 0h4.75v2.2h.07c.66-1.25 2.27-2.57 4.67-2.57 5 0 5.92 3.29 5.92 7.57V24h-4.96v-7.1c0-1.69-.03-3.87-2.36-3.87-2.36 0-2.72 1.84-2.72 3.75V24H7.52V8z' },
                   { label: 'YouTube', href: 'https://www.youtube.com/channel/UCuKDEZaMLE01ghyAJXrjANQ/featured', path: 'M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.12 2.14c1.88.51 9.38.51 9.38.51s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z' },
+                  { label: 'TikTok', href: 'https://www.tiktok.com/@hunt.and.harris.r', path: 'M16.6 5.82a4.28 4.28 0 0 1-1.06-2.82h-3.2v12.17a2.6 2.6 0 0 1-2.6 2.5 2.6 2.6 0 0 1-2.6-2.6 2.6 2.6 0 0 1 3.4-2.48V9.3a5.8 5.8 0 0 0-.8-.06A5.82 5.82 0 0 0 4 15.07 5.82 5.82 0 0 0 9.74 21a5.82 5.82 0 0 0 5.82-5.82V8.9a7.5 7.5 0 0 0 4.44 1.44V7.14a4.28 4.28 0 0 1-3.4-1.32z' },
                 ].map(({ label, href, path }) => (
                   <a
                     key={label}
@@ -137,6 +138,7 @@ export default function Footer() {
                       { label: 'LinkedIn', href: 'https://www.linkedin.com/company/hunt-and-harris-real-estate/' },
                       { label: 'Facebook', href: 'https://www.facebook.com/HuntandHarrisUAE/' },
                       { label: 'YouTube', href: 'https://www.youtube.com/channel/UCuKDEZaMLE01ghyAJXrjANQ/featured' },
+                      { label: 'TikTok', href: 'https://www.tiktok.com/@hunt.and.harris.r' },
                     ].map(({ label, href }) => (
                       <li key={label}><a href={href} target="_blank" rel="noopener noreferrer" style={{ color: '#d1d5db', fontSize: '14px', textDecoration: 'none' }}>{label}</a></li>
                     ))}

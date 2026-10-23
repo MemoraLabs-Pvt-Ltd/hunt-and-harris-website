@@ -99,7 +99,7 @@ function PricePopover({ min, max, steps, onChange }) {
   const label = min && max ? `AED ${fmtNum(min)} – ${fmtNum(max)}`
     : min ? `AED ${fmtNum(min)}+`
     : max ? `Up to AED ${fmtNum(max)}`
-    : 'Price'
+    : 'All Budgets'
 
   return (
     <div className="lst-price">
@@ -326,8 +326,8 @@ export default function Listings() {
         </div>
 
         <div className="lst-selects">
-          <Select label="Type" value={f.type} options={facets.type || []} onChange={set('type')} />
-          <Select label="Location" value={f.location} options={facets.location || []} onChange={set('location')} />
+          <Select label="Type" value={f.type} options={facets.type || []} onChange={set('type')} allLabel="All Types" />
+          <Select label="Location" value={f.location} options={facets.location || []} onChange={set('location')} allLabel="All Locations" />
           <Select label="Beds" value={f.beds} options={facets.beds || []} onChange={set('beds')} />
           <PricePopover min={f.min} max={f.max} steps={priceSteps} onChange={setPrice} />
           <Select label="City" value={f.city} options={facets.city || []} onChange={set('city')} allLabel="All Cities" />

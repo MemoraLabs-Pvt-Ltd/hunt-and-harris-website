@@ -145,7 +145,9 @@ function Features({ p }) {
 
 export default function PropertyTabs({ property: p }) {
   const [tab, setTab] = useState('details')
-  const TABS = [['details', 'Details'], ['features', 'Features'], ['calculator', 'Calculator']]
+  // The mortgage calculator only makes sense for purchases — hide it for rentals.
+  const isRent = p.propertyFor === 'Rent'
+  const TABS = [['details', 'Details'], ['features', 'Features'], ...(isRent ? [] : [['calculator', 'Calculator']])]
   return (
     <div className="ptab">
       <div className="ptab-head">
@@ -156,7 +158,7 @@ export default function PropertyTabs({ property: p }) {
       <div className="ptab-body">
         {tab === 'details' && <Details p={p} />}
         {tab === 'features' && <Features p={p} />}
-        {tab === 'calculator' && <Calculator price={Number(p.price)} />}
+        {tab === 'calculator' && !isRent && <Calculator price={Number(p.price)} />}
       </div>
     </div>
   )
